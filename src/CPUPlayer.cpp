@@ -80,7 +80,7 @@ int CPUPlayer::minmaxAB(Board board, int depth, int alpha, int beta, bool maximi
         int minEval = std::numeric_limits<int>::max();
         for (Move move : possibleMoves)
         {
-            Board boardCopy = Board(board.getCopy());
+            Board boardCopy = Board(board.getCopy());z
             boardCopy.move(move);
             if (boardCopy.hasChanged(board.getCopy()))
             {

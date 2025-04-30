@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 - Démo IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #faf8ef;
+            color: #776e65
+        }
+
+        h1 {
+            margin: 20px
+        }
+
+        .score-container {
+            margin-bottom: 10px;
+            font-size: 1.5rem
+        }
+
+        .controls {
+            margin-bottom: 15px
+        }
+
+        button {
+            margin: 0 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            background: #8f7a66;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background .2s
+        }
+
+        button:hover:not(:disabled) {
+            background: #9f8b76
+        }
+
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed
+        }
+
+        .details {
+            margin-top: 10px;
+            font-size: .9rem;
+            min-height: 1.2rem
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 80px);
+            gap: 10px
+        }
+
+        .tile {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background .2s, transform .2s
+        }
+
+        .tile.empty {
+            background: #cdc1b4
+        }
+
+        .tile.v2 {
+            background: #eee4da;
+            color: #776e65
+        }
+
+        .tile.v4 {
+            background: #ede0c8;
+            color: #776e65
+        }
+
+        .tile.v8 {
+            background: #f2b179;
+            color: #f9f6f2
+        }
+
+        .tile.v16 {
+            background: #f59563;
+            color: #f9f6f2
+        }
+
+        .tile.v32 {
+            background: #f67c5f;
+            color: #f9f6f2
+        }
+
+        .tile.v64 {
+            background: #f65e3b;
+            color: #f9f6f2
+        }
+
+        .tile.v128 {
+            background: #edcf72;
+            color: #f9f6f2
+        }
+
+        .tile.v256 {
+            background: #edcc61;
+            color: #f9f6f2
+        }
+
+        .tile.v512 {
+            background: #edc850;
+            color: #f9f6f2
+        }
+
+        .tile.v1024 {
+            background: #edc53f;
+            color: #f9f6f2
+        }
+
+        .tile.v2048 {
+            background: #edc22e;
+            color: #f9f6f2
+        }
+    </style>
+</head>
+
+<body>
+    <h1>2048 - Démo IA</h1>
+    <div class="score-container">Score: <span id="score">0</span></div>
+    <div class="controls">
+        <button id="newGame">Nouvelle partie</button>
+        <button id="toggleMode">Mode : Démonstration</button>
+        <button id="step" disabled>Prochaine étape</button>
+    </div>
+    <div id="details" class="details"></div>
+    <div class="grid" id="grid"></div>
+    <script>
+        const Moves = ['UP', 'RIGHT', 'DOWN', 'LEFT'];
+        class Board {
+            constructor(grid) { this.size = 4; this.score = 0; this.grid = grid ? grid.map(r => r.slice()) : Array.from({ length: this.size }, () => Array(this.size).fill(0)); if (!grid) { this.addTile(); this.addTile(); } }
+            clone() { 
+                return new Board(this.grid) 
+            }
+            addTile() { const empties = []; for (let r = 0; r < this.size; r++)for (let c = 0; c < this.size; c++)if (this.grid[r][c] === 0) empties.push([r, c]); if (!empties.length) return; const [r, c] = empties[Math.floor(Math.random() * empties.length)]; this.grid[r][c] = Math.random() < .9 ? 2 : 4; }
+            transpose(m) { return m[0].map((_, i) => m.map(r => r[i])) }
+            move(dir, dry = false) { const prev = JSON.stringify(this.grid); const compress = row => { let a = row.filter(v => v); for (let i = 0; i < a.length - 1; i++)if (a[i] === a[i + 1]) { a[i] *= 2; this.score += a[i]; a.splice(i + 1, 1); } while (a.length < this.size) a.push(0); return a; }; if (dir === 'LEFT') this.grid = this.grid.map(r => compress(r)); if (dir === 'RIGHT') this.grid = this.grid.map(r => compress(r.slice().reverse()).reverse()); if (dir === 'UP') this.grid = this.transpose(this.transpose(this.grid).map(r => compress(r))); if (dir === 'DOWN') this.grid = this.transpose(this.transpose(this.grid).map(r => compress(r.slice().reverse())).map(r => r.reverse())); if (prev !== JSON.stringify(this.grid) && !dry) this.addTile(); return prev !== JSON.stringify(this.grid); }
+            canMoveDir(d) { return this.clone().move(d, true) }
+            canMove() { return Moves.some(d => this.canMoveDir(d)) }
+            isGameOver() { return !this.canMove() }
+            getEmptyCount() { return this.grid.flat().filter(v => v === 0).length }
+        }
+        class CPUPlayer {
+            constructor(board) { this.board = board }
+            simulateGame(simBoard) { while (!simBoard.isGameOver()) { let best = Moves[0], bestEmpty = -1; for (const dir of Moves) { const b = simBoard.clone(); if (b.move(dir)) { const e = b.getEmptyCount(); if (e > bestEmpty) { bestEmpty = e; best = dir; } } } simBoard.move(best) } return simBoard.score }
+            getNextMove(iterations = 100) { let bestMove = Moves[0], bestScore = -Infinity; for (const dir of Moves) { let total = 0, sims = 0; for (let i = 0; i < iterations; i++) { const b = this.board.clone(); if (b.move(dir)) { total += this.simulateGame(b); sims++ } } const avg = sims > 0 ? total / sims : -Infinity; if (avg > bestScore) { bestScore = avg; bestMove = dir } } return bestMove }
+        }
+        const gridEl = document.getElementById('grid'), scoreEl = document.getElementById('score'), detailsEl = document.getElementById('details'); let board, cpu, autoPlay = true, stepMode = false;
+        function updateUI() { gridEl.innerHTML = ''; for (let r = 0; r < board.size; r++)for (let c = 0; c < board.size; c++) { const v = board.grid[r][c], t = document.createElement('div'); t.className = 'tile' + (v ? ` v${v}` : ' empty'); if (v) t.textContent = v; gridEl.appendChild(t) } scoreEl.textContent = board.score }
+        function step() { if (board.isGameOver()) { detailsEl.textContent = 'Terminé'; return } cpu = new CPUPlayer(board); const move = cpu.getNextMove(); if (stepMode) { detailsEl.textContent = `Coup: ${move}`; const btn = document.getElementById('step'); btn.disabled = false; btn.onclick = () => { board.move(move); updateUI(); btn.disabled = true; if (board.isGameOver()) detailsEl.textContent = 'Terminé' } } else { board.move(move); updateUI() } }
+        function run() { if (board.isGameOver()) { detailsEl.textContent = 'Partie terminée'; return } if (autoPlay) { step(); setTimeout(run, 1) } }
+        document.getElementById('newGame').onclick = () => { board = new Board(); cpu = new CPUPlayer(board); updateUI(); detailsEl.textContent = ''; if (autoPlay) run() };
+        document.getElementById('toggleMode').onclick = () => { stepMode = !stepMode; autoPlay = !stepMode; document.getElementById('toggleMode').textContent = stepMode ? 'Mode : Pas à pas' : 'Mode : Démonstration'; document.getElementById('step').disabled = !stepMode };
+        document.getElementById('newGame').click();
+    </script>
+</body>
+
+</html>
