@@ -168,7 +168,7 @@
         }
         class CPUPlayer {
             constructor(board) { this.board = board }
-            simulateGame(simBoard) { while (!simBoard.isGameOver()) { let best = Moves[0], bestEmpty = -1; for (const dir of Moves) { const b = simBoard.clone(); if (b.move(dir)) { const e = b.getEmptyCount(); if (e > bestEmpty) { bestEmpty = e; best = dir; } } } simBoard.move(best) } return simBoard.score }
+            simulateGame(simBoard) { while (!simBoard.isGameOver()) { let best = Moves[0], bestEmpty = -1; for (const dir of Moves) { const b = simBoard.clone(); if (b.move(dir)) { const e = b.getEmptyCount(); if (e > bestEmpty) { bestEmpty = e; best = dir; } } } simBoard.move(best) } return simBoard.score + simBoard.getEmptyCount() * (100**(Math.floor(Math.log(simBoard.score) / Math.LN10)))  }
             getNextMove(iterations = 100) { let bestMove = Moves[0], bestScore = -Infinity; for (const dir of Moves) { let total = 0, sims = 0; for (let i = 0; i < iterations; i++) { const b = this.board.clone(); if (b.move(dir)) { total += this.simulateGame(b); sims++ } } const avg = sims > 0 ? total / sims : -Infinity; if (avg > bestScore) { bestScore = avg; bestMove = dir } } return bestMove }
         }
         const gridEl = document.getElementById('grid'), scoreEl = document.getElementById('score'), detailsEl = document.getElementById('details'); let board, cpu, autoPlay = true, stepMode = false;
