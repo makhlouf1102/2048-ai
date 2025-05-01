@@ -11,14 +11,15 @@ void CPUPlayer::play()
     {
         Move move = getNextMove();
         board.move(move);
+        board.printBoard();
     }
-    board.printBoard();
-    std::println("Game Over! Final Score: {}", board.score);
+    // board.printBoard();
+    // std::println("Game Over! Final Score: {}", board.score);
 }
 
 Move CPUPlayer::getNextMove()
 {
-    return monteCarloTreeSearch(board, 10);
+    return monteCarloTreeSearch(board, 100);
 }
 
 Move CPUPlayer::getNextMoveMinMax()
@@ -80,7 +81,7 @@ int CPUPlayer::minmaxAB(Board board, int depth, int alpha, int beta, bool maximi
         int minEval = std::numeric_limits<int>::max();
         for (Move move : possibleMoves)
         {
-            Board boardCopy = Board(board.getCopy());z
+            Board boardCopy = Board(board.getCopy());
             boardCopy.move(move);
             if (boardCopy.hasChanged(board.getCopy()))
             {
@@ -160,6 +161,7 @@ int CPUPlayer::simulateGame(Board board)
         board.move(bestMove);
     }
 
-    return board.score; // Still using number of empty tiles for final evaluation
+
+    return board.evaluate();
 }
 

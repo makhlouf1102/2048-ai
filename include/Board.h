@@ -31,6 +31,7 @@ class Board
         int evaluate();
         std::array<std::array<int, SIZE>, SIZE> getCopy();
         std::vector<std::pair<int, int>> getEmptyTiles();
+        int HighestTile();
 };
 
 #endif

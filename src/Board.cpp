@@ -289,23 +289,31 @@ bool Board::canMove(Move move)
 
 bool Board::isGameOver()
 {
-    // check if it contains 2048
+    return !canMove();
+}
+
+int Board::HighestTile()
+{
+    int highestTile{ 0 };
     for (int i{ 0 }; i < SIZE; i++) 
     {
         for (int j{ 0 }; j < SIZE; j++) 
         {
-            if (board[i][j] == 2048) 
+            if (board[i][j] > highestTile) 
             {
-                return true;
+                highestTile = board[i][j];
             }
         }
     }
-    return !canMove();
+    return highestTile;
 }
-
 int Board::evaluate()
 {
-    return getEmptyTiles().size();
+    int emptyTiles = getEmptyTiles().size();
+    int highestTile = HighestTile();
+    int gameScore = score;
+    int evaluation = emptyTiles * 10 + highestTile * 2 + gameScore;
+    return evaluation;
 }
 
 std::array<std::array<int, Board::SIZE>, Board::SIZE> Board::getCopy()
