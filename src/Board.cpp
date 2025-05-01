@@ -5,6 +5,7 @@
 #include <print>
 #include "Move.h"
 #include <cstdlib>
+#include <cmath>
 
 Board::Board()
 {
@@ -310,9 +311,8 @@ int Board::HighestTile()
 int Board::evaluate()
 {
     int emptyTiles = getEmptyTiles().size();
-    int highestTile = HighestTile();
     int gameScore = score;
-    int evaluation = emptyTiles * 10 + highestTile * 2 + gameScore;
+    int evaluation = emptyTiles * pow(10, std::floor(std::log10(score))) + gameScore;
     return evaluation;
 }
 

@@ -14,7 +14,7 @@ void CPUPlayer::play()
         board.printBoard();
     }
     // board.printBoard();
-    // std::println("Game Over! Final Score: {}", board.score);
+    std::println("Game Over! Final Score: {}", board.score);
 }
 
 Move CPUPlayer::getNextMove()
