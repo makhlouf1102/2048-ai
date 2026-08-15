@@ -5,3 +5,7 @@ edition = "2024"
 
 [dependencies]
 wasm-bindgen = "0.2.127"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+# Caused by: crate-type must be cdylib to compile toWebAssembly. Add the following to your Cargo.toml file:
