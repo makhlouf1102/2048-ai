@@ -50,6 +50,16 @@ const unsubscribe = window.game2048.subscribe((state) => {
 
 Raw WebAssembly functions can only exchange numeric values, so the JavaScript host should call `moveCode` and then copy `feedback.matrix.flat()` into Wasm memory when needed. The UI and external API share the same `GameSession`; a programmatic move is rendered immediately in the browser.
 
+## AI autoplay contract
+
+The **Let AI play** button repeatedly calls:
+
+```ts
+nextMove(matrix: number[]): Promise<number>
+```
+
+`matrix` contains all 16 cells in row-major order. The returned direction is `0=up`, `1=right`, `2=down`, or `3=left`; `-1` means no move is available. Autoplay stops cleanly on `-1` or game over, when the user presses **Stop AI**, or when the AI returns an invalid or blocked move.
+
 ## Build
 
 ```bash

@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { Direction } from "../domain/game";
+import { useAiPlayer } from "../hooks/useAiPlayer";
 import { useGame } from "../hooks/useGame";
 
 const tileNames: Record<number, string> = {
@@ -19,6 +20,7 @@ function ScoreCard({ label, value }: { label: string; value: number }) {
 
 export function Game() {
   const { board, score, bestScore, status, move, restart, continueGame } = useGame();
+  const ai = useAiPlayer();
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   const finishSwipe = (x: number, y: number) => {
@@ -49,8 +51,23 @@ export function Game() {
 
         <div className="game-toolbar">
           <p>Join matching tiles and reach <strong>2048.</strong></p>
-          <button className="new-game" type="button" onClick={restart}>New game</button>
+          <div className="toolbar-actions">
+            <button
+              className="ai-button"
+              type="button"
+              onClick={ai.status === "running" ? ai.stop : ai.start}
+              aria-pressed={ai.status === "running"}
+            >
+              <span className="ai-indicator" aria-hidden="true" />
+              {ai.status === "running" ? "Stop AI" : "Let AI play"}
+            </button>
+            <button className="new-game" type="button" onClick={() => { ai.stop(); restart(); }}>
+              New game
+            </button>
+          </div>
         </div>
+
+        {ai.error && <p className="ai-error" role="alert">{ai.error}</p>}
 
         <div
           className="board-wrap"
