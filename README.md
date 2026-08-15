@@ -1,87 +1,60 @@
-# Welcome to React Router!
+# 2048
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A responsive 2048 game built with React Router and a clean, framework-independent game engine. It supports keyboard, WASD, touch, and programmatic players hosted by JavaScript or WebAssembly.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
+## Development
 
 ```bash
 npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The app is served under `/2048-ai/` to match its GitHub Pages project URL.
 
-## Building for Production
+## Programmatic and WebAssembly API
 
-Create a production build:
+Once the page has mounted, the game exposes `window.game2048`. Every move is synchronous and returns feedback containing the resulting 4×4 matrix.
+
+```js
+const feedback = window.game2048.move("left");
+
+console.log(feedback);
+// {
+//   matrix: [[0, 0, 2, 4], [0, 0, 0, 2], ...],
+//   score: 4,
+//   bestScore: 128,
+//   status: "playing",
+//   moved: true
+// }
+```
+
+Numeric directions are easier to pass from a WebAssembly host:
+
+```js
+// 0 = up, 1 = right, 2 = down, 3 = left
+const feedback = window.game2048.moveCode(0);
+const matrix = feedback.matrix;
+```
+
+The remaining API is:
+
+```js
+window.game2048.getState();
+window.game2048.restart();
+
+const unsubscribe = window.game2048.subscribe((state) => {
+  // Called after UI or programmatic moves.
+  console.log(state.matrix);
+});
+```
+
+Raw WebAssembly functions can only exchange numeric values, so the JavaScript host should call `moveCode` and then copy `feedback.matrix.flat()` into Wasm memory when needed. The UI and external API share the same `GameSession`; a programmatic move is rendered immediately in the browser.
+
+## Build
 
 ```bash
+npm run typecheck
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
-
-```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
-```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
+Deploy `build/client` to GitHub Pages. Runtime server-side rendering is disabled.
