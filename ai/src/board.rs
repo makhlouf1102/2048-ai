@@ -4,6 +4,7 @@ use crate::types::*;
 pub trait IBoard {
     fn new(flatten_board: &[UTile]) -> Self;
     fn empty_tiles(&self) -> Vec<(usize, usize)>;
+    fn set_empty_tile(&mut self, row: usize, col: usize, value: UTile) -> bool;
     fn can_move(&self, direction: Direction) -> bool;
     fn available_moves(&self) -> Vec<Direction>;
     fn make_move(&self, direction: Direction) -> Self;
@@ -42,6 +43,15 @@ impl IBoard for Board {
         }
 
         empty
+    }
+
+    fn set_empty_tile(&mut self, row: usize, col: usize, value: UTile) -> bool {
+        if row >= SIZE || col >= SIZE || value == 0 || self.matrix[row][col] != 0 {
+            return false;
+        }
+
+        self.matrix[row][col] = value;
+        true
     }
 
     fn can_move(&self, direction: Direction) -> bool {
@@ -291,5 +301,40 @@ impl IBoard for Board {
         }
 
         board
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn modifies_only_an_empty_tile() {
+        let mut board = Board::new(&[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+
+        assert!(board.set_empty_tile(0, 1, 4));
+        assert!(!board.set_empty_tile(0, 0, 4));
+        assert!(!board.set_empty_tile(0, 2, 0));
+        assert!(!board.set_empty_tile(SIZE, 0, 2));
+        assert_eq!(board.matrix[0], [2, 4, 0, 0]);
+    }
+
+    #[test]
+    fn lists_empty_tiles_in_row_major_order() {
+        let board = Board::new(&[2, 0, 4, 0, 0, 8, 0, 16, 32, 0, 64, 0, 0, 128, 0, 256]);
+
+        assert_eq!(
+            board.empty_tiles(),
+            vec![
+                (0, 1),
+                (0, 3),
+                (1, 0),
+                (1, 2),
+                (2, 1),
+                (2, 3),
+                (3, 0),
+                (3, 2)
+            ]
+        );
     }
 }

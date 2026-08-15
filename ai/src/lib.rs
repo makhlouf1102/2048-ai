@@ -54,23 +54,13 @@ mod tests {
 
     #[test]
     fn returns_minus_one_when_no_move_exists() {
-        let board = [
-            2, 4, 2, 4,
-            4, 2, 4, 2,
-            2, 4, 2, 4,
-            4, 2, 4, 2,
-        ];
+        let board = [2, 4, 2, 4, 4, 2, 4, 2, 2, 4, 2, 4, 4, 2, 4, 2];
         assert_eq!(next_move(&board), -1);
     }
 
     #[test]
     fn returned_direction_uses_the_browser_mapping() {
-        let board = [
-            2, 2, 0, 0,
-            0, 0, 0, 0,
-            0, 0, 0, 0,
-            0, 0, 0, 0,
-        ];
+        let board = [2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         assert!((0..=3).contains(&next_move(&board)));
     }
 }
