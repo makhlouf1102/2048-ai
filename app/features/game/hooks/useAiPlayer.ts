@@ -5,10 +5,10 @@ import type { Direction } from "../domain/game";
 
 const MOVE_DELAY_MS = 110;
 const directions: Record<number, Direction> = {
-  0: "up",
-  1: "right",
-  2: "down",
-  3: "left",
+  0: "down",
+  1: "left",
+  2: "right",
+  3: "up",
 };
 
 export type AiPlayerStatus = "idle" | "running" | "error";

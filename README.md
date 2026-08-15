@@ -58,7 +58,7 @@ The **Let AI play** button repeatedly calls:
 nextMove(matrix: number[]): Promise<number>
 ```
 
-`matrix` contains all 16 cells in row-major order. The returned direction is `0=up`, `1=right`, `2=down`, or `3=left`; `-1` means no move is available. Autoplay stops cleanly on `-1` or game over, when the user presses **Stop AI**, or when the AI returns an invalid or blocked move.
+`matrix` contains all 16 cells in row-major order. The Rust AI mapping is `0=down`, `1=left`, `2=right`, and `3=up`; `-1` means no move is available. Autoplay stops cleanly on `-1` or game over, when the user presses **Stop AI**, or when the AI returns an invalid or blocked move.
 
 ## Build
 

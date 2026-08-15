@@ -1,91 +1,44 @@
+pub mod board;
+pub mod controller;
+pub mod tile;
+pub mod types;
+
+use crate::board::*;
+use crate::controller::*;
+use crate::types::*;
 use wasm_bindgen::prelude::*;
 
-const SIZE: usize = 4;
-
-type Tile = i32;
-type Row = [Tile; SIZE];
-type Board = [Row; SIZE];
-
-enum Direction {
-    Left,
-    Right,
-    Up,
-    Down,
-}
-
 #[wasm_bindgen]
-pub fn next_move(flatten_board: &[i32]) -> i8 {
-    let board = get_board(flatten_board);
-    if !can_move(&board) {
+pub fn next_move(flatten_board: &[u32]) -> i8 {
+    let board = Board::new(flatten_board);
+    let moves = board.available_moves();
+
+    if moves.len() < 1 {
         return -1;
     }
 
-    // create different instances 
-    
+    let mut boards: Vec<Board> = Vec::new();
 
-    (flatten_board[0] % 4) as i8
-}
+    let mut best_score = 0;
+    let mut best_index = 0;
 
-fn get_board(flatten_board: &[i32]) -> Board {
-    let mut board = [[0; SIZE]; SIZE];
+    for i in 0..moves.len() {
+        let new_board = board.make_move(moves[i]);
 
-    for row in 0..SIZE {
-        for col in 0..SIZE {
-            board[row][col] = flatten_board[row * SIZE + col];
+        if new_board.score > best_score {
+            best_score = new_board.score;
+            best_index = i;
         }
+
+        boards.push(new_board);
     }
 
-    board
-}
+    let best_move = &moves[best_index];
 
-fn compress_row(row: &mut Row) {
-    let mut write = 0;
-
-    for read in 0..row.len() {
-        if row[read] != 0 {
-            row[write] = row[read];
-
-            if write != read {
-                row[read] = 0;
-            }
-
-            write += 1;
-        }
+    match best_move {
+        Direction::Down => 0,
+        Direction::Left => 1,
+        Direction::Right => 2,
+        Direction::Up => 3,
     }
-}
-
-fn merge(row: &mut Row) {
-    compress_row(row);
-
-    for i in 0..row.len() - 1 {
-        if row[i] != 0 && row[i] == row[i + 1] {
-            row[i] *= 2;
-            row[i + 1] = 0;
-        }
-    }
-
-    compress_row(row);
-}
-
-fn can_move(board: &Board) -> bool {
-    for i in 0..4 {
-        for j in 0..4 {
-            // Empty cell
-            if board[i][j] == 0 {
-                return true;
-            }
-
-            // Compare with cell on the right
-            if j < 3 && board[i][j] == board[i][j + 1] {
-                return true;
-            }
-
-            // Compare with cell below
-            if i < 3 && board[i][j] == board[i + 1][j] {
-                return true;
-            }
-        }
-    }
-
-    false
 }

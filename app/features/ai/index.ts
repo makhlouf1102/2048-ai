@@ -6,5 +6,5 @@ let initialization: Promise<unknown> | undefined;
 export async function nextMove(matrix: number[]): Promise<number> {
   initialization ??= initWasm();
   await initialization;
-  return next_move(Int32Array.from(matrix));
+  return next_move(Uint32Array.from(matrix));
 }
