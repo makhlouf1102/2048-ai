@@ -6,7 +6,8 @@
     "build": "react-router build",
     "dev": "react-router dev",
     "start": "vite preview --outDir build/client",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "build:wasm": "cd ai && wasm-pack build --target web --release --out-dir ../app/features/wasm"
   },
   "dependencies": {
     "@react-router/node": "^8",
