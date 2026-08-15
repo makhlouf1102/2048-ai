@@ -13,6 +13,22 @@ const directions: Record<number, Direction> = {
 
 export type AiPlayerStatus = "idle" | "running" | "error";
 
+export interface AiMetrics {
+  averageDecisionMs: number;
+  lastDecisionMs: number;
+  lastDirection: Direction | null;
+  moves: number;
+  wasmUtilization: number;
+}
+
+const emptyMetrics: AiMetrics = {
+  averageDecisionMs: 0,
+  lastDecisionMs: 0,
+  lastDirection: null,
+  moves: 0,
+  wasmUtilization: 0,
+};
+
 function delay(milliseconds: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 }
@@ -20,7 +36,12 @@ function delay(milliseconds: number): Promise<void> {
 export function useAiPlayer() {
   const [status, setStatus] = useState<AiPlayerStatus>("idle");
   const [error, setError] = useState<string | null>(null);
+  const [metrics, setMetrics] = useState<AiMetrics>(emptyMetrics);
   const runId = useRef(0);
+  const runStartedAt = useRef(0);
+  const totalDecisionMs = useRef(0);
+  const decisionCount = useRef(0);
+  const moveCount = useRef(0);
 
   const stop = useCallback(() => {
     runId.current += 1;
@@ -29,6 +50,11 @@ export function useAiPlayer() {
 
   const start = useCallback(async () => {
     const currentRun = ++runId.current;
+    runStartedAt.current = performance.now();
+    totalDecisionMs.current = 0;
+    decisionCount.current = 0;
+    moveCount.current = 0;
+    setMetrics(emptyMetrics);
     setError(null);
     setStatus("running");
 
@@ -44,9 +70,28 @@ export function useAiPlayer() {
         }
 
         // Wasm receives a copy of the 4×4 board as a flat, row-major array.
+        const decisionStartedAt = performance.now();
         const directionCode = await nextMove(beforeMove.board.flat());
+        const decisionDuration = performance.now() - decisionStartedAt;
+        totalDecisionMs.current += decisionDuration;
+        decisionCount.current += 1;
         if (currentRun !== runId.current) return;
-        if (directionCode === -1) break;
+
+        const updateMetrics = (lastDirection: Direction | null) => {
+          const elapsed = Math.max(performance.now() - runStartedAt.current, 1);
+          setMetrics({
+            averageDecisionMs: totalDecisionMs.current / decisionCount.current,
+            lastDecisionMs: decisionDuration,
+            lastDirection,
+            moves: moveCount.current,
+            wasmUtilization: Math.min(100, (totalDecisionMs.current / elapsed) * 100),
+          });
+        };
+
+        if (directionCode === -1) {
+          updateMetrics(null);
+          break;
+        }
 
         const direction = directions[directionCode];
         if (!direction) {
@@ -57,6 +102,9 @@ export function useAiPlayer() {
         if (!feedback.moved && feedback.status === "playing") {
           throw new Error(`nextMove selected a blocked direction (${directionCode}).`);
         }
+
+        if (feedback.moved) moveCount.current += 1;
+        updateMetrics(feedback.moved ? direction : null);
 
         await delay(MOVE_DELAY_MS);
       }
@@ -73,5 +121,5 @@ export function useAiPlayer() {
     runId.current += 1;
   }, []);
 
-  return { status, error, start, stop };
+  return { status, error, metrics, start, stop };
 }
