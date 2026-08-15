@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { downloadGameScreenshot } from "../adapters/game-screenshot";
 import type { Direction } from "../domain/game";
 import { useAiPlayer } from "../hooks/useAiPlayer";
 import { useGame } from "../hooks/useGame";
@@ -102,6 +103,15 @@ export function Game() {
                 {status === "won" && (
                   <button type="button" className="secondary-button" onClick={continueGame}>
                     Keep going
+                  </button>
+                )}
+                {status === "lost" && (
+                  <button
+                    type="button"
+                    className="secondary-button"
+                    onClick={() => downloadGameScreenshot(board, score, bestScore)}
+                  >
+                    Save screenshot
                   </button>
                 )}
                 <button type="button" className="new-game" onClick={restart}>Try again</button>
