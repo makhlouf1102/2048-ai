@@ -1,3 +1,4 @@
+use crate::tile::*;
 use crate::types::*;
 
 pub trait IBoard {
@@ -275,5 +276,57 @@ impl IBoard for Board {
         }
 
         board
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn board(values: &[UTile; SIZE * SIZE]) -> Board {
+        Board::new(values)
+    }
+
+    #[test]
+    fn merges_each_pair_only_once() {
+        let source = board(&[
+            2, 2, 2, 2,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        ]);
+        let result = source.merge_left();
+
+        assert_eq!(result.matrix[0], [4, 4, 0, 0]);
+        assert_eq!(result.score, 8);
+    }
+
+    #[test]
+    fn detects_only_legal_directions() {
+        let source = board(&[
+            2, 4, 8, 16,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+            0, 0, 0, 0,
+        ]);
+
+        assert!(!source.can_move(Direction::Left));
+        assert!(!source.can_move(Direction::Right));
+        assert!(source.can_move(Direction::Down));
+        assert!(!source.can_move(Direction::Up));
+    }
+
+    #[test]
+    fn merges_down_in_the_correct_order() {
+        let source = board(&[
+            2, 0, 0, 0,
+            2, 0, 0, 0,
+            4, 0, 0, 0,
+            4, 0, 0, 0,
+        ]);
+        let result = source.merge_down();
+
+        assert_eq!(result.matrix.map(|row| row[0]), [0, 0, 4, 8]);
+        assert_eq!(result.score, 12);
     }
 }

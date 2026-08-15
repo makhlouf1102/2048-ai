@@ -1,17 +1,6 @@
-use crate::types::*;
+pub const SIZE: usize = 4;
+pub const CELL_COUNT: usize = SIZE * SIZE;
 
-
-trait ITile {
-    fn is_empty(&self) -> bool;
-}
-
-struct Tile {
-    val: UTile,
-}
-
-
-impl ITile for Tile {
-    fn is_empty(&self) -> bool {
-        self.val == 0
-    }
-}
+pub type UTile = u32;
+pub type Row = [UTile; SIZE];
+pub type Matrix = [Row; SIZE];
