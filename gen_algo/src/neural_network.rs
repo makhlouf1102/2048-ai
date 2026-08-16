@@ -85,14 +85,3 @@ impl NeuralNetwork {
         }
     }
 }
-
-fn main() {
-    let network = NeuralNetwork::new(&[3, 4, 4, 2]);
-
-    let input = [1.0, 0.5, -0.25];
-
-    let output = network.forward(&input);
-
-    println!("Output:");
-    println!("{output}");
-}
