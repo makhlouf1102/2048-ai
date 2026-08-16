@@ -1,12 +1,18 @@
 use nalgebra::{DMatrix, DVector};
 use rand::RngExt;
+use serde::{Deserialize, Serialize};
+use std::{
+    fs::File,
+    io::{self, BufReader, BufWriter},
+    path::Path,
+};
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NeuralNetwork {
     layers: Vec<Layer>,
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Layer {
     weights: DMatrix<f32>,
     biases: DVector<f32>,
@@ -83,5 +89,15 @@ impl NeuralNetwork {
         for layer in &mut self.layers {
             layer.mutate(mutation_rate, mutation_strength);
         }
+    }
+
+    pub fn save(&self, path: impl AsRef<Path>) -> io::Result<()> {
+        let writer = BufWriter::new(File::create(path)?);
+        serde_json::to_writer_pretty(writer, self).map_err(io::Error::other)
+    }
+
+    pub fn load(path: impl AsRef<Path>) -> io::Result<Self> {
+        let reader = BufReader::new(File::open(path)?);
+        serde_json::from_reader(reader).map_err(io::Error::other)
     }
 }

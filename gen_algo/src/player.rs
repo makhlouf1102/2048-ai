@@ -2,6 +2,7 @@ use crate::{
     game_2048::{CELL_COUNT, Direction, Game},
     neural_network::NeuralNetwork,
 };
+use log::debug;
 
 pub const FITNESS_GAMES: usize = 5;
 pub const INVALID_MOVE_PENALTY: f32 = 100.0;
@@ -73,19 +74,31 @@ impl Player {
             }
         }
 
-        self.game.score()
+        let score = self.game.score();
+        debug!(
+            "game finished: score={score}, invalid_moves={}",
+            self.invalid_moves
+        );
+        score
     }
 
     /// Plays five independent games and averages their scores after subtracting
     /// a penalty for every illegal move selected by the brain.
     pub fn fitness(&mut self) -> f32 {
         let mut total = 0.0;
-        for _ in 0..FITNESS_GAMES {
+        for game_number in 1..=FITNESS_GAMES {
             let score = self.play_game() as f32;
-            total += score - self.invalid_moves as f32 * INVALID_MOVE_PENALTY;
+            let penalty = self.invalid_moves as f32 * INVALID_MOVE_PENALTY;
+            let adjusted_score = score - penalty;
+            debug!(
+                "fitness game {game_number}/{FITNESS_GAMES}: raw={score:.2}, penalty={penalty:.2}, adjusted={adjusted_score:.2}"
+            );
+            total += adjusted_score;
         }
 
-        total / FITNESS_GAMES as f32
+        let fitness = total / FITNESS_GAMES as f32;
+        debug!("player fitness={fitness:.2}");
+        fitness
     }
 
     fn choose_move(&self, legal_only: bool) -> Option<Direction> {
