@@ -24,6 +24,10 @@ impl Board {
     fn random_number(max: usize) -> usize {
         rand::rng().random_range(0..max)
     }
+
+    pub(crate) fn matrix(&self) -> &Matrix {
+        &self.matrix
+    }
 }
 
 impl IBoard for Board {
