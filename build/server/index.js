@@ -137,8 +137,8 @@ var ErrorBoundary = UNSAFE_withErrorBoundaryProps(function ErrorBoundary({ error
 //#region \0virtual:react-router/server-manifest
 var server_manifest_default = {
 	"entry": {
-		"module": "/2048-ai/assets/entry.client-CXyaHDMR.js",
-		"imports": ["/2048-ai/assets/jsx-runtime-9DXhWUXR.js", "/2048-ai/assets/errorBoundaries-DmJ25YMb.js"],
+		"module": "/2048-ai/assets/entry.client-DJ3hWvFx.js",
+		"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js", "/2048-ai/assets/errorBoundaries-CFtPpRqT.js"],
 		"css": []
 	},
 	"routes": {
@@ -155,9 +155,9 @@ var server_manifest_default = {
 			"hasClientMiddleware": false,
 			"hasDefaultExport": true,
 			"hasErrorBoundary": true,
-			"module": "/2048-ai/assets/root-CuGwGuAy.js",
-			"imports": ["/2048-ai/assets/jsx-runtime-9DXhWUXR.js", "/2048-ai/assets/errorBoundaries-DmJ25YMb.js"],
-			"css": ["/2048-ai/assets/root-CeajmdCc.css"],
+			"module": "/2048-ai/assets/root-wekEdDg-.js",
+			"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js", "/2048-ai/assets/errorBoundaries-CFtPpRqT.js"],
+			"css": ["/2048-ai/assets/root-DHchFt2v.css"],
 			"clientActionModule": void 0,
 			"clientLoaderModule": void 0,
 			"clientMiddlewareModule": void 0,
@@ -176,8 +176,8 @@ var server_manifest_default = {
 			"hasClientMiddleware": false,
 			"hasDefaultExport": true,
 			"hasErrorBoundary": false,
-			"module": "/2048-ai/assets/home-Cje8-K3G.js",
-			"imports": ["/2048-ai/assets/jsx-runtime-9DXhWUXR.js"],
+			"module": "/2048-ai/assets/home-eOPdpN4F.js",
+			"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js"],
 			"css": [],
 			"clientActionModule": void 0,
 			"clientLoaderModule": void 0,
@@ -185,8 +185,8 @@ var server_manifest_default = {
 			"hydrateFallbackModule": void 0
 		}
 	},
-	"url": "/2048-ai/assets/manifest-15bf40fb.js",
-	"version": "15bf40fb",
+	"url": "/2048-ai/assets/manifest-5feba9cc.js",
+	"version": "5feba9cc",
 	"sri": void 0
 };
 //#endregion

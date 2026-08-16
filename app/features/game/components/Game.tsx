@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { downloadGameScreenshot } from "../adapters/game-screenshot";
 import type { Direction } from "../domain/game";
+import { useAiPresentation } from "../hooks/useAiPresentation";
 import { useAiPlayer } from "../hooks/useAiPlayer";
 import { useGame } from "../hooks/useGame";
+import { CookingScreen, RunViewControl } from "./AiRunDisplay";
 
 const tileNames: Record<number, string> = {
   2: "two", 4: "four", 8: "eight", 16: "sixteen", 32: "thirty-two",
@@ -83,10 +85,12 @@ function AiMonitor({
   ai,
   gameStatus,
   highestTile,
+  liveUpdates,
 }: {
   ai: ReturnType<typeof useAiPlayer>;
   gameStatus: "playing" | "won" | "lost";
   highestTile: number;
+  liveUpdates: boolean;
 }) {
   const [visibleMetrics, setVisibleMetrics] = useState(ai.metrics);
   const lastRevealAt = useRef(0);
@@ -141,7 +145,7 @@ function AiMonitor({
           <img src={`${import.meta.env.BASE_URL}assets/milo-avatar-painted.png`} alt="" />
         </div>
         <div>
-          <p className="ai-name">Milo <span>thinks 5 steps</span></p>
+          <p className="ai-name">Milo <span>thinks deeper in tight spots</span></p>
           <p className={`ai-status ai-status-${ai.status}`}><span />{statusLabel}</p>
         </div>
       </header>
@@ -182,15 +186,32 @@ function AiMonitor({
           <LineChart values={ai.metrics.utilizationHistory} tone="blue" />
         </div>
       </dl>
-      <p className="monitor-note"><span />Milo’s notes refresh after every move</p>
+      <p className="monitor-note">
+        <span />{liveUpdates ? "Milo’s notes refresh after every move" : "Notes wait until you request a snapshot"}
+      </p>
     </aside>
   );
 }
 
 export function Game() {
-  const { board, score, bestScore, status, move, restart, continueGame } = useGame();
-  const ai = useAiPlayer();
+  const presentation = useAiPresentation();
+  const game = useGame(presentation.isLive);
+  const ai = useAiPlayer({ liveUpdates: presentation.isLive });
+  const { board, score, bestScore, status, move, restart, continueGame } = game;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const isQuietRun = ai.status === "running" && !presentation.isLive;
+
+  useEffect(() => {
+    if (ai.status === "running") return;
+    game.refresh();
+    ai.refresh();
+  }, [ai.status, ai.refresh, game.refresh]);
+
+  const showSnapshot = () => {
+    game.refresh();
+    ai.refresh();
+    presentation.revealSnapshot();
+  };
 
   const finishSwipe = (x: number, y: number) => {
     if (!touchStart.current) return;
@@ -225,7 +246,10 @@ export function Game() {
             <button
               className="ai-button"
               type="button"
-              onClick={ai.status === "running" ? ai.stop : ai.start}
+              onClick={ai.status === "running" ? ai.stop : () => {
+                presentation.beginRun();
+                void ai.start();
+              }}
               aria-pressed={ai.status === "running"}
               aria-label={ai.status === "running" ? "Stop AI player" : "Start AI player"}
             >
@@ -240,64 +264,90 @@ export function Game() {
 
         {ai.error && <p className="ai-error" role="alert">{ai.error}</p>}
 
-        <div
-          className="board-wrap"
-          onTouchStart={(event) => {
-            const touch = event.touches[0];
-            touchStart.current = { x: touch.clientX, y: touch.clientY };
-          }}
-          onTouchEnd={(event) => {
-            const touch = event.changedTouches[0];
-            finishSwipe(touch.clientX, touch.clientY);
-          }}
-        >
-          <div className="board" role="grid" aria-label="2048 game board">
-            {board.flatMap((row, rowIndex) =>
-              row.map((value, columnIndex) => (
-                <div
-                  className={`tile ${value ? `tile-${tileNames[value] ?? "super"}` : "tile-empty"}`}
-                  key={`${rowIndex}-${columnIndex}`}
-                  role="gridcell"
-                  aria-label={value ? String(value) : "Empty"}
-                >
-                  {value || ""}
-                </div>
-              )),
+        {isQuietRun && !presentation.snapshotVisible ? (
+          <CookingScreen onSnapshot={showSnapshot} onWatchLive={presentation.watchLive} />
+        ) : (
+          <>
+            {ai.status === "running" && (
+              <RunViewControl
+                mode={presentation.mode}
+                moveCount={ai.metrics.moves}
+                onQuiet={presentation.enterQuietMode}
+                onRefreshSnapshot={showSnapshot}
+                onWatchLive={presentation.watchLive}
+              />
             )}
-          </div>
 
-          {status !== "playing" && (
-            <div className="game-overlay" role="dialog" aria-live="assertive">
-              <p>{status === "won" ? "You made 2048!" : "Game over"}</p>
-              <div className="overlay-actions">
-                {status === "won" && (
-                  <button type="button" className="secondary-button" onClick={continueGame}>
-                    Keep going
-                  </button>
+            <div
+              className="board-wrap"
+              onTouchStart={(event) => {
+                const touch = event.touches[0];
+                touchStart.current = { x: touch.clientX, y: touch.clientY };
+              }}
+              onTouchEnd={(event) => {
+                const touch = event.changedTouches[0];
+                finishSwipe(touch.clientX, touch.clientY);
+              }}
+            >
+              <div className="board" role="grid" aria-label={presentation.isLive ? "Live 2048 game board" : "2048 game board snapshot"}>
+                {board.flatMap((row, rowIndex) =>
+                  row.map((value, columnIndex) => (
+                    <div
+                      className={`tile ${value ? `tile-${tileNames[value] ?? "super"}` : "tile-empty"}`}
+                      key={`${rowIndex}-${columnIndex}`}
+                      role="gridcell"
+                      aria-label={value ? String(value) : "Empty"}
+                    >
+                      {value || ""}
+                    </div>
+                  )),
                 )}
-                {status === "lost" && (
-                  <button
-                    type="button"
-                    className="secondary-button"
-                    onClick={() => downloadGameScreenshot(board, score, bestScore)}
-                  >
-                    Save screenshot
-                  </button>
-                )}
-                <button type="button" className="new-game" onClick={restart}>Try again</button>
               </div>
+
+              {status !== "playing" && (
+                <div className="game-overlay" role="dialog" aria-live="assertive">
+                  <p>{status === "won" ? "You made 2048!" : "Game over"}</p>
+                  <div className="overlay-actions">
+                    {status === "won" && (
+                      <button type="button" className="secondary-button" onClick={continueGame}>
+                        Keep going
+                      </button>
+                    )}
+                    {status === "lost" && (
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={() => downloadGameScreenshot(board, score, bestScore)}
+                      >
+                        Save screenshot
+                      </button>
+                    )}
+                    <button type="button" className="new-game" onClick={restart}>Try again</button>
+                  </div>
+                </div>
+              )}
             </div>
-          )}
-        </div>
+          </>
+        )}
 
         <footer className="game-footer">
           <div className="key-hint" aria-hidden="true">
             <span>↑</span><span>←</span><span>↓</span><span>→</span>
           </div>
-          <p><strong>Your turn</strong><br />Use arrow keys, WASD, or swipe. Equal tiles join when they touch.</p>
+          <p>
+            <strong>{ai.status === "running" ? "Milo’s turn" : "Your turn"}</strong><br />
+            {ai.status === "running"
+              ? presentation.isLive ? "You’re watching every move as it lands." : "Quiet mode saves the board work until you ask to see it."
+              : "Use arrow keys, WASD, or swipe. Equal tiles join when they touch."}
+          </p>
         </footer>
         </section>
-        <AiMonitor ai={ai} gameStatus={status} highestTile={Math.max(...board.flat())} />
+        <AiMonitor
+          ai={ai}
+          gameStatus={status}
+          highestTile={Math.max(...board.flat())}
+          liveUpdates={presentation.isLive}
+        />
       </div>
     </main>
   );

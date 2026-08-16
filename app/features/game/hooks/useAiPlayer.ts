@@ -3,7 +3,7 @@ import { cancelAiWork, nextMove } from "../../ai";
 import { gameSession } from "../application/game-session";
 import type { Direction } from "../domain/game";
 
-const MOVE_DELAY_MS = 110;
+const LIVE_MOVE_DELAY_MS = 110;
 const directions: Record<number, Direction> = {
   0: "down",
   1: "left",
@@ -39,7 +39,7 @@ function delay(milliseconds: number): Promise<void> {
   return new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 }
 
-export function useAiPlayer() {
+export function useAiPlayer({ liveUpdates = true }: { liveUpdates?: boolean } = {}) {
   const [status, setStatus] = useState<AiPlayerStatus>("idle");
   const [error, setError] = useState<string | null>(null);
   const [metrics, setMetrics] = useState<AiMetrics>(emptyMetrics);
@@ -48,6 +48,13 @@ export function useAiPlayer() {
   const totalDecisionMs = useRef(0);
   const decisionCount = useRef(0);
   const moveCount = useRef(0);
+  const metricsRef = useRef(emptyMetrics);
+  const liveUpdatesRef = useRef(liveUpdates);
+
+  useEffect(() => {
+    liveUpdatesRef.current = liveUpdates;
+    if (liveUpdates) setMetrics(metricsRef.current);
+  }, [liveUpdates]);
 
   const stop = useCallback(() => {
     runId.current += 1;
@@ -61,6 +68,7 @@ export function useAiPlayer() {
     totalDecisionMs.current = 0;
     decisionCount.current = 0;
     moveCount.current = 0;
+    metricsRef.current = emptyMetrics;
     setMetrics(emptyMetrics);
     setError(null);
     setStatus("running");
@@ -87,7 +95,8 @@ export function useAiPlayer() {
         const updateMetrics = (lastDirection: Direction | null, lastScoreGain = 0) => {
           const elapsed = Math.max(performance.now() - runStartedAt.current, 1);
           const wasmUtilization = Math.min(100, (totalDecisionMs.current / elapsed) * 100);
-          setMetrics((previous) => ({
+          const previous = metricsRef.current;
+          const nextMetrics = {
             averageDecisionMs: totalDecisionMs.current / decisionCount.current,
             decisionHistory: [...previous.decisionHistory, decisionDuration].slice(-18),
             lastDecisionMs: decisionDuration,
@@ -96,7 +105,9 @@ export function useAiPlayer() {
             moves: moveCount.current,
             utilizationHistory: [...previous.utilizationHistory, wasmUtilization].slice(-18),
             wasmUtilization,
-          }));
+          };
+          metricsRef.current = nextMetrics;
+          if (liveUpdatesRef.current) setMetrics(nextMetrics);
         };
 
         if (directionCode === -1) {
@@ -120,7 +131,7 @@ export function useAiPlayer() {
           feedback.moved ? feedback.score - beforeMove.score : 0,
         );
 
-        await delay(MOVE_DELAY_MS);
+        await delay(liveUpdatesRef.current ? LIVE_MOVE_DELAY_MS : 0);
       }
 
       if (currentRun === runId.current) setStatus("idle");
@@ -136,5 +147,7 @@ export function useAiPlayer() {
     cancelAiWork();
   }, []);
 
-  return { status, error, metrics, start, stop };
+  const refresh = useCallback(() => setMetrics(metricsRef.current), []);
+
+  return { status, error, metrics, start, stop, refresh };
 }

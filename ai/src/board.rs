@@ -28,6 +28,13 @@ impl Board {
     pub(crate) fn matrix(&self) -> &Matrix {
         &self.matrix
     }
+
+    pub(crate) fn with_tile(&self, row: usize, col: usize, value: UTile) -> Self {
+        debug_assert_eq!(self.matrix[row][col], 0);
+        let mut board = self.clone();
+        board.matrix[row][col] = value;
+        board
+    }
 }
 
 impl IBoard for Board {

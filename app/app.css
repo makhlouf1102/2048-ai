@@ -94,7 +94,7 @@ button { font: inherit; }
 .game-toolbar > p { max-width: 28ch; margin: 0; color: var(--ink-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
 .game-toolbar strong { color: var(--ink); }
 .toolbar-actions { display: flex; gap: 9px; }
-.new-game, .secondary-button, .ai-button {
+.new-game, .secondary-button, .ai-button, .snapshot-button {
   min-height: 42px;
   border: var(--line);
   border-radius: 12px 14px 11px 15px;
@@ -111,15 +111,91 @@ button { font: inherit; }
 }
 .new-game { background-color: var(--yellow); transform: rotate(1deg); }
 .secondary-button { background-color: var(--paper-light); }
+.snapshot-button { color: var(--paper-light); background-color: var(--blue); transform: rotate(-1deg); }
 .ai-button { display: inline-flex; align-items: center; gap: 8px; color: var(--paper-light); background-color: var(--green); transform: rotate(-1deg); }
 .ai-indicator { width: 10px; height: 10px; border: 2px solid currentColor; border-radius: 50%; background: var(--yellow); }
 .ai-button[aria-pressed="true"] { background-color: var(--red); }
 .ai-button[aria-pressed="true"] .ai-indicator { animation: ai-pulse .8s ease-in-out infinite alternate; }
-.new-game:hover, .secondary-button:hover, .ai-button:hover { transform: translateY(-3px) rotate(0); box-shadow: 4px 10px 22px rgba(32, 38, 31, .2); }
-.new-game:active, .secondary-button:active, .ai-button:active { transform: translateY(1px); box-shadow: 1px 3px 8px rgba(32, 38, 31, .16); }
-.new-game:focus-visible, .secondary-button:focus-visible, .ai-button:focus-visible { outline: 4px solid var(--blue); outline-offset: 4px; }
+.new-game:hover, .secondary-button:hover, .ai-button:hover, .snapshot-button:hover { transform: translateY(-3px) rotate(0); box-shadow: 4px 10px 22px rgba(32, 38, 31, .2); }
+.new-game:active, .secondary-button:active, .ai-button:active, .snapshot-button:active { transform: translateY(1px); box-shadow: 1px 3px 8px rgba(32, 38, 31, .16); }
+.new-game:focus-visible, .secondary-button:focus-visible, .ai-button:focus-visible, .snapshot-button:focus-visible { outline: 4px solid var(--blue); outline-offset: 4px; }
 .ai-error { margin: -2px 0 12px; padding: 10px 13px; border: var(--line); border-radius: 12px; color: var(--ink); background: #f5a995; font-size: 13px; font-weight: 800; }
 @keyframes ai-pulse { to { transform: scale(1.35); background: var(--paper-light); } }
+
+.cooking-screen {
+  min-height: min(620px, calc(100vh - 250px));
+  display: grid;
+  grid-template-columns: minmax(180px, .72fr) minmax(250px, 1fr);
+  place-items: center;
+  gap: clamp(22px, 4vw, 52px);
+  padding: clamp(28px, 5vw, 64px);
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  border-radius: 18px 23px 20px 16px;
+  color: var(--paper-light);
+  background: var(--ink) url("/2048-ai/assets/painted-paper.png") center / cover;
+  background-blend-mode: multiply;
+  box-shadow: 9px 18px 35px rgba(32, 38, 31, .22);
+  contain: layout paint;
+}
+.cooking-orbit {
+  position: relative;
+  width: min(100%, 250px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--paper-light);
+  border-radius: 47% 53% 45% 55%;
+  background: var(--yellow);
+  transform: rotate(-3deg);
+}
+.cooking-orbit::before, .cooking-orbit::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border: 2px solid var(--green);
+  border-radius: 54% 46% 51% 49%;
+  animation: cooking-turn 5s linear infinite;
+}
+.cooking-orbit::after { inset: -34px; border-color: var(--red); animation-direction: reverse; animation-duration: 8s; }
+.cooking-orbit img {
+  position: relative;
+  z-index: 1;
+  width: 76%;
+  height: 76%;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  border-radius: 18px 25px 17px 27px;
+  box-shadow: 5px 10px 22px rgba(32, 38, 31, .28);
+}
+.cooking-orbit > span { position: absolute; z-index: 2; width: 18px; height: 18px; border: 2px solid var(--ink); background: var(--blue); }
+.cooking-orbit > span:nth-child(1) { top: -25px; left: 28%; transform: rotate(14deg); }
+.cooking-orbit > span:nth-child(2) { right: -25px; bottom: 24%; width: 13px; height: 13px; background: var(--red); transform: rotate(-8deg); }
+.cooking-orbit > span:nth-child(3) { bottom: -22px; left: 18%; width: 11px; height: 11px; background: var(--green); transform: rotate(18deg); }
+.cooking-copy { position: relative; z-index: 1; max-width: 38ch; }
+.cooking-copy h2 { max-width: none; margin: 0 0 18px; overflow: visible; color: var(--yellow); font-family: var(--display); font-size: clamp(36px, 3.4vw, 48px); font-weight: 400; line-height: 1; letter-spacing: -.03em; }
+.cooking-copy > p { margin: 0; color: #f3e7cc; font-size: 15px; font-weight: 800; line-height: 1.5; }
+.cooking-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 18px; }
+.cooking-note { max-width: 48ch; color: var(--paper) !important; font-size: 10px !important; }
+@keyframes cooking-turn { to { transform: rotate(360deg); } }
+
+.view-control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+  padding: 11px 13px 11px 16px;
+  border: 2px solid var(--ink);
+  border-radius: 12px 15px 11px 14px;
+  background: #d9e1a7;
+}
+.view-control-live { background: #a9c9d7; }
+.view-control > div:first-child { display: grid; gap: 2px; }
+.view-control strong { font-size: 15px; font-weight: 900; }
+.view-control span { color: var(--ink-soft); font-size: 10px; font-weight: 800; }
+.view-control-actions { display: flex; flex: 0 0 auto; gap: 8px; }
+.view-control .secondary-button { min-height: 36px; padding: 7px 10px; font-size: 10px; }
 
 .board-wrap { position: relative; touch-action: none; user-select: none; }
 .board {
@@ -271,6 +347,14 @@ button { font: inherit; }
   .toolbar-actions { width: 100%; }
   .toolbar-actions button { flex: 1; padding-inline: 11px; }
   .board { gap: 6px; padding: 8px; box-shadow: 5px 12px 25px rgba(32, 38, 31, .22); }
+  .cooking-screen { min-height: 510px; grid-template-columns: 1fr; align-content: center; gap: 46px; padding: 46px 26px 34px; text-align: center; }
+  .cooking-orbit { width: 165px; }
+  .cooking-copy { display: grid; justify-items: center; }
+  .cooking-copy h2 { font-size: clamp(36px, 13vw, 48px); }
+  .cooking-actions { justify-content: center; }
+  .view-control { align-items: flex-start; flex-direction: column; }
+  .view-control-actions { width: 100%; }
+  .view-control-actions button { flex: 1; }
   .tile { border-width: 1.5px; border-radius: 8px 11px 9px 10px; }
   .game-footer { align-items: flex-start; }
   .ai-profile { min-height: 142px; padding: 36px 18px 17px; }

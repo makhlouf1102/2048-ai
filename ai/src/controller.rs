@@ -1,103 +1,131 @@
+use std::collections::HashMap;
+
 use crate::{
     board::{Board, IBoard},
-    tile::SIZE,
+    tile::{CELL_COUNT, SIZE},
     types::Direction,
 };
 
 pub trait IController {
-    fn new(board: Board, rollouts: usize) -> Self;
-    fn run_simulation(&self) -> Direction;
-    fn simulate(&self, board: Board) -> u64;
+    fn new(board: Board, depth: usize) -> Self;
+    fn best_move(&self) -> Direction;
 }
 
 pub struct Controller {
     board: Board,
-    rollouts: usize,
+    depth: usize,
 }
 
+#[derive(Clone, Copy, Hash, PartialEq, Eq)]
+enum NodeKind {
+    Player,
+    Chance,
+}
+
+type CacheKey = ([u32; CELL_COUNT], u32, usize, NodeKind);
+
+// Space is the strongest survival signal in 2048. One additional empty cell
+// must be worth more than a small immediate merge or a minor shape improvement.
+const EMPTY_TILE_WEIGHT: f64 = 1_200.0;
+
 impl IController for Controller {
-    fn new(board: Board, rollouts: usize) -> Self {
-        Controller {
+    fn new(board: Board, depth: usize) -> Self {
+        Self {
             board,
-            rollouts: rollouts.max(1),
+            depth: depth.max(1),
         }
     }
 
-    fn run_simulation(&self) -> Direction {
-        let candidates: Vec<Direction> = self.board.available_moves();
-        let mut best_average = 0;
-        let mut best_direction: Direction = candidates[0];
+    fn best_move(&self) -> Direction {
+        let candidates = self.board.available_moves();
+        let mut cache = HashMap::new();
+        let mut best_direction = candidates[0];
+        let mut best_value = f64::NEG_INFINITY;
 
         for direction in candidates {
-            let mut total = 0_u64;
+            let moved = self.board.make_move(direction);
+            let value = chance_value(&moved, self.depth - 1, &mut cache);
 
-            for _ in 0..self.rollouts {
-                let board_copy = self.board.make_move(direction);
-                total = total.saturating_add(self.simulate(board_copy));
-            }
-
-            let average = total / self.rollouts as u64;
-            if average > best_average {
-                best_average = average;
+            if value > best_value {
+                best_value = value;
                 best_direction = direction;
             }
         }
 
         best_direction
     }
+}
 
-    fn simulate(&self, mut board: Board) -> u64 {
-        loop {
-            board.set_empty_tile();
-
-            let candidates = board.available_moves();
-            if candidates.is_empty() {
-                return u64::from(board.score);
-            }
-
-            // The rollout policy is greedy: make the move whose immediate
-            // result leaves the strongest score-and-empty-space position.
-            let mut next_boards = candidates
-                .into_iter()
-                .map(|direction| board.make_move(direction));
-            let mut best_board = next_boards.next().expect("available moves cannot be empty");
-            let mut best_score = evaluate_board(&best_board);
-
-            for candidate in next_boards {
-                let candidate_score = evaluate_board(&candidate);
-                if candidate_score > best_score {
-                    best_board = candidate;
-                    best_score = candidate_score;
-                }
-            }
-
-            board = best_board;
-        }
+fn player_value(board: &Board, depth: usize, cache: &mut HashMap<CacheKey, f64>) -> f64 {
+    if depth == 0 {
+        return evaluate_board(board);
     }
+
+    let key = cache_key(board, depth, NodeKind::Player);
+    if let Some(value) = cache.get(&key) {
+        return *value;
+    }
+
+    let moves = board.available_moves();
+    let value = if moves.is_empty() {
+        evaluate_board(board) - 1_000_000.0
+    } else {
+        moves
+            .into_iter()
+            .map(|direction| chance_value(&board.make_move(direction), depth - 1, cache))
+            .fold(f64::NEG_INFINITY, f64::max)
+    };
+
+    cache.insert(key, value);
+    value
 }
 
-/// Rates a live position using score, space, merge opportunities, tile order,
-/// neighboring-tile smoothness, and largest-tile corner placement.
-fn evaluate_board(board: &Board) -> u64 {
-    let score = u64::from(board.score);
-    let magnitude = if score == 0 { 0 } else { score.ilog10() };
-    let empty_weight = 100_u64.saturating_pow(magnitude);
-    let shape = board_shape(board);
+fn chance_value(board: &Board, depth: usize, cache: &mut HashMap<CacheKey, f64>) -> f64 {
+    let key = cache_key(board, depth, NodeKind::Chance);
+    if let Some(value) = cache.get(&key) {
+        return *value;
+    }
 
-    // Shape is stored in tenths so one empty cell retains exactly the original
-    // `empty_tiles * empty_weight` value while smaller signals remain possible.
-    let shape_bonus = i128::from(empty_weight) * i128::from(shape) / 10;
-    (i128::from(score) + shape_bonus).clamp(0, i128::from(u64::MAX)) as u64
+    let empty = board.empty_tiles();
+    if empty.is_empty() {
+        return player_value(board, depth, cache);
+    }
+
+    let cell_probability = 1.0 / empty.len() as f64;
+    let value = empty
+        .into_iter()
+        .map(|(row, col)| {
+            let with_two = board.with_tile(row, col, 2);
+            let with_four = board.with_tile(row, col, 4);
+            cell_probability
+                * (0.9 * player_value(&with_two, depth, cache)
+                    + 0.1 * player_value(&with_four, depth, cache))
+        })
+        .sum();
+
+    cache.insert(key, value);
+    value
 }
 
-fn board_shape(board: &Board) -> i64 {
+fn cache_key(board: &Board, depth: usize, kind: NodeKind) -> CacheKey {
+    let mut cells = [0; CELL_COUNT];
+    for (index, value) in board.matrix().iter().flatten().copied().enumerate() {
+        cells[index] = value;
+    }
+    (cells, board.score, depth, kind)
+}
+
+/// Stable leaf evaluation. Tile comparisons use base-2 ranks so a large tile
+/// cannot numerically swamp all of the structural features of the position.
+fn evaluate_board(board: &Board) -> f64 {
     let matrix = board.matrix();
-    let mut merge_pairs = 0_i64;
-    let mut roughness = 0_i64;
-    let mut row_increasing = 0_i64;
-    let mut row_decreasing = 0_i64;
-    let mut col_increasing = 0_i64;
-    let mut col_decreasing = 0_i64;
+    let empty = board.empty_tiles().len() as f64;
+    let mut merge_pairs: f64 = 0.0;
+    let mut roughness: f64 = 0.0;
+    let mut row_up: f64 = 0.0;
+    let mut row_down: f64 = 0.0;
+    let mut col_up: f64 = 0.0;
+    let mut col_down: f64 = 0.0;
 
     for row in 0..SIZE {
         for col in 0..SIZE {
@@ -105,59 +133,56 @@ fn board_shape(board: &Board) -> i64 {
 
             if col + 1 < SIZE {
                 let neighbor = tile_rank(matrix[row][col + 1]);
-                if current > 0 && current == neighbor {
-                    merge_pairs += 1;
+                if current > 0.0 && current == neighbor {
+                    merge_pairs += 1.0;
                 }
-                if current > 0 && neighbor > 0 {
+                if current > 0.0 && neighbor > 0.0 {
                     roughness += (current - neighbor).abs();
-                    row_increasing += (current - neighbor).max(0);
-                    row_decreasing += (neighbor - current).max(0);
+                    row_up += (current - neighbor).max(0.0);
+                    row_down += (neighbor - current).max(0.0);
                 }
             }
 
             if row + 1 < SIZE {
                 let neighbor = tile_rank(matrix[row + 1][col]);
-                if current > 0 && current == neighbor {
-                    merge_pairs += 1;
+                if current > 0.0 && current == neighbor {
+                    merge_pairs += 1.0;
                 }
-                if current > 0 && neighbor > 0 {
+                if current > 0.0 && neighbor > 0.0 {
                     roughness += (current - neighbor).abs();
-                    col_increasing += (current - neighbor).max(0);
-                    col_decreasing += (neighbor - current).max(0);
+                    col_up += (current - neighbor).max(0.0);
+                    col_down += (neighbor - current).max(0.0);
                 }
             }
         }
     }
 
-    let monotonicity_penalty = row_increasing
-        .min(row_decreasing)
-        .saturating_add(col_increasing.min(col_decreasing));
-    let corner_bonus = corner_bonus(board);
-
-    board.empty_tiles().len() as i64 * 10 + merge_pairs * 6 + corner_bonus * 2
-        - roughness
-        - monotonicity_penalty
-}
-
-fn tile_rank(tile: u32) -> i64 {
-    if tile == 0 { 0 } else { tile.ilog2() as i64 }
-}
-
-fn corner_bonus(board: &Board) -> i64 {
-    let matrix = board.matrix();
+    let monotonicity = row_up.max(row_down) + col_up.max(col_down);
     let maximum = matrix.iter().flatten().copied().max().unwrap_or(0);
-    let corners = [
-        matrix[0][0],
-        matrix[0][SIZE - 1],
-        matrix[SIZE - 1][0],
-        matrix[SIZE - 1][SIZE - 1],
-    ];
-
-    if maximum > 0 && corners.contains(&maximum) {
+    let corner = if maximum > 0
+        && [
+            matrix[0][0],
+            matrix[0][SIZE - 1],
+            matrix[SIZE - 1][0],
+            matrix[SIZE - 1][SIZE - 1],
+        ]
+        .contains(&maximum)
+    {
         tile_rank(maximum)
     } else {
-        0
-    }
+        0.0
+    };
+
+    f64::from(board.score)
+        + empty * EMPTY_TILE_WEIGHT
+        + merge_pairs * 80.0
+        + monotonicity * 35.0
+        + corner * 120.0
+        - roughness * 25.0
+}
+
+fn tile_rank(tile: u32) -> f64 {
+    if tile == 0 { 0.0 } else { tile.ilog2() as f64 }
 }
 
 #[cfg(test)]
@@ -165,26 +190,35 @@ mod tests {
     use super::*;
 
     #[test]
-    fn corner_bonus_rewards_a_largest_tile_in_a_corner() {
+    fn evaluation_rewards_empty_space() {
+        let open = Board::new(&[2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        let crowded = Board::new(&[2, 4, 8, 16, 32, 64, 128, 256, 4, 8, 16, 32, 8, 16, 32, 64]);
+
+        assert!(evaluate_board(&open) > evaluate_board(&crowded));
+    }
+
+    #[test]
+    fn one_empty_tile_has_a_large_survival_value() {
+        let with_space = Board::new(&[2, 4, 8, 16, 4, 8, 16, 32, 8, 16, 32, 64, 4, 8, 0, 128]);
+        let full = Board::new(&[2, 4, 8, 16, 4, 8, 16, 32, 8, 16, 32, 64, 4, 8, 64, 128]);
+
+        assert!(evaluate_board(&with_space) - evaluate_board(&full) > 500.0);
+    }
+
+    #[test]
+    fn evaluation_rewards_a_maximum_tile_in_a_corner() {
         let corner = Board::new(&[128, 64, 32, 16, 64, 32, 16, 8, 32, 16, 8, 4, 16, 8, 4, 2]);
         let center = Board::new(&[64, 32, 16, 8, 32, 128, 8, 4, 16, 8, 4, 2, 8, 4, 2, 4]);
 
-        assert!(corner_bonus(&corner) > corner_bonus(&center));
+        assert!(evaluate_board(&corner) > evaluate_board(&center));
     }
 
     #[test]
-    fn shape_rewards_merge_opportunities_and_empty_space() {
-        let useful = Board::new(&[2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-        let crowded = Board::new(&[2, 4, 8, 16, 32, 64, 128, 256, 4, 8, 16, 32, 8, 16, 32, 64]);
+    fn expectimax_is_deterministic() {
+        let cells = [2, 4, 8, 16, 4, 8, 16, 32, 2, 4, 8, 16, 0, 2, 4, 8];
+        let first = Controller::new(Board::new(&cells), 2).best_move();
+        let second = Controller::new(Board::new(&cells), 2).best_move();
 
-        assert!(board_shape(&useful) > board_shape(&crowded));
-    }
-
-    #[test]
-    fn controller_always_runs_at_least_one_rollout() {
-        let board = Board::new(&[2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-        let controller = Controller::new(board, 0);
-
-        assert_eq!(controller.rollouts, 1);
+        assert_eq!(first, second);
     }
 }
