@@ -15,17 +15,21 @@ export type AiPlayerStatus = "idle" | "running" | "error";
 
 export interface AiMetrics {
   averageDecisionMs: number;
+  decisionHistory: number[];
   lastDecisionMs: number;
   lastDirection: Direction | null;
   moves: number;
+  utilizationHistory: number[];
   wasmUtilization: number;
 }
 
 const emptyMetrics: AiMetrics = {
   averageDecisionMs: 0,
+  decisionHistory: [],
   lastDecisionMs: 0,
   lastDirection: null,
   moves: 0,
+  utilizationHistory: [],
   wasmUtilization: 0,
 };
 
@@ -79,13 +83,16 @@ export function useAiPlayer() {
 
         const updateMetrics = (lastDirection: Direction | null) => {
           const elapsed = Math.max(performance.now() - runStartedAt.current, 1);
-          setMetrics({
+          const wasmUtilization = Math.min(100, (totalDecisionMs.current / elapsed) * 100);
+          setMetrics((previous) => ({
             averageDecisionMs: totalDecisionMs.current / decisionCount.current,
+            decisionHistory: [...previous.decisionHistory, decisionDuration].slice(-18),
             lastDecisionMs: decisionDuration,
             lastDirection,
             moves: moveCount.current,
-            wasmUtilization: Math.min(100, (totalDecisionMs.current / elapsed) * 100),
-          });
+            utilizationHistory: [...previous.utilizationHistory, wasmUtilization].slice(-18),
+            wasmUtilization,
+          }));
         };
 
         if (directionCode === -1) {

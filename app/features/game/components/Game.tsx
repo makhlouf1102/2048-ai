@@ -26,6 +26,42 @@ function formatDuration(milliseconds: number): string {
     : `${(milliseconds / 1000).toFixed(2)} s`;
 }
 
+function chartPoints(values: number[], width = 160, height = 42): string {
+  const samples = values.length > 1 ? values : [values[0] ?? 0, values[0] ?? 0];
+  const maximum = Math.max(...samples, 1);
+  const minimum = Math.min(...samples);
+  const range = Math.max(maximum - minimum, maximum * .2, 1);
+  return samples.map((value, index) => {
+    const x = (index / (samples.length - 1)) * width;
+    const y = height - 4 - ((value - minimum) / range) * (height - 10);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+}
+
+function LineChart({ values, tone }: { values: number[]; tone: "green" | "blue" }) {
+  const points = chartPoints(values);
+  const areaPoints = `0,42 ${points} 160,42`;
+  return (
+    <svg className={`metric-chart metric-chart-${tone}`} viewBox="0 0 160 42" preserveAspectRatio="none" aria-hidden="true">
+      <polygon className="metric-chart-area" points={areaPoints} />
+      <polyline className="metric-chart-line" points={points} />
+      {values.length > 0 && <circle cx={points.split(" ").at(-1)?.split(",")[0]} cy={points.split(" ").at(-1)?.split(",")[1]} r="2.5" />}
+    </svg>
+  );
+}
+
+function BarChart({ values }: { values: number[] }) {
+  const samples = values.slice(-14);
+  const maximum = Math.max(...samples, 1);
+  return (
+    <div className="metric-bars" aria-hidden="true">
+      {(samples.length ? samples : [0, 0, 0, 0, 0, 0, 0]).map((value, index) => (
+        <span key={index} style={{ transform: `scaleY(${Math.max(.16, value / maximum)})` }} />
+      ))}
+    </div>
+  );
+}
+
 type AiMood = "ready" | "thinking" | "pleased" | "focused" | "tired" | "proud" | "error";
 
 function getAiPersona(
@@ -83,15 +119,13 @@ function AiMonitor({
     { name: "right", path: "M5 12h14m-6-6 6 6-6 6" },
     { name: "down", path: "M12 5v14m-6-6 6 6 6-6" },
   ] as const;
+  const activeDirection = directions.find(({ name }) => name === ai.metrics.lastDirection) ?? directions[0];
 
   return (
     <aside className={`ai-monitor ai-mood-${persona.mood}`} aria-label="Milo, AI player">
       <header className="ai-profile">
         <div className="ai-avatar" aria-hidden="true">
-          <span className="ai-eye ai-eye-left" />
-          <span className="ai-eye ai-eye-right" />
-          <span className="ai-mouth" />
-          <i /><i /><i />
+          <img src={`${import.meta.env.BASE_URL}assets/milo-avatar.png`} alt="" />
         </div>
         <div>
           <p className="ai-name">Milo <span>Depth 5</span></p>
@@ -109,17 +143,9 @@ function AiMonitor({
           <strong>Move {String(ai.metrics.moves).padStart(3, "0")}</strong>
         </div>
         <div className="direction-compass" aria-label={lastMoveLabel}>
-          {directions.map(({ name, path }) => (
-            <span
-              className={`direction-key direction-${name}${ai.metrics.lastDirection === name ? " is-active" : ""}`}
-              key={`${name}-${ai.metrics.moves}`}
-              aria-hidden="true"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d={path} />
-              </svg>
-            </span>
-          ))}
+          <span className="direction-key is-active" key={`${activeDirection.name}-${ai.metrics.moves}`} aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d={activeDirection.path} /></svg>
+          </span>
           <div className="decision-core">
             <small>{ai.status === "running" ? "Live" : "Last"}</small>
             <strong>{lastMoveLabel}</strong>
@@ -132,20 +158,19 @@ function AiMonitor({
         <div className="metric">
           <dt>Average</dt>
           <dd>{formatDuration(ai.metrics.averageDecisionMs)}</dd>
+          <LineChart values={ai.metrics.decisionHistory} tone="green" />
         </div>
         <div className="metric">
           <dt>Moves</dt>
           <dd>{ai.metrics.moves}</dd>
+          <BarChart values={ai.metrics.decisionHistory} />
         </div>
         <div className="metric">
           <dt>Compute <span className="info-dot" title="Estimated share of autoplay time spent inside next_move. Browsers do not expose per-Wasm CPU usage.">i</span></dt>
           <dd>{ai.metrics.wasmUtilization.toFixed(1)}%</dd>
+          <LineChart values={ai.metrics.utilizationHistory} tone="blue" />
         </div>
       </dl>
-
-      <div className="compute-track" aria-hidden="true">
-        <span style={{ transform: `scaleX(${ai.metrics.wasmUtilization / 100})` }} />
-      </div>
       <p className="monitor-note"><span />Telemetry refreshes after every move</p>
     </aside>
   );
