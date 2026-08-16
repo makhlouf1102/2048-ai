@@ -15,7 +15,7 @@ export function CookingScreen({
       </div>
       <div className="cooking-copy">
         <h2>Milo is cooking.</h2>
-        <p>He’s playing off-screen so the board doesn’t repaint after every move.</p>
+        <p>He’s playing off-screen so the board doesn’t repaint after every move. Score and studio notes update in calm batches.</p>
         <div className="cooking-actions">
           <button className="snapshot-button" type="button" onClick={onSnapshot}>
             Show me a snapshot

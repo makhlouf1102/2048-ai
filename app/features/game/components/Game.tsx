@@ -187,7 +187,7 @@ function AiMonitor({
         </div>
       </dl>
       <p className="monitor-note">
-        <span />{liveUpdates ? "Milo’s notes refresh after every move" : "Notes wait until you request a snapshot"}
+        <span />{liveUpdates ? "Milo’s notes refresh after every move" : "Score and notes refresh in calm batches"}
       </p>
     </aside>
   );

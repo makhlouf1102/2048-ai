@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gameSession } from "../application/game-session";
+import { QUIET_TELEMETRY_INTERVAL_MS } from "../application/ai-playback-policy";
 import { installBrowserGameApi } from "../adapters/browser-game-api";
 import type { Direction } from "../domain/game";
 
@@ -17,6 +18,12 @@ export function useGame(liveUpdates = true) {
     if (!liveUpdates) return;
     refresh();
     return gameSession.subscribe(refresh);
+  }, [liveUpdates, refresh]);
+
+  useEffect(() => {
+    if (liveUpdates) return;
+    const interval = window.setInterval(refresh, QUIET_TELEMETRY_INTERVAL_MS);
+    return () => window.clearInterval(interval);
   }, [liveUpdates, refresh]);
 
   useEffect(() => installBrowserGameApi(gameSession), []);

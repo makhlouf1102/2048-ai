@@ -45,7 +45,7 @@ button { font: inherit; }
   justify-content: center;
   gap: clamp(24px, 3vw, 48px);
 }
-.game { min-width: 0; }
+.game { min-width: 0; container-type: inline-size; }
 
 .game-header {
   display: grid;
@@ -178,6 +178,14 @@ button { font: inherit; }
 .cooking-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 18px; }
 .cooking-note { max-width: 48ch; color: var(--paper) !important; font-size: 10px !important; }
 @keyframes cooking-turn { to { transform: rotate(360deg); } }
+
+@container (max-width: 560px) {
+  .cooking-screen { min-height: 560px; grid-template-columns: 1fr; align-content: center; gap: 46px; padding: 46px 26px 34px; text-align: center; }
+  .cooking-orbit { width: 165px; }
+  .cooking-copy { display: grid; justify-items: center; }
+  .cooking-copy h2 { font-size: clamp(36px, 13vw, 48px); }
+  .cooking-actions { justify-content: center; }
+}
 
 .view-control {
   display: flex;
@@ -347,11 +355,6 @@ button { font: inherit; }
   .toolbar-actions { width: 100%; }
   .toolbar-actions button { flex: 1; padding-inline: 11px; }
   .board { gap: 6px; padding: 8px; box-shadow: 5px 12px 25px rgba(32, 38, 31, .22); }
-  .cooking-screen { min-height: 510px; grid-template-columns: 1fr; align-content: center; gap: 46px; padding: 46px 26px 34px; text-align: center; }
-  .cooking-orbit { width: 165px; }
-  .cooking-copy { display: grid; justify-items: center; }
-  .cooking-copy h2 { font-size: clamp(36px, 13vw, 48px); }
-  .cooking-actions { justify-content: center; }
   .view-control { align-items: flex-start; flex-direction: column; }
   .view-control-actions { width: 100%; }
   .view-control-actions button { flex: 1; }

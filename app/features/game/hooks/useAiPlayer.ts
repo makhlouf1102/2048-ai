@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cancelAiWork, nextMove } from "../../ai";
+import { moveDelay, QUIET_TELEMETRY_INTERVAL_MS } from "../application/ai-playback-policy";
 import { gameSession } from "../application/game-session";
 import type { Direction } from "../domain/game";
 
-const LIVE_MOVE_DELAY_MS = 110;
 const directions: Record<number, Direction> = {
   0: "down",
   1: "left",
@@ -55,6 +55,15 @@ export function useAiPlayer({ liveUpdates = true }: { liveUpdates?: boolean } = 
     liveUpdatesRef.current = liveUpdates;
     if (liveUpdates) setMetrics(metricsRef.current);
   }, [liveUpdates]);
+
+  useEffect(() => {
+    if (liveUpdates || status !== "running") return;
+    const interval = window.setInterval(
+      () => setMetrics(metricsRef.current),
+      QUIET_TELEMETRY_INTERVAL_MS,
+    );
+    return () => window.clearInterval(interval);
+  }, [liveUpdates, status]);
 
   const stop = useCallback(() => {
     runId.current += 1;
@@ -131,7 +140,7 @@ export function useAiPlayer({ liveUpdates = true }: { liveUpdates?: boolean } = 
           feedback.moved ? feedback.score - beforeMove.score : 0,
         );
 
-        await delay(liveUpdatesRef.current ? LIVE_MOVE_DELAY_MS : 0);
+        await delay(moveDelay(liveUpdatesRef.current));
       }
 
       if (currentRun === runId.current) setStatus("idle");
