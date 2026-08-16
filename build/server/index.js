@@ -176,7 +176,7 @@ var server_manifest_default = {
 			"hasClientMiddleware": false,
 			"hasDefaultExport": true,
 			"hasErrorBoundary": false,
-			"module": "/2048-ai/assets/home-DxplN-WJ.js",
+			"module": "/2048-ai/assets/home-CQYq_Npw.js",
 			"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js"],
 			"css": [],
 			"clientActionModule": void 0,
@@ -185,8 +185,8 @@ var server_manifest_default = {
 			"hydrateFallbackModule": void 0
 		}
 	},
-	"url": "/2048-ai/assets/manifest-1ba3247f.js",
-	"version": "1ba3247f",
+	"url": "/2048-ai/assets/manifest-fd28c4ec.js",
+	"version": "fd28c4ec",
 	"sri": void 0
 };
 //#endregion

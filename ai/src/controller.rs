@@ -22,7 +22,7 @@ enum NodeKind {
     Chance,
 }
 
-type CacheKey = ([u32; CELL_COUNT], u32, usize, NodeKind);
+type CacheKey = ([u8; CELL_COUNT], u32, usize, NodeKind);
 
 // Space is the strongest survival signal in 2048. One additional empty cell
 // must be worth more than a small immediate merge or a minor shape improvement.
@@ -95,8 +95,8 @@ fn chance_value(board: &Board, depth: usize, cache: &mut HashMap<CacheKey, f64>)
     let value = empty
         .into_iter()
         .map(|(row, col)| {
-            let with_two = board.with_tile(row, col, 2);
-            let with_four = board.with_tile(row, col, 4);
+            let with_two = board.with_rank(row, col, 1);
+            let with_four = board.with_rank(row, col, 2);
             cell_probability
                 * (0.9 * player_value(&with_two, depth, cache)
                     + 0.1 * player_value(&with_four, depth, cache))
@@ -181,8 +181,8 @@ fn evaluate_board(board: &Board) -> f64 {
         - roughness * 25.0
 }
 
-fn tile_rank(tile: u32) -> f64 {
-    if tile == 0 { 0.0 } else { tile.ilog2() as f64 }
+fn tile_rank(tile: u8) -> f64 {
+    f64::from(tile)
 }
 
 #[cfg(test)]

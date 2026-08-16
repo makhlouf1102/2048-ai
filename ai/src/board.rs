@@ -1,11 +1,9 @@
 use crate::tile::*;
 use crate::types::*;
-use rand::RngExt;
 
 pub trait IBoard {
-    fn new(flatten_board: &[UTile]) -> Self;
+    fn new(flatten_board: &[u32]) -> Self;
     fn empty_tiles(&self) -> Vec<(usize, usize)>;
-    fn set_empty_tile(&mut self);
     fn can_move(&self, direction: Direction) -> bool;
     fn available_moves(&self) -> Vec<Direction>;
     fn make_move(&self, direction: Direction) -> Self;
@@ -21,28 +19,24 @@ pub struct Board {
 }
 
 impl Board {
-    fn random_number(max: usize) -> usize {
-        rand::rng().random_range(0..max)
-    }
-
     pub(crate) fn matrix(&self) -> &Matrix {
         &self.matrix
     }
 
-    pub(crate) fn with_tile(&self, row: usize, col: usize, value: UTile) -> Self {
+    pub(crate) fn with_rank(&self, row: usize, col: usize, rank: TileRank) -> Self {
         debug_assert_eq!(self.matrix[row][col], 0);
         let mut board = self.clone();
-        board.matrix[row][col] = value;
+        board.matrix[row][col] = rank;
         board
     }
 }
 
 impl IBoard for Board {
-    fn new(flatten_board: &[UTile]) -> Self {
+    fn new(flatten_board: &[u32]) -> Self {
         let mut matrix: Matrix = [[0; SIZE]; SIZE];
         for row in 0..SIZE {
             for col in 0..SIZE {
-                matrix[row][col] = flatten_board[row * SIZE + col];
+                matrix[row][col] = rank_from_value(flatten_board[row * SIZE + col]);
             }
         }
 
@@ -61,21 +55,6 @@ impl IBoard for Board {
         }
 
         empty
-    }
-
-    fn set_empty_tile(&mut self) {
-        let tiles = self.empty_tiles();
-
-        if tiles.is_empty() {
-            return;
-        }
-
-        let value = if Board::random_number(100) < 90 { 2 } else { 4 };
-
-        let index = Board::random_number(tiles.len());
-        let tile = tiles[index];
-
-        self.matrix[tile.0][tile.1] = value;
     }
 
     fn can_move(&self, direction: Direction) -> bool {
@@ -184,7 +163,7 @@ impl IBoard for Board {
         let mut board = self.clone();
 
         for row in 0..SIZE {
-            let tiles: Vec<UTile> = self.matrix[row]
+            let tiles: Vec<TileRank> = self.matrix[row]
                 .iter()
                 .copied()
                 .filter(|&x| x != 0)
@@ -197,10 +176,10 @@ impl IBoard for Board {
 
             while i < tiles.len() {
                 if i + 1 < tiles.len() && tiles[i] == tiles[i + 1] {
-                    let merged = tiles[i] * 2;
+                    let merged = tiles[i] + 1;
 
                     board.matrix[row][col] = merged;
-                    board.score += merged;
+                    board.score = board.score.saturating_add(value_from_rank(merged));
 
                     i += 2;
                 } else {
@@ -219,7 +198,7 @@ impl IBoard for Board {
         let mut board = self.clone();
 
         for row in 0..SIZE {
-            let tiles: Vec<UTile> = self.matrix[row]
+            let tiles: Vec<TileRank> = self.matrix[row]
                 .iter()
                 .rev()
                 .copied()
@@ -235,10 +214,10 @@ impl IBoard for Board {
                 col -= 1;
 
                 if i + 1 < tiles.len() && tiles[i] == tiles[i + 1] {
-                    let merged = tiles[i] * 2;
+                    let merged = tiles[i] + 1;
 
                     board.matrix[row][col] = merged;
-                    board.score += merged;
+                    board.score = board.score.saturating_add(value_from_rank(merged));
 
                     i += 2;
                 } else {
@@ -255,7 +234,7 @@ impl IBoard for Board {
         let mut board = self.clone();
 
         for col in 0..SIZE {
-            let mut tiles: Vec<UTile> = Vec::new();
+            let mut tiles: Vec<TileRank> = Vec::new();
 
             // Collect non-zero values from top to bottom
             for row in 0..SIZE {
@@ -271,10 +250,10 @@ impl IBoard for Board {
 
             while i < tiles.len() {
                 if i + 1 < tiles.len() && tiles[i] == tiles[i + 1] {
-                    let merged = tiles[i] * 2;
+                    let merged = tiles[i] + 1;
 
                     board.matrix[row][col] = merged;
-                    board.score += merged;
+                    board.score = board.score.saturating_add(value_from_rank(merged));
 
                     i += 2;
                 } else {
@@ -293,7 +272,7 @@ impl IBoard for Board {
         let mut board = self.clone();
 
         for col in 0..SIZE {
-            let mut tiles: Vec<UTile> = Vec::new();
+            let mut tiles: Vec<TileRank> = Vec::new();
 
             // Collect non-zero values from bottom to top
             for row in (0..SIZE).rev() {
@@ -311,10 +290,10 @@ impl IBoard for Board {
                 row -= 1;
 
                 if i + 1 < tiles.len() && tiles[i] == tiles[i + 1] {
-                    let merged = tiles[i] * 2;
+                    let merged = tiles[i] + 1;
 
                     board.matrix[row][col] = merged;
-                    board.score += merged;
+                    board.score = board.score.saturating_add(value_from_rank(merged));
 
                     i += 2;
                 } else {
@@ -349,5 +328,14 @@ mod tests {
                 (3, 2)
             ]
         );
+    }
+
+    #[test]
+    fn compact_rank_merge_preserves_the_real_score() {
+        let board = Board::new(&[2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        let merged = board.merge_left();
+
+        assert_eq!(merged.matrix[0], [2, 0, 0, 0]);
+        assert_eq!(merged.score, 4);
     }
 }
