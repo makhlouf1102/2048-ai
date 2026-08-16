@@ -4,9 +4,12 @@ pub mod tile;
 pub mod types;
 
 use crate::board::*;
+use crate::controller::*;
 use crate::tile::CELL_COUNT;
 use crate::types::*;
 use wasm_bindgen::prelude::*;
+
+const SIMULATION_DEPTH: usize = 5;
 
 #[wasm_bindgen]
 pub fn next_move(flatten_board: &[u32]) -> i8 {
@@ -21,19 +24,8 @@ pub fn next_move(flatten_board: &[u32]) -> i8 {
         return -1;
     }
 
-    let mut best_score = 0;
-    let mut best_index = 0;
-
-    for i in 0..moves.len() {
-        let new_board = board.make_move(moves[i]);
-
-        if new_board.score > best_score {
-            best_score = new_board.score;
-            best_index = i;
-        }
-    }
-
-    let best_move = &moves[best_index];
+    let controller = Controller::new(board, SIMULATION_DEPTH);
+    let best_move = controller.run_simulation();
 
     match best_move {
         Direction::Down => 0,
