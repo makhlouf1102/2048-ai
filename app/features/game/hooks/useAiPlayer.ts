@@ -18,6 +18,7 @@ export interface AiMetrics {
   decisionHistory: number[];
   lastDecisionMs: number;
   lastDirection: Direction | null;
+  lastScoreGain: number;
   moves: number;
   utilizationHistory: number[];
   wasmUtilization: number;
@@ -28,6 +29,7 @@ const emptyMetrics: AiMetrics = {
   decisionHistory: [],
   lastDecisionMs: 0,
   lastDirection: null,
+  lastScoreGain: 0,
   moves: 0,
   utilizationHistory: [],
   wasmUtilization: 0,
@@ -82,7 +84,7 @@ export function useAiPlayer() {
         decisionCount.current += 1;
         if (currentRun !== runId.current) return;
 
-        const updateMetrics = (lastDirection: Direction | null) => {
+        const updateMetrics = (lastDirection: Direction | null, lastScoreGain = 0) => {
           const elapsed = Math.max(performance.now() - runStartedAt.current, 1);
           const wasmUtilization = Math.min(100, (totalDecisionMs.current / elapsed) * 100);
           setMetrics((previous) => ({
@@ -90,6 +92,7 @@ export function useAiPlayer() {
             decisionHistory: [...previous.decisionHistory, decisionDuration].slice(-18),
             lastDecisionMs: decisionDuration,
             lastDirection,
+            lastScoreGain,
             moves: moveCount.current,
             utilizationHistory: [...previous.utilizationHistory, wasmUtilization].slice(-18),
             wasmUtilization,
@@ -112,7 +115,10 @@ export function useAiPlayer() {
         }
 
         if (feedback.moved) moveCount.current += 1;
-        updateMetrics(feedback.moved ? direction : null);
+        updateMetrics(
+          feedback.moved ? direction : null,
+          feedback.moved ? feedback.score - beforeMove.score : 0,
+        );
 
         await delay(MOVE_DELAY_MS);
       }

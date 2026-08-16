@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { downloadGameScreenshot } from "../adapters/game-screenshot";
 import type { Direction } from "../domain/game";
 import { useAiPlayer } from "../hooks/useAiPlayer";
@@ -64,6 +64,8 @@ function getAiPersona(
   if (ai.status === "idle") return { mood: "focused", thought: "Paused—but I haven’t lost the pattern." };
 
   const move = ai.metrics.moves;
+  if (ai.metrics.lastScoreGain >= 256) return { mood: "proud", thought: "That changed everything. The board just opened up." };
+  if (ai.metrics.lastScoreGain >= 64) return { mood: "pleased", thought: "There it is—a big merge and room to move." };
   if (highestTile >= 1024) return { mood: "focused", thought: "1024 is on the board. Keep the corner steady." };
   if (highestTile >= 512) return { mood: "pleased", thought: "Nice. The big tiles are starting to line up." };
   if (ai.metrics.lastDecisionMs >= 1000) return { mood: "thinking", thought: "This one needs a little more thought…" };
@@ -74,7 +76,7 @@ function getAiPersona(
     "Reading the board… there’s still space to work.",
     "One move at a time. The pattern is taking shape.",
   ];
-  return { mood: move > 0 ? "pleased" : "thinking", thought: thoughts[move % thoughts.length] };
+  return { mood: move > 0 ? "pleased" : "thinking", thought: thoughts[Math.floor(move / 8) % thoughts.length] };
 }
 
 function AiMonitor({
@@ -86,7 +88,29 @@ function AiMonitor({
   gameStatus: "playing" | "won" | "lost";
   highestTile: number;
 }) {
-  const persona = getAiPersona(ai, gameStatus, highestTile);
+  const [visibleMetrics, setVisibleMetrics] = useState(ai.metrics);
+  const lastRevealAt = useRef(0);
+  const holdBigMoveUntil = useRef(0);
+
+  useEffect(() => {
+    const now = performance.now();
+    const isIncomingBigMove = ai.metrics.lastScoreGain >= 64;
+
+    if (isIncomingBigMove) {
+      setVisibleMetrics(ai.metrics);
+      lastRevealAt.current = now;
+      holdBigMoveUntil.current = now + 3200;
+      return;
+    }
+
+    if (now < holdBigMoveUntil.current || now - lastRevealAt.current < 1600) return;
+    setVisibleMetrics(ai.metrics);
+    lastRevealAt.current = now;
+  }, [ai.metrics]);
+
+  const visibleAi = { ...ai, metrics: visibleMetrics };
+  const persona = getAiPersona(visibleAi, gameStatus, highestTile);
+  const isBigMove = visibleMetrics.lastScoreGain >= 64;
   const statusLabel = ai.status === "running"
     ? "Calculating next move"
     : ai.status === "error"
@@ -96,9 +120,9 @@ function AiMonitor({
         : ai.metrics.moves > 0
           ? "Run paused"
           : "Ready to play";
-  const lastMoveLabel = ai.metrics.lastDirection
-    ? `Moved ${ai.metrics.lastDirection}`
-    : ai.metrics.moves > 0
+  const lastMoveLabel = visibleMetrics.lastDirection
+    ? `Moved ${visibleMetrics.lastDirection}`
+    : visibleMetrics.moves > 0
       ? "No legal move"
       : "No move yet";
   const directions = [
@@ -107,7 +131,7 @@ function AiMonitor({
     { name: "right", path: "M5 12h14m-6-6 6 6-6 6" },
     { name: "down", path: "M12 5v14m-6-6 6 6 6-6" },
   ] as const;
-  const activeDirection = directions.find(({ name }) => name === ai.metrics.lastDirection) ?? directions[0];
+  const activeDirection = directions.find(({ name }) => name === visibleMetrics.lastDirection) ?? directions[0];
 
   return (
     <aside className={`ai-monitor ai-mood-${persona.mood}`} aria-label="Milo, AI player">
@@ -122,21 +146,22 @@ function AiMonitor({
         </div>
       </header>
 
-      <p className="ai-thought" key={`${persona.mood}-${ai.metrics.moves}`} aria-live="polite">
+      <p className="ai-thought" key={persona.thought} aria-live="polite">
         <span aria-hidden="true" />{persona.thought}
       </p>
 
-      <section className={`decision-console decision-console-${ai.status}`} aria-live="polite">
+      <section className={`decision-console decision-console-${ai.status}${isBigMove ? " decision-console-big" : ""}`} aria-live="polite">
         <div className="decision-heading">
-          <strong>Milo’s move {String(ai.metrics.moves).padStart(2, "0")}</strong>
+          <strong>Milo’s move {String(visibleMetrics.moves).padStart(2, "0")}</strong>
         </div>
         <div className="direction-compass" aria-label={lastMoveLabel}>
-          <span className="direction-key is-active" key={`${activeDirection.name}-${ai.metrics.moves}`} aria-hidden="true">
+          <span className="direction-key is-active" key={`${activeDirection.name}-${visibleMetrics.moves}`} aria-hidden="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d={activeDirection.path} /></svg>
           </span>
           <div className="decision-core">
-            <strong>{ai.status === "running" ? `Choosing — ${lastMoveLabel}` : `Last move — ${lastMoveLabel}`}</strong>
-            <span>{formatDuration(ai.metrics.lastDecisionMs)}</span>
+            {isBigMove && <span className="move-score" key={`${visibleMetrics.moves}-${visibleMetrics.lastScoreGain}`}>+{visibleMetrics.lastScoreGain}</span>}
+            <strong>{isBigMove ? `Big merge — ${lastMoveLabel}` : ai.status === "running" ? `Choosing — ${lastMoveLabel}` : `Last move — ${lastMoveLabel}`}</strong>
+            <span className="decision-time">{formatDuration(visibleMetrics.lastDecisionMs)}</span>
           </div>
         </div>
       </section>

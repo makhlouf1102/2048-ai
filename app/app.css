@@ -35,14 +35,15 @@ body {
 ::selection { color: var(--paper-light); background: var(--blue); }
 button { font: inherit; }
 
-.game-shell { min-height: 100vh; padding: clamp(20px, 3vw, 48px); }
+.game-shell { min-height: 100vh; padding: clamp(16px, 2vw, 32px); }
 .game-layout {
-  width: min(100%, 1320px);
+  width: min(100%, 1450px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(520px, 1.06fr) minmax(390px, .72fr);
+  grid-template-columns: minmax(0, min(54vw, calc(100vh - 300px), 760px)) minmax(420px, 1fr);
   align-items: start;
-  gap: clamp(28px, 4vw, 64px);
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
 }
 .game { min-width: 0; }
 
@@ -50,16 +51,16 @@ button { font: inherit; }
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: end;
-  gap: 28px;
-  margin-bottom: 22px;
+  gap: 18px;
+  margin-bottom: 14px;
 }
-.brand-block { display: flex; align-items: end; gap: 24px; min-width: 0; }
+.brand-block { display: flex; align-items: end; gap: 16px; min-width: 0; }
 .brand-block h1 {
   display: flex;
   align-items: center;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(64px, 9vw, 114px);
+  font-size: clamp(58px, 6vw, 84px);
   font-weight: 400;
   line-height: .78;
   letter-spacing: -.03em;
@@ -70,14 +71,14 @@ button { font: inherit; }
   width: 12ch;
   margin: 0 0 2px;
   color: var(--ink-soft);
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 800;
   line-height: 1.15;
 }
 .score-area { display: flex; align-items: end; gap: 8px; }
 .score-card {
-  min-width: 88px;
-  padding: 10px 14px 9px;
+  min-width: 78px;
+  padding: 8px 11px 7px;
   border: var(--line);
   border-radius: 12px 14px 10px 15px;
   color: var(--paper-light);
@@ -87,17 +88,17 @@ button { font: inherit; }
 }
 .score-card:nth-child(2) { transform: translateY(-7px) rotate(1.5deg); background: var(--blue); }
 .score-card span { display: block; color: #e8dec5; font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-.score-card strong { display: block; margin-top: 1px; font-family: var(--display); font-size: 19px; font-weight: 400; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.score-card strong { display: block; margin-top: 1px; font-family: var(--display); font-size: 17px; font-weight: 400; line-height: 1.1; font-variant-numeric: tabular-nums; }
 
-.game-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 18px; margin: 0 0 16px; }
-.game-toolbar > p { max-width: 33ch; margin: 0; color: var(--ink-soft); font-size: 14px; font-weight: 700; line-height: 1.4; }
+.game-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; margin: 0 0 12px; }
+.game-toolbar > p { max-width: 28ch; margin: 0; color: var(--ink-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
 .game-toolbar strong { color: var(--ink); }
 .toolbar-actions { display: flex; gap: 9px; }
 .new-game, .secondary-button, .ai-button {
-  min-height: 46px;
+  min-height: 42px;
   border: var(--line);
   border-radius: 12px 14px 11px 15px;
-  padding: 11px 17px;
+  padding: 9px 14px;
   color: var(--ink);
   font-weight: 900;
   line-height: 1;
@@ -173,7 +174,7 @@ button { font: inherit; }
 .overlay-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
 @keyframes reveal-overlay { from { opacity: .5; clip-path: inset(45% 0 45%); } }
 
-.game-footer { display: flex; align-items: center; gap: 15px; margin-top: 23px; color: var(--ink-soft); }
+.game-footer { display: flex; align-items: center; gap: 12px; margin-top: 14px; color: var(--ink-soft); }
 .game-footer p { max-width: 45ch; margin: 0; font-size: 13px; line-height: 1.45; }
 .game-footer strong { color: var(--ink); font-size: 14px; }
 .key-hint { display: grid; grid-template-columns: repeat(3, 25px); gap: 3px; flex: 0 0 auto; }
@@ -211,13 +212,14 @@ button { font: inherit; }
 .ai-status > span { width: 10px; height: 10px; border: 2px solid var(--ink); border-radius: 50%; background: var(--green); }
 .ai-status-running > span { background: var(--yellow); animation: ai-pulse .65s ease-in-out infinite alternate; }
 .ai-status-error > span { background: var(--red); }
-.ai-thought { position: relative; min-height: 72px; margin: 0; padding: 19px 30px 18px 59px; border-block: 2px solid var(--ink); color: var(--ink); background: #d9e1a7; font-size: 15px; font-weight: 800; line-height: 1.45; animation: thought-in .32s cubic-bezier(.16, 1, .3, 1); }
+.ai-thought { position: relative; min-height: 72px; margin: 0; padding: 19px 30px 18px 59px; border-block: 2px solid var(--ink); color: var(--ink); background: #d9e1a7; font-size: 15px; font-weight: 800; line-height: 1.45; animation: thought-in .72s cubic-bezier(.16, 1, .3, 1); }
 .ai-thought > span { position: absolute; top: 22px; left: 29px; width: 18px; height: 18px; border: 2px solid var(--ink); background: var(--red); transform: rotate(8deg); }
 .ai-mood-pleased .ai-avatar { animation: ai-nod .42s cubic-bezier(.16, 1, .3, 1); }
 .ai-mood-proud .ai-avatar { animation: ai-celebrate .7s cubic-bezier(.16, 1, .3, 1); }
 .ai-mood-error { --signal: var(--red); }
 
 .decision-console { padding: 22px 28px 24px; background: #f7edcf; }
+.decision-console-big { --signal: var(--red); animation: big-move-field .78s cubic-bezier(.16, 1, .3, 1); }
 .decision-heading { display: flex; justify-content: flex-end; align-items: center; color: var(--ink-soft); font-size: 10px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
 .decision-heading > strong { color: var(--red); font-size: 11px; }
 .direction-compass { min-height: 150px; display: grid; grid-template-columns: 112px 1fr; align-items: center; gap: 24px; }
@@ -227,8 +229,9 @@ button { font: inherit; }
 .direction-key svg { width: 53px; height: 53px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .direction-key.is-active { animation: decision-hit .38s cubic-bezier(.2, .9, .2, 1); }
 .decision-core { min-width: 0; display: grid; align-content: center; }
+.decision-core .move-score { color: var(--red); font-family: var(--display); font-size: clamp(42px, 5.5vw, 68px); font-weight: 400; line-height: .85; font-variant-numeric: tabular-nums; animation: big-score-in .78s cubic-bezier(.16, 1, .3, 1); }
 .decision-core strong { margin: 5px 0 2px; font-family: var(--display); font-size: clamp(19px, 2.4vw, 28px); font-weight: 400; line-height: 1.05; text-transform: uppercase; }
-.decision-core > span { color: var(--red); font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
+.decision-core .decision-time { color: var(--red); font-size: 15px; font-weight: 900; font-variant-numeric: tabular-nums; }
 
 .metric-strip { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0; border-top: 2px solid var(--ink); }
 .metric { min-width: 0; min-height: 135px; display: flex; flex-direction: column; padding: 15px 14px 10px; overflow: hidden; border-right: 2px solid var(--ink); background: #e7a887; }
@@ -245,10 +248,12 @@ button { font: inherit; }
 .monitor-note > span { display: inline-block; width: 8px; height: 8px; margin-right: 7px; border: 1px solid var(--ink); border-radius: 50%; background: var(--green); vertical-align: 0; }
 @keyframes decision-hit { 0% { transform: translateY(8px) scale(.88) rotate(-8deg); } 65% { transform: translateY(-3px) scale(1.04) rotate(-2deg); } }
 @keyframes thought-in { from { filter: saturate(.2); clip-path: inset(0 100% 0 0); } }
+@keyframes big-score-in { from { opacity: .15; filter: blur(5px); clip-path: inset(0 100% 0 0); transform: translateX(-18px) scale(.88); } }
+@keyframes big-move-field { 0% { background: #f7edcf; } 35% { background: var(--yellow); } }
 @keyframes ai-nod { 45% { transform: translateY(4px) rotate(-5deg); } }
 @keyframes ai-celebrate { 35% { transform: translateY(-6px) rotate(-7deg); } 65% { transform: translateY(-2px) rotate(2deg); } }
 
-@media (max-width: 1050px) {
+@media (max-width: 1180px) {
   .game-layout { grid-template-columns: minmax(0, 680px); justify-content: center; }
   .ai-monitor { position: static; }
 }

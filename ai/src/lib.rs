@@ -9,7 +9,7 @@ use crate::tile::CELL_COUNT;
 use crate::types::*;
 use wasm_bindgen::prelude::*;
 
-const SIMULATION_DEPTH: usize = 5;
+const SIMULATION_DEPTH: usize = 8;
 
 #[wasm_bindgen]
 pub fn next_move(flatten_board: &[u32]) -> i8 {
