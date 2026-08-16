@@ -9,7 +9,7 @@ use crate::tile::CELL_COUNT;
 use crate::types::*;
 use wasm_bindgen::prelude::*;
 
-const SIMULATION_DEPTH: usize = 8;
+const ROLLOUTS_PER_MOVE: usize = 100;
 
 #[wasm_bindgen]
 pub fn next_move(flatten_board: &[u32]) -> i8 {
@@ -24,7 +24,7 @@ pub fn next_move(flatten_board: &[u32]) -> i8 {
         return -1;
     }
 
-    let controller = Controller::new(board, SIMULATION_DEPTH);
+    let controller = Controller::new(board, ROLLOUTS_PER_MOVE);
     let best_move = controller.run_simulation();
 
     match best_move {
