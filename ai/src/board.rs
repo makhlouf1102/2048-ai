@@ -1,10 +1,11 @@
 use crate::tile::*;
 use crate::types::*;
+use std::time::{SystemTime, UNIX_EPOCH};
 
 pub trait IBoard {
     fn new(flatten_board: &[UTile]) -> Self;
     fn empty_tiles(&self) -> Vec<(usize, usize)>;
-    fn set_empty_tile(&mut self, row: usize, col: usize, value: UTile) -> bool;
+    fn set_empty_tile(&mut self);
     fn can_move(&self, direction: Direction) -> bool;
     fn available_moves(&self) -> Vec<Direction>;
     fn make_move(&self, direction: Direction) -> Self;
@@ -17,6 +18,18 @@ pub trait IBoard {
 pub struct Board {
     matrix: Matrix,
     pub(crate) score: u32,
+}
+
+impl Board {
+    fn random_number(max: u128) -> u128 {
+        let duration = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("Time went backwards");
+
+        let nanoseconds = duration.as_nanos();
+
+        nanoseconds % (max)
+    }
 }
 
 impl IBoard for Board {
@@ -45,13 +58,19 @@ impl IBoard for Board {
         empty
     }
 
-    fn set_empty_tile(&mut self, row: usize, col: usize, value: UTile) -> bool {
-        if row >= SIZE || col >= SIZE || value == 0 || self.matrix[row][col] != 0 {
-            return false;
+    fn set_empty_tile(&mut self) {
+        let tiles = self.empty_tiles();
+
+        if tiles.is_empty() {
+            return;
         }
 
-        self.matrix[row][col] = value;
-        true
+        let value = if Board::random_number(100) < 90 { 2 } else { 4 };
+
+        let index = Board::random_number(tiles.len() as u128) as usize;
+        let tile = tiles[index];
+
+        self.matrix[tile.0][tile.1] = value;
     }
 
     fn can_move(&self, direction: Direction) -> bool {
@@ -307,17 +326,6 @@ impl IBoard for Board {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn modifies_only_an_empty_tile() {
-        let mut board = Board::new(&[2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-
-        assert!(board.set_empty_tile(0, 1, 4));
-        assert!(!board.set_empty_tile(0, 0, 4));
-        assert!(!board.set_empty_tile(0, 2, 0));
-        assert!(!board.set_empty_tile(SIZE, 0, 2));
-        assert_eq!(board.matrix[0], [2, 4, 0, 0]);
-    }
 
     #[test]
     fn lists_empty_tiles_in_row_major_order() {
