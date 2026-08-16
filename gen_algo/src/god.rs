@@ -12,12 +12,38 @@ pub const DEFAULT_MUTATION_RATE: f32 = 0.05;
 pub const DEFAULT_MUTATION_STRENGTH: f32 = 0.1;
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize)]
+pub struct MutationProfile {
+    pub rate: f32,
+    pub strength: f32,
+}
+
+pub const DEFAULT_MUTATION_PROFILES: [MutationProfile; 4] = [
+    MutationProfile {
+        rate: 0.02,
+        strength: 0.03,
+    },
+    MutationProfile {
+        rate: 0.05,
+        strength: 0.10,
+    },
+    MutationProfile {
+        rate: 0.08,
+        strength: 0.20,
+    },
+    MutationProfile {
+        rate: 0.15,
+        strength: 0.40,
+    },
+];
+
+#[derive(Debug, Clone, Copy, PartialEq, Serialize)]
 pub struct GenerationResult {
     pub generation: u64,
     pub best_fitness: f32,
     pub average_fitness: f32,
     pub median_fitness: f32,
     pub worst_fitness: f32,
+    pub all_time_best_fitness: f32,
 }
 
 #[derive(Debug, Serialize)]
@@ -27,8 +53,7 @@ struct TrainingStats<'a> {
     population_size: usize,
     completed_generations: u64,
     fitness_games_per_player: usize,
-    mutation_rate: f32,
-    mutation_strength: f32,
+    mutation_profiles: [MutationProfile; 4],
     generations: &'a [GenerationResult],
 }
 
@@ -37,18 +62,14 @@ struct TrainingStats<'a> {
 pub struct God {
     players: Vec<Player>,
     generation: u64,
-    mutation_rate: f32,
-    mutation_strength: f32,
+    mutation_profiles: [MutationProfile; 4],
     best_fitness: Option<f32>,
+    champion: Option<Player>,
 }
 
 impl God {
     pub fn new(population_size: usize) -> Self {
-        Self::with_mutation(
-            population_size,
-            DEFAULT_MUTATION_RATE,
-            DEFAULT_MUTATION_STRENGTH,
-        )
+        Self::with_mutation_profiles(population_size, DEFAULT_MUTATION_PROFILES)
     }
 
     pub fn with_mutation(
@@ -56,30 +77,38 @@ impl God {
         mutation_rate: f32,
         mutation_strength: f32,
     ) -> Self {
+        Self::with_mutation_profiles(
+            population_size,
+            [MutationProfile {
+                rate: mutation_rate,
+                strength: mutation_strength,
+            }; 4],
+        )
+    }
+
+    pub fn with_mutation_profiles(
+        population_size: usize,
+        mutation_profiles: [MutationProfile; 4],
+    ) -> Self {
         validate_population_size(population_size);
 
         info!(
-            "creating population: size={population_size}, mutation_rate={mutation_rate}, mutation_strength={mutation_strength}"
+            "creating population: size={population_size}, mutation_profiles={mutation_profiles:?}"
         );
 
         Self {
             players: (0..population_size).map(|_| Player::new()).collect(),
             generation: 0,
-            mutation_rate,
-            mutation_strength,
+            mutation_profiles,
             best_fitness: None,
+            champion: None,
         }
     }
 
     /// Creates a population around a previously saved brain. The first player
     /// preserves the loaded weights; every other player starts as a mutation of it.
     pub fn from_brain(population_size: usize, brain: NeuralNetwork) -> Self {
-        Self::from_brain_with_mutation(
-            population_size,
-            brain,
-            DEFAULT_MUTATION_RATE,
-            DEFAULT_MUTATION_STRENGTH,
-        )
+        Self::from_brain_with_mutation_profiles(population_size, brain, DEFAULT_MUTATION_PROFILES)
     }
 
     pub fn from_brain_with_mutation(
@@ -88,26 +117,42 @@ impl God {
         mutation_rate: f32,
         mutation_strength: f32,
     ) -> Self {
+        Self::from_brain_with_mutation_profiles(
+            population_size,
+            brain,
+            [MutationProfile {
+                rate: mutation_rate,
+                strength: mutation_strength,
+            }; 4],
+        )
+    }
+
+    pub fn from_brain_with_mutation_profiles(
+        population_size: usize,
+        brain: NeuralNetwork,
+        mutation_profiles: [MutationProfile; 4],
+    ) -> Self {
         validate_population_size(population_size);
         info!(
-            "creating seeded population: size={population_size}, mutation_rate={mutation_rate}, mutation_strength={mutation_strength}"
+            "creating seeded population: size={population_size}, mutation_profiles={mutation_profiles:?}"
         );
 
         let original = Player::from_brain(brain);
         let mut players = Vec::with_capacity(population_size);
         players.push(original.clone());
-        players.extend((1..population_size).map(|_| {
+        players.extend((1..population_size).map(|index| {
             let mut child = original.clone();
-            child.mutate(mutation_rate, mutation_strength);
+            let profile = mutation_profiles[(index - 1) % mutation_profiles.len()];
+            child.mutate(profile.rate, profile.strength);
             child
         }));
 
         Self {
             players,
             generation: 0,
-            mutation_rate,
-            mutation_strength,
+            mutation_profiles,
             best_fitness: None,
+            champion: None,
         }
     }
 
@@ -119,19 +164,22 @@ impl God {
         self.generation
     }
 
-    /// Evaluates the population, keeps its strongest half, and creates one
-    /// mutated child from every survivor.
+    /// Evaluates everyone on identical game seeds, keeps the strongest 20%,
+    /// preserves the all-time champion, and creates four children per survivor.
     pub fn run_generation(&mut self) -> GenerationResult {
         let population_size = self.players.len();
+        let survivor_count = population_size / 5;
         let next_generation = self.generation + 1;
         info!("generation {next_generation}: evaluating {population_size} players");
+        let game_seeds: [u64; crate::player::FITNESS_GAMES] =
+            std::array::from_fn(|_| rand::random());
 
         let fitnesses: Vec<f32> = self
             .players
             .iter_mut()
             .enumerate()
             .map(|(index, player)| {
-                let fitness = player.fitness();
+                let fitness = player.fitness_with_seeds(&game_seeds);
                 debug!(
                     "generation {next_generation}: player {}/{} fitness={fitness:.2}",
                     index + 1,
@@ -142,36 +190,67 @@ impl God {
             .collect();
         let average_fitness = fitnesses.iter().sum::<f32>() / fitnesses.len() as f32;
 
-        let mut ranked: Vec<(Player, f32)> = self.players.drain(..).zip(fitnesses).collect();
-        ranked.sort_by(|left, right| right.1.total_cmp(&left.1));
-
-        let best_fitness = ranked[0].1;
-        let worst_fitness = ranked[population_size - 1].1;
-        let median_fitness =
-            (ranked[population_size / 2 - 1].1 + ranked[population_size / 2].1) / 2.0;
-        info!(
-            "generation {next_generation}: selection complete; best={best_fitness:.2}, average={average_fitness:.2}, median={median_fitness:.2}, worst={worst_fitness:.2}"
-        );
-        let survivors: Vec<Player> = ranked
-            .into_iter()
-            .take(population_size / 2)
-            .map(|(player, _)| player)
+        let mut ranked: Vec<(usize, Player, f32)> = self
+            .players
+            .drain(..)
+            .zip(fitnesses)
+            .enumerate()
+            .map(|(index, (player, fitness))| (index, player, fitness))
             .collect();
+        ranked.sort_by(|left, right| right.2.total_cmp(&left.2));
+
+        let best_fitness = ranked[0].2;
+        let worst_fitness = ranked[population_size - 1].2;
+        let median_fitness =
+            (ranked[population_size / 2 - 1].2 + ranked[population_size / 2].2) / 2.0;
+
+        let champion_source_index = if self
+            .best_fitness
+            .is_none_or(|previous_best| best_fitness > previous_best)
+        {
+            self.best_fitness = Some(best_fitness);
+            self.champion = Some(ranked[0].1.clone());
+            ranked[0].0
+        } else {
+            // The champion is always placed at index zero in each new population.
+            0
+        };
+        let all_time_best_fitness = self.best_fitness.expect("champion fitness was initialized");
+        info!(
+            "generation {next_generation}: selection complete; best={best_fitness:.2}, all_time_best={all_time_best_fitness:.2}, average={average_fitness:.2}, median={median_fitness:.2}, worst={worst_fitness:.2}"
+        );
+
+        let mut survivors = Vec::with_capacity(survivor_count);
+        survivors.push(
+            self.champion
+                .as_ref()
+                .expect("champion was initialized")
+                .clone(),
+        );
+        survivors.extend(
+            ranked
+                .into_iter()
+                .filter(|(index, _, _)| *index != champion_source_index)
+                .take(survivor_count - 1)
+                .map(|(_, player, _)| player),
+        );
 
         let mut next_population = survivors.clone();
-        next_population.extend(survivors.into_iter().map(|mut child| {
-            child.mutate(self.mutation_rate, self.mutation_strength);
-            child
-        }));
+        for survivor in survivors {
+            next_population.extend(self.mutation_profiles.map(|profile| {
+                let mut child = survivor.clone();
+                child.mutate(profile.rate, profile.strength);
+                child
+            }));
+        }
 
         self.players = next_population;
         self.generation += 1;
-        self.best_fitness = Some(best_fitness);
         info!(
             "generation {}: retained {} survivors and created {} mutated children",
             self.generation,
-            population_size / 2,
-            population_size / 2
+            survivor_count,
+            survivor_count * 4
         );
 
         GenerationResult {
@@ -180,6 +259,7 @@ impl God {
             average_fitness,
             median_fitness,
             worst_fitness,
+            all_time_best_fitness,
         }
     }
 
@@ -199,7 +279,11 @@ impl God {
         let timestamp = current_unix_time_ms()?;
         let filename = format!("{timestamp}_score_{fitness:.2}.json");
         let path = directory.join(filename);
-        self.players[0].brain().save(&path)?;
+        self.champion
+            .as_ref()
+            .expect("a champion exists after a generation")
+            .brain()
+            .save(&path)?;
         info!(
             "saved best brain with fitness {fitness:.2} to {}",
             path.display()
@@ -224,8 +308,7 @@ impl God {
             population_size: self.players.len(),
             completed_generations: self.generation,
             fitness_games_per_player: crate::player::FITNESS_GAMES,
-            mutation_rate: self.mutation_rate,
-            mutation_strength: self.mutation_strength,
+            mutation_profiles: self.mutation_profiles,
             generations: results,
         };
 
@@ -250,12 +333,12 @@ fn current_unix_time_ms() -> io::Result<u128> {
 
 fn validate_population_size(population_size: usize) {
     assert!(
-        population_size >= 2,
-        "population must contain at least two players"
+        population_size >= 5,
+        "population must contain at least five players"
     );
     assert!(
-        population_size.is_multiple_of(2),
-        "population size must be even"
+        population_size.is_multiple_of(5),
+        "population size must be divisible by five"
     );
 }
 
@@ -265,26 +348,26 @@ mod tests {
 
     #[test]
     fn creates_requested_population_of_random_players() {
-        let god = God::new(4);
+        let god = God::new(10);
 
-        assert_eq!(god.players().len(), 4);
+        assert_eq!(god.players().len(), 10);
         assert_eq!(god.generation(), 0);
     }
 
     #[test]
     fn runs_a_generation_without_changing_population_size() {
-        let mut god = God::new(2);
+        let mut god = God::new(5);
 
         let result = god.run_generation();
 
         assert_eq!(result.generation, 1);
         assert_eq!(god.generation(), 1);
-        assert_eq!(god.players().len(), 2);
+        assert_eq!(god.players().len(), 5);
     }
 
     #[test]
-    #[should_panic(expected = "population size must be even")]
-    fn rejects_odd_population_sizes() {
-        God::new(3);
+    #[should_panic(expected = "population size must be divisible by five")]
+    fn rejects_population_sizes_that_cannot_split_into_fifths() {
+        God::new(6);
     }
 }

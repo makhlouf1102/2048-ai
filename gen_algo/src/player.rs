@@ -57,7 +57,11 @@ impl Player {
 
     /// Resets the board, plays until no legal moves remain, and returns the score.
     pub fn play_game(&mut self) -> u32 {
-        self.game = Game::new();
+        self.play_game_with_seed(rand::random())
+    }
+
+    pub fn play_game_with_seed(&mut self, seed: u64) -> u32 {
+        self.game = Game::from_seed(seed);
         self.invalid_moves = 0;
 
         while !self.game.is_game_over() {
@@ -85,9 +89,15 @@ impl Player {
     /// Plays five independent games and averages their scores after subtracting
     /// a penalty for every illegal move selected by the brain.
     pub fn fitness(&mut self) -> f32 {
+        let seeds: [u64; FITNESS_GAMES] = std::array::from_fn(|_| rand::random());
+        self.fitness_with_seeds(&seeds)
+    }
+
+    pub fn fitness_with_seeds(&mut self, seeds: &[u64; FITNESS_GAMES]) -> f32 {
         let mut total = 0.0;
-        for game_number in 1..=FITNESS_GAMES {
-            let score = self.play_game() as f32;
+        for (index, seed) in seeds.iter().enumerate() {
+            let game_number = index + 1;
+            let score = self.play_game_with_seed(*seed) as f32;
             let penalty = self.invalid_moves as f32 * INVALID_MOVE_PENALTY;
             let adjusted_score = score - penalty;
             debug!(
@@ -165,5 +175,17 @@ mod tests {
 
         assert_eq!(best_move(&output, &game, false), Some(Direction::Left));
         assert_eq!(best_move(&output, &game, true), Some(Direction::Down));
+    }
+
+    #[test]
+    fn equal_brains_receive_equal_fitness_on_shared_seeds() {
+        let mut first = Player::new();
+        let mut second = first.clone();
+        let seeds = [11, 22, 33, 44, 55];
+
+        assert_eq!(
+            first.fitness_with_seeds(&seeds),
+            second.fitness_with_seeds(&seeds)
+        );
     }
 }

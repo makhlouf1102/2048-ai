@@ -15,14 +15,21 @@ pub enum Direction {
 pub struct Game {
     board: [[u32; BOARD_SIZE]; BOARD_SIZE],
     score: u32,
+    random_state: u64,
 }
 
 impl Game {
     /// Starts a normal 2048 game with two randomly placed tiles.
     pub fn new() -> Self {
+        Self::from_seed(rand::rng().random())
+    }
+
+    /// Starts a reproducible game. Equal seeds produce equal tile sequences.
+    pub fn from_seed(seed: u64) -> Self {
         let mut game = Self {
             board: [[0; BOARD_SIZE]; BOARD_SIZE],
             score: 0,
+            random_state: seed,
         };
         game.spawn_random_tile();
         game.spawn_random_tile();
@@ -31,7 +38,11 @@ impl Game {
 
     /// Useful for tests, replays, and evaluating a network from a known state.
     pub fn from_board(board: [[u32; BOARD_SIZE]; BOARD_SIZE]) -> Self {
-        Self { board, score: 0 }
+        Self {
+            board,
+            score: 0,
+            random_state: 0,
+        }
     }
 
     pub fn board(&self) -> &[[u32; BOARD_SIZE]; BOARD_SIZE] {
@@ -98,10 +109,19 @@ impl Game {
             return false;
         }
 
-        let mut rng = rand::rng();
-        let (row, col) = empty[rng.random_range(0..empty.len())];
-        self.board[row][col] = if rng.random::<f32>() < 0.9 { 2 } else { 4 };
+        let position = self.next_random() as usize % empty.len();
+        let (row, col) = empty[position];
+        self.board[row][col] = if self.next_random() % 10 < 9 { 2 } else { 4 };
         true
+    }
+
+    /// SplitMix64 is small, fast, and sufficient for reproducible game simulation.
+    fn next_random(&mut self) -> u64 {
+        self.random_state = self.random_state.wrapping_add(0x9E3779B97F4A7C15);
+        let mut value = self.random_state;
+        value = (value ^ (value >> 30)).wrapping_mul(0xBF58476D1CE4E5B9);
+        value = (value ^ (value >> 27)).wrapping_mul(0x94D049BB133111EB);
+        value ^ (value >> 31)
     }
 
     fn apply_move(&mut self, direction: Direction) -> bool {
@@ -207,5 +227,11 @@ mod tests {
 
         assert!(game.is_game_over());
         assert!(game.available_moves().is_empty());
+    }
+
+    #[test]
+    fn equal_seeds_create_equal_games() {
+        assert_eq!(Game::from_seed(42), Game::from_seed(42));
+        assert_ne!(Game::from_seed(42), Game::from_seed(43));
     }
 }

@@ -8,8 +8,8 @@
     "start": "vite preview --outDir build/client",
     "typecheck": "react-router typegen && tsc",
     "build:wasm": "cd ai && wasm-pack build --target web --release --out-dir ../app/features/wasm",
-    "train:genetic": "cargo run --manifest-path gen_algo/Cargo.toml -- 90 300",
-    "train:genetic:latest": "cargo run --manifest-path gen_algo/Cargo.toml -- 90 300 --latest"
+    "train:genetic": "cargo run --manifest-path gen_algo/Cargo.toml -- 90 500",
+    "train:genetic:latest": "cargo run --manifest-path gen_algo/Cargo.toml -- 90 500 --latest"
   },
   "dependencies": {
     "@react-router/node": "^8",
