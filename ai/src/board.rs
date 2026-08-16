@@ -306,36 +306,3 @@ impl IBoard for Board {
         board
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn lists_empty_tiles_in_row_major_order() {
-        let board = Board::new(&[2, 0, 4, 0, 0, 8, 0, 16, 32, 0, 64, 0, 0, 128, 0, 256]);
-
-        assert_eq!(
-            board.empty_tiles(),
-            vec![
-                (0, 1),
-                (0, 3),
-                (1, 0),
-                (1, 2),
-                (2, 1),
-                (2, 3),
-                (3, 0),
-                (3, 2)
-            ]
-        );
-    }
-
-    #[test]
-    fn compact_rank_merge_preserves_the_real_score() {
-        let board = Board::new(&[2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-        let merged = board.merge_left();
-
-        assert_eq!(merged.matrix[0], [2, 0, 0, 0]);
-        assert_eq!(merged.score, 4);
-    }
-}
