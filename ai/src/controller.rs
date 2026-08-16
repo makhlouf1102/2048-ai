@@ -1,5 +1,3 @@
-use std::cmp::max;
-
 use crate::{
     board::{Board, IBoard},
     types::Direction,

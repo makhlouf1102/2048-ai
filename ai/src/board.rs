@@ -1,6 +1,6 @@
 use crate::tile::*;
 use crate::types::*;
-use std::time::{SystemTime, UNIX_EPOCH};
+use rand::RngExt;
 
 pub trait IBoard {
     fn new(flatten_board: &[UTile]) -> Self;
@@ -21,14 +21,8 @@ pub struct Board {
 }
 
 impl Board {
-    fn random_number(max: u128) -> u128 {
-        let duration = SystemTime::now()
-            .duration_since(UNIX_EPOCH)
-            .expect("Time went backwards");
-
-        let nanoseconds = duration.as_nanos();
-
-        nanoseconds % (max)
+    fn random_number(max: usize) -> usize {
+        rand::rng().random_range(0..max)
     }
 }
 
@@ -67,7 +61,7 @@ impl IBoard for Board {
 
         let value = if Board::random_number(100) < 90 { 2 } else { 4 };
 
-        let index = Board::random_number(tiles.len() as u128) as usize;
+        let index = Board::random_number(tiles.len());
         let tile = tiles[index];
 
         self.matrix[tile.0][tile.1] = value;
