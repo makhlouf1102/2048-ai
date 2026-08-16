@@ -19,7 +19,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Bowlby+One&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800;6..12,900&display=swap",
   },
 ];
 
@@ -33,6 +33,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <template
+          aria-hidden="true"
+          dangerouslySetInnerHTML={{
+            __html: `<!--
+THESIS: The 2048 board is a painted little town that Milo learns to navigate; it refuses the category's beige utility dashboard.
+OWN-WORLD: Parchment, vermilion, cobalt, marigold, leaf green, lilac, and ink compose irregular geometric fields with fine dark outlines and gently skewed controls.
+STORY: Play the familiar puzzle, hand the board to Milo, and read his latest move and pace without leaving the shared game.
+FIRST VIEWPORT: A large asymmetric 4×4 painted board anchors the left; the title, scores, and two actions frame it while Milo occupies a tall, colorful studio strip on the right.
+FORM: Milo’s Painted Playroom, grounded direction 7, seed 37b2b74c.
+FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+-->`,
+          }}
+        />
         {children}
         <ScrollRestoration />
         <Scripts />

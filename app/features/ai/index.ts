@@ -27,7 +27,15 @@ function getWorker(): Worker {
     else if (typeof direction === "number") pending.resolve(direction);
     else pending.reject(new Error("The AI worker returned an invalid response."));
   };
-  worker.onerror = () => {
+  worker.onerror = (event) => {
+    console.error("[Milo] AI worker stopped unexpectedly.", {
+      message: event.message,
+      filename: event.filename,
+      line: event.lineno,
+      column: event.colno,
+      error: event.error,
+    });
+
     for (const pending of pendingDecisions.values()) {
       pending.reject(new Error("The AI worker stopped unexpectedly."));
     }

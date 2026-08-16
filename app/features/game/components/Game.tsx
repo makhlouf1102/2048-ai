@@ -50,18 +50,6 @@ function LineChart({ values, tone }: { values: number[]; tone: "green" | "blue" 
   );
 }
 
-function BarChart({ values }: { values: number[] }) {
-  const samples = values.slice(-14);
-  const maximum = Math.max(...samples, 1);
-  return (
-    <div className="metric-bars" aria-hidden="true">
-      {(samples.length ? samples : [0, 0, 0, 0, 0, 0, 0]).map((value, index) => (
-        <span key={index} style={{ transform: `scaleY(${Math.max(.16, value / maximum)})` }} />
-      ))}
-    </div>
-  );
-}
-
 type AiMood = "ready" | "thinking" | "pleased" | "focused" | "tired" | "proud" | "error";
 
 function getAiPersona(
@@ -123,12 +111,13 @@ function AiMonitor({
 
   return (
     <aside className={`ai-monitor ai-mood-${persona.mood}`} aria-label="Milo, AI player">
+      <div className="studio-sun" aria-hidden="true"><span /><span /><span /></div>
       <header className="ai-profile">
         <div className="ai-avatar" aria-hidden="true">
-          <img src={`${import.meta.env.BASE_URL}assets/milo-avatar.png`} alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/milo-avatar-painted.png`} alt="" />
         </div>
         <div>
-          <p className="ai-name">Milo <span>Depth 5</span></p>
+          <p className="ai-name">Milo <span>thinks 5 steps</span></p>
           <p className={`ai-status ai-status-${ai.status}`}><span />{statusLabel}</p>
         </div>
       </header>
@@ -139,39 +128,36 @@ function AiMonitor({
 
       <section className={`decision-console decision-console-${ai.status}`} aria-live="polite">
         <div className="decision-heading">
-          <span>Current state</span>
-          <strong>Move {String(ai.metrics.moves).padStart(3, "0")}</strong>
+          <strong>Milo’s move {String(ai.metrics.moves).padStart(2, "0")}</strong>
         </div>
         <div className="direction-compass" aria-label={lastMoveLabel}>
           <span className="direction-key is-active" key={`${activeDirection.name}-${ai.metrics.moves}`} aria-hidden="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d={activeDirection.path} /></svg>
           </span>
           <div className="decision-core">
-            <small>{ai.status === "running" ? "Live" : "Last"}</small>
-            <strong>{lastMoveLabel}</strong>
+            <strong>{ai.status === "running" ? `Choosing — ${lastMoveLabel}` : `Last move — ${lastMoveLabel}`}</strong>
             <span>{formatDuration(ai.metrics.lastDecisionMs)}</span>
           </div>
         </div>
       </section>
 
-      <dl className="metric-strip">
+      <dl className="metric-strip" aria-label="Milo's pace and activity">
         <div className="metric">
-          <dt>Average</dt>
+          <dt>Thinking pace</dt>
           <dd>{formatDuration(ai.metrics.averageDecisionMs)}</dd>
           <LineChart values={ai.metrics.decisionHistory} tone="green" />
         </div>
         <div className="metric">
-          <dt>Moves</dt>
+          <dt>Steps taken</dt>
           <dd>{ai.metrics.moves}</dd>
-          <BarChart values={ai.metrics.decisionHistory} />
         </div>
         <div className="metric">
-          <dt>Compute <span className="info-dot" title="Estimated share of autoplay time spent inside next_move. Browsers do not expose per-Wasm CPU usage.">i</span></dt>
+          <dt>Busy time <span className="info-dot" title="Estimated share of autoplay time spent choosing moves. Browsers do not expose exact WebAssembly CPU usage.">i</span></dt>
           <dd>{ai.metrics.wasmUtilization.toFixed(1)}%</dd>
           <LineChart values={ai.metrics.utilizationHistory} tone="blue" />
         </div>
       </dl>
-      <p className="monitor-note"><span />Telemetry refreshes after every move</p>
+      <p className="monitor-note"><span />Milo’s notes refresh after every move</p>
     </aside>
   );
 }
@@ -199,8 +185,8 @@ export function Game() {
         <section className="game" aria-labelledby="game-title">
         <header className="game-header">
           <div className="brand-block">
-            <p className="eyebrow">The classic number puzzle</p>
-            <h1 id="game-title">2048<span>.</span></h1>
+            <h1 id="game-title"><span>20</span><span>48</span></h1>
+            <p>Make matching numbers meet.</p>
           </div>
           <div className="score-area">
             <ScoreCard label="Score" value={score} />
@@ -209,7 +195,7 @@ export function Game() {
         </header>
 
         <div className="game-toolbar">
-          <p>Join matching tiles and reach <strong>2048.</strong></p>
+          <p>Use the board yourself, or let Milo find a path to <strong>2048.</strong></p>
           <div className="toolbar-actions">
             <button
               className="ai-button"
@@ -219,10 +205,10 @@ export function Game() {
               aria-label={ai.status === "running" ? "Stop AI player" : "Start AI player"}
             >
               <span className="ai-indicator" aria-hidden="true" />
-              {ai.status === "running" ? "Stop AI" : "Let AI play"}
+              {ai.status === "running" ? "Pause Milo" : "Let Milo play"}
             </button>
             <button className="new-game" type="button" onClick={() => { ai.stop(); restart(); }}>
-              New game
+              Mix a new board
             </button>
           </div>
         </div>
@@ -283,7 +269,7 @@ export function Game() {
           <div className="key-hint" aria-hidden="true">
             <span>↑</span><span>←</span><span>↓</span><span>→</span>
           </div>
-          <p><strong>How to play</strong><br />Use your arrow keys, WASD, or swipe to move the tiles.</p>
+          <p><strong>Your turn</strong><br />Use arrow keys, WASD, or swipe. Equal tiles join when they touch.</p>
         </footer>
         </section>
         <AiMonitor ai={ai} gameStatus={status} highestTile={Math.max(...board.flat())} />

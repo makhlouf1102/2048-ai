@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-16T00:00:00-04:00",
+  "title": "Design System: 2048 AI — Milo's Painted Playroom",
+  "extensions": {
+    "colorMeta": {
+      "parchment": { "role": "neutral", "displayName": "Warm Parchment", "canonical": "#f5e8c8", "tonalRamp": ["oklch(20% 0.025 82)", "oklch(31% 0.032 82)", "oklch(43% 0.04 82)", "oklch(55% 0.047 82)", "oklch(67% 0.052 82)", "oklch(78% 0.05 82)", "oklch(88% 0.042 82)", "oklch(95% 0.025 82)"] },
+      "parchment-light": { "role": "neutral", "displayName": "Light Parchment", "canonical": "#fff8e8", "tonalRamp": ["oklch(20% 0.018 86)", "oklch(31% 0.024 86)", "oklch(43% 0.03 86)", "oklch(55% 0.035 86)", "oklch(67% 0.038 86)", "oklch(78% 0.035 86)", "oklch(88% 0.028 86)", "oklch(97% 0.014 86)"] },
+      "ink": { "role": "neutral", "displayName": "Near-Black Ink", "canonical": "#20261f", "tonalRamp": ["oklch(15% 0.018 140)", "oklch(26% 0.018 140)", "oklch(38% 0.017 140)", "oklch(50% 0.015 140)", "oklch(62% 0.013 140)", "oklch(74% 0.011 140)", "oklch(86% 0.008 140)", "oklch(95% 0.004 140)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Soft Ink", "canonical": "#4c5548", "tonalRamp": ["oklch(15% 0.022 135)", "oklch(27% 0.026 135)", "oklch(39% 0.028 135)", "oklch(51% 0.027 135)", "oklch(63% 0.024 135)", "oklch(75% 0.019 135)", "oklch(87% 0.012 135)", "oklch(95% 0.006 135)"] },
+      "vermilion": { "role": "primary", "displayName": "Playroom Vermilion", "canonical": "#e9573f", "tonalRamp": ["oklch(20% 0.09 30)", "oklch(31% 0.13 30)", "oklch(43% 0.17 30)", "oklch(55% 0.2 30)", "oklch(67% 0.18 30)", "oklch(78% 0.13 30)", "oklch(88% 0.075 30)", "oklch(95% 0.035 30)"] },
+      "cobalt": { "role": "primary", "displayName": "Playroom Cobalt", "canonical": "#3367b1", "tonalRamp": ["oklch(20% 0.08 255)", "oklch(31% 0.12 255)", "oklch(43% 0.16 255)", "oklch(55% 0.17 255)", "oklch(67% 0.14 255)", "oklch(78% 0.1 255)", "oklch(88% 0.06 255)", "oklch(95% 0.025 255)"] },
+      "marigold": { "role": "secondary", "displayName": "Playroom Marigold", "canonical": "#f4b93a", "tonalRamp": ["oklch(20% 0.07 82)", "oklch(31% 0.1 82)", "oklch(43% 0.13 82)", "oklch(55% 0.16 82)", "oklch(67% 0.17 82)", "oklch(78% 0.14 82)", "oklch(88% 0.085 82)", "oklch(95% 0.04 82)"] },
+      "leaf": { "role": "secondary", "displayName": "Playroom Leaf", "canonical": "#5b9b5a", "tonalRamp": ["oklch(20% 0.055 143)", "oklch(31% 0.08 143)", "oklch(43% 0.105 143)", "oklch(55% 0.12 143)", "oklch(67% 0.105 143)", "oklch(78% 0.075 143)", "oklch(88% 0.042 143)", "oklch(95% 0.018 143)"] },
+      "lilac": { "role": "tertiary", "displayName": "Playroom Lilac", "canonical": "#a77ab8", "tonalRamp": ["oklch(20% 0.05 315)", "oklch(31% 0.075 315)", "oklch(43% 0.1 315)", "oklch(55% 0.115 315)", "oklch(67% 0.1 315)", "oklch(78% 0.072 315)", "oklch(88% 0.042 315)", "oklch(95% 0.018 315)"] },
+      "terracotta": { "role": "tertiary", "displayName": "Earthy Terracotta", "canonical": "#bd6949", "tonalRamp": ["oklch(20% 0.055 42)", "oklch(31% 0.085 42)", "oklch(43% 0.115 42)", "oklch(55% 0.13 42)", "oklch(67% 0.115 42)", "oklch(78% 0.08 42)", "oklch(88% 0.045 42)", "oklch(95% 0.02 42)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Monumental Numeral", "purpose": "The 2048 wordmark and board numerals." },
+      "headline": { "displayName": "Companion Headline", "purpose": "Milo's name and game outcomes." },
+      "title": { "displayName": "Decision Title", "purpose": "The latest move and signature readouts." },
+      "body": { "displayName": "Friendly Utility", "purpose": "Instructions, thoughts, status, and explanation." },
+      "label": { "displayName": "Painted Label", "purpose": "Scores, metrics, and compact state labels." }
+    },
+    "shadows": [
+      { "name": "control-lift", "value": "3px 7px 18px rgba(32, 38, 31, .16)", "purpose": "Resting painted buttons and small interactive paper pieces." },
+      { "name": "control-hover", "value": "4px 10px 22px rgba(32, 38, 31, .2)", "purpose": "Raised hover response for controls." },
+      { "name": "board-lift", "value": "9px 18px 35px rgba(32, 38, 31, .22)", "purpose": "Physical depth beneath the primary game board." },
+      { "name": "studio-lift", "value": "10px 20px 40px rgba(32, 38, 31, .2)", "purpose": "Physical depth beneath Milo's studio." }
+    ],
+    "motion": [
+      { "name": "control-spring", "value": ".18s cubic-bezier(.2, .8, .2, 1)", "purpose": "Button lift and rotation settling." },
+      { "name": "tile-arrival", "value": ".22s cubic-bezier(.2, .9, .2, 1)", "purpose": "New tile scale and pigment arrival." },
+      { "name": "companion-reaction", "value": ".32s cubic-bezier(.16, 1, .3, 1)", "purpose": "Milo thoughts, avatar reactions, and telemetry updates." },
+      { "name": "reduced-motion", "value": ".01ms", "purpose": "Collapse animation and transition duration when reduced motion is requested." }
+    ],
+    "breakpoints": [
+      { "name": "stack", "value": "1050px" },
+      { "name": "mobile", "value": "620px" },
+      { "name": "compact-mobile", "value": "390px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Let Milo Play Button",
+      "kind": "button",
+      "refersTo": "button-milo",
+      "description": "The primary handoff control; leaf green at rest and vermilion while Milo is running.",
+      "html": "<button class=\"ds-btn-milo\" type=\"button\"><span class=\"ds-btn-milo-dot\"></span>Let Milo play</button>",
+      "css": ".ds-btn-milo { min-height:46px; display:inline-flex; align-items:center; gap:8px; padding:11px 17px; border:2px solid var(--ink, #20261f); border-radius:12px 14px 11px 15px; color:var(--paper-light, #fff8e8); background-color:var(--green, #5b9b5a); font:900 15px/1 'Nunito Sans', sans-serif; box-shadow:3px 7px 18px rgba(32,38,31,.16); transform:rotate(-1deg); transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease; cursor:pointer; } .ds-btn-milo-dot { width:10px; height:10px; border:2px solid currentColor; border-radius:50%; background:var(--yellow, #f4b93a); } .ds-btn-milo:hover { transform:translateY(-3px) rotate(0); box-shadow:4px 10px 22px rgba(32,38,31,.2); } .ds-btn-milo:active { transform:translateY(1px); } .ds-btn-milo:focus-visible { outline:4px solid var(--blue, #3367b1); outline-offset:4px; }"
+    },
+    {
+      "name": "Mix a New Board Button",
+      "kind": "button",
+      "refersTo": "button-new-board",
+      "description": "The sunny reset action, styled as a slightly skewed painted tab.",
+      "html": "<button class=\"ds-btn-new\" type=\"button\">Mix a new board</button>",
+      "css": ".ds-btn-new { min-height:46px; padding:11px 17px; border:2px solid var(--ink, #20261f); border-radius:12px 14px 11px 15px; color:var(--ink, #20261f); background:var(--yellow, #f4b93a); font:900 15px/1 'Nunito Sans', sans-serif; box-shadow:3px 7px 18px rgba(32,38,31,.16); transform:rotate(1deg); transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease; cursor:pointer; } .ds-btn-new:hover { transform:translateY(-3px) rotate(0); box-shadow:4px 10px 22px rgba(32,38,31,.2); } .ds-btn-new:active { transform:translateY(1px); } .ds-btn-new:focus-visible { outline:4px solid var(--blue, #3367b1); outline-offset:4px; }"
+    },
+    {
+      "name": "Secondary Paper Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A quieter outlined action used inside game-result overlays.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">Keep going</button>",
+      "css": ".ds-btn-secondary { min-height:46px; padding:11px 17px; border:2px solid var(--ink, #20261f); border-radius:12px 14px 11px 15px; color:var(--ink, #20261f); background:var(--paper-light, #fff8e8); font:900 15px/1 'Nunito Sans', sans-serif; box-shadow:3px 7px 18px rgba(32,38,31,.16); transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .18s ease; cursor:pointer; } .ds-btn-secondary:hover { transform:translateY(-3px); box-shadow:4px 10px 22px rgba(32,38,31,.2); } .ds-btn-secondary:active { transform:translateY(1px); } .ds-btn-secondary:focus-visible { outline:4px solid var(--blue, #3367b1); outline-offset:4px; }"
+    },
+    {
+      "name": "Score Card",
+      "kind": "card",
+      "refersTo": "score-card",
+      "description": "A compact ink plaque with a tracked label and tabular display numeral.",
+      "html": "<div class=\"ds-score\"><span>Score</span><strong>2048</strong></div>",
+      "css": ".ds-score { min-width:88px; padding:10px 14px 9px; border:2px solid var(--ink, #20261f); border-radius:12px 14px 10px 15px; color:var(--paper-light, #fff8e8); background:var(--ink, #20261f); text-align:center; box-shadow:3px 6px 16px rgba(32,38,31,.18); } .ds-score span { display:block; color:#e8dec5; font:900 9px/1 'Nunito Sans', sans-serif; letter-spacing:.12em; text-transform:uppercase; } .ds-score strong { display:block; margin-top:1px; font:400 19px/1.1 'Bowlby One', sans-serif; font-variant-numeric:tabular-nums; }"
+    },
+    {
+      "name": "Painted Number Tile",
+      "kind": "custom",
+      "refersTo": "game-tile",
+      "description": "The core painted-lot primitive, pairing value text with a stable color progression.",
+      "html": "<div class=\"ds-tile\" role=\"gridcell\" aria-label=\"128\">128</div>",
+      "css": ".ds-tile { width:132px; aspect-ratio:1; display:grid; place-items:center; border:2px solid var(--ink, #20261f); border-radius:10px 15px 11px 14px; color:var(--paper-light, #fff8e8); background:#8a5ba1; font:400 42px/1 'Bowlby One', sans-serif; letter-spacing:-.025em; box-shadow:inset 0 0 0 2px rgba(255,248,232,.2); transform:rotate(-.6deg); transition:transform .18s cubic-bezier(.2,.8,.2,1); } .ds-tile:hover { transform:translateY(-2px) rotate(0); } .ds-tile:focus-visible { outline:4px solid var(--blue, #3367b1); outline-offset:4px; }"
+    },
+    {
+      "name": "Milo Decision Mark",
+      "kind": "custom",
+      "description": "The signature companion readout: a painted directional mark paired with explicit move and timing text.",
+      "html": "<div class=\"ds-decision\"><span class=\"ds-direction\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h14m-6-6 6 6-6 6\"/></svg></span><div><strong>Last move — Moved right</strong><span>18.4 ms</span></div></div>",
+      "css": ".ds-decision { display:grid; grid-template-columns:100px 1fr; align-items:center; gap:24px; color:var(--ink, #20261f); font-family:'Nunito Sans', sans-serif; } .ds-direction { width:100px; height:100px; display:grid; place-items:center; border:3px solid var(--ink, #20261f); border-radius:49% 51% 43% 57%; background:var(--yellow, #f4b93a); box-shadow:5px 10px 20px rgba(32,38,31,.16); transform:rotate(-4deg); transition:transform .18s cubic-bezier(.2,.8,.2,1); } .ds-direction svg { width:53px; height:53px; fill:none; stroke:currentColor; stroke-width:2.4; stroke-linecap:round; stroke-linejoin:round; } .ds-decision:hover .ds-direction { transform:translateY(-3px) rotate(-2deg); } .ds-decision strong { display:block; font:400 24px/1.05 'Bowlby One', sans-serif; text-transform:uppercase; } .ds-decision div > span { display:block; margin-top:4px; color:var(--red, #e9573f); font-weight:900; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Milo's Painted Playroom",
+    "overview": "The 2048 board is a painted little town that Milo learns to navigate. Broad gouache fields, warm paper, fine ink outlines, and deliberately imperfect geometry make the game feel assembled by hand while clear labels and stable placement keep every action immediately operable.\n\nThis world is colorful, companionable, tactile, and gently mischievous. Expression comes from pigment, irregular silhouettes, small rotations, and stateful motion—not from ornamental dashboard chrome. It explicitly refuses the beige utility-dashboard language common to puzzle and AI interfaces.",
+    "keyCharacteristics": [
+      "Warm parchment beneath decisive vermilion, cobalt, marigold, leaf, and lilac fields.",
+      "Fine near-black outlines that keep painted surfaces legible and operational.",
+      "Chunky display numerals paired with friendly, high-weight utility text.",
+      "Slightly skewed controls and asymmetric corners, always within a stable layout.",
+      "Milo presented as a companion inside the same game world, not as a detached analytics panel."
+    ],
+    "rules": [
+      { "name": "The Painted Field Rule", "body": "Saturated colors appear as broad, bounded fields with ink edges; do not scatter them as tiny dashboard-status accents.", "section": "colors" },
+      { "name": "The Cobalt Focus Rule", "body": "Every interactive control uses the same unmistakable cobalt focus outline, regardless of its resting paint color.", "section": "colors" },
+      { "name": "The Chunk and Whisper Rule", "body": "Use Bowlby One for the few facts that should feel monumental; let Nunito Sans carry all explanation and operation.", "section": "typography" },
+      { "name": "The Shared-Board Rule", "body": "Scores, controls, board, and Milo describe one live session; never separate Milo into a remote dashboard or a competing page region.", "section": "layout" },
+      { "name": "The Paper, Not Glass Rule", "body": "Shadows imply layered card and painted board stock; never use blur-heavy glass panels, glossy reflections, or floating SaaS cards.", "section": "elevation" },
+      { "name": "The Gentle Skew Rule", "body": "Rotation adds handmade character to a control or focal object, but must reset or settle on interaction and must never disturb alignment or hit areas.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do keep the board the largest object and Milo the clear second focal point.",
+      "Do use broad gouache fields, fine ink outlines, uneven radii, and small rotations as one coherent material language.",
+      "Do preserve semantic controls, visible cobalt focus states, direct keyboard and touch input, and non-color state labels.",
+      "Do keep generated raster texture content-free and preserve embedded provenance on every shipping raster.",
+      "Do place the complete board before Milo on mobile, with the studio following immediately below."
+    ],
+    "donts": [
+      "Don't turn the experience into a beige utility dashboard, analytics console, or grid of interchangeable rounded cards.",
+      "Don't use color alone to communicate Milo's state, the latest move, tile value, or game outcome.",
+      "Don't add glassmorphism, glossy gradients, generic icon-library ornament, or perfect corporate geometry.",
+      "Don't let texture compete with tile numerals, control labels, or telemetry.",
+      "Don't expand the palette casually; the compact paint box is part of the identity."
+    ]
+  }
+}
