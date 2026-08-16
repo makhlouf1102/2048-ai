@@ -1,12 +1,12 @@
 use nalgebra::{DMatrix, DVector};
 use rand::RngExt;
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct NeuralNetwork {
     layers: Vec<Layer>,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Layer {
     weights: DMatrix<f32>,
     biases: DVector<f32>,
