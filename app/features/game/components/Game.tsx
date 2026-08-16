@@ -216,6 +216,7 @@ export function Game() {
               type="button"
               onClick={ai.status === "running" ? ai.stop : ai.start}
               aria-pressed={ai.status === "running"}
+              aria-label={ai.status === "running" ? "Stop AI player" : "Start AI player"}
             >
               <span className="ai-indicator" aria-hidden="true" />
               {ai.status === "running" ? "Stop AI" : "Let AI play"}

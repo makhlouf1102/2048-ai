@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { nextMove } from "../../ai";
+import { cancelAiWork, nextMove } from "../../ai";
 import { gameSession } from "../application/game-session";
 import type { Direction } from "../domain/game";
 
@@ -49,6 +49,7 @@ export function useAiPlayer() {
 
   const stop = useCallback(() => {
     runId.current += 1;
+    cancelAiWork();
     setStatus("idle");
   }, []);
 
@@ -126,6 +127,7 @@ export function useAiPlayer() {
 
   useEffect(() => () => {
     runId.current += 1;
+    cancelAiWork();
   }, []);
 
   return { status, error, metrics, start, stop };
