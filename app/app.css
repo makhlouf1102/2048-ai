@@ -90,10 +90,19 @@ button { font: inherit; }
 .score-card span { display: block; color: #e8dec5; font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
 .score-card strong { display: block; margin-top: 1px; font-family: var(--display); font-size: 17px; font-weight: 400; line-height: 1.1; font-variant-numeric: tabular-nums; }
 
-.game-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; margin: 0 0 12px; }
+.game-toolbar { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 12px; margin: 0 0 12px; }
 .game-toolbar > p { max-width: 28ch; margin: 0; color: var(--ink-soft); font-size: 12px; font-weight: 700; line-height: 1.35; }
 .game-toolbar strong { color: var(--ink); }
-.toolbar-actions { display: flex; gap: 9px; }
+.toolbar-actions { display: flex; grid-column: 1 / -1; gap: 9px; }
+.ai-choice { display: flex; align-items: stretch; gap: 4px; margin: 0; padding: 4px; border: var(--line); border-radius: 12px 14px 11px 15px; background: var(--paper-light); box-shadow: 2px 5px 14px rgba(32, 38, 31, .13); }
+.ai-choice legend { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.ai-choice label { cursor: pointer; }
+.ai-choice input { position: absolute; opacity: 0; pointer-events: none; }
+.ai-choice span { display: grid; min-height: 32px; place-items: center; padding: 0 11px; border: 2px solid transparent; border-radius: 7px 9px 7px 8px; color: var(--ink-soft); font-size: 11px; font-weight: 900; line-height: 1; transition: background-color .18s ease, color .18s ease, transform .18s cubic-bezier(.2, .8, .2, 1); }
+.ai-choice input:checked + span { color: var(--paper-light); background: var(--blue); transform: rotate(-1deg); }
+.ai-choice input:focus-visible + span { outline: 4px solid var(--blue); outline-offset: 3px; }
+.ai-choice:disabled { opacity: .7; }
+.ai-choice:disabled label { cursor: not-allowed; }
 .new-game, .secondary-button, .ai-button, .snapshot-button {
   min-height: 42px;
   border: var(--line);
@@ -353,6 +362,7 @@ button { font: inherit; }
   .game-toolbar { grid-template-columns: 1fr; }
   .game-toolbar > p { max-width: 39ch; }
   .toolbar-actions { width: 100%; }
+  .ai-choice { justify-self: start; }
   .toolbar-actions button { flex: 1; padding-inline: 11px; }
   .board { gap: 6px; padding: 8px; box-shadow: 5px 12px 25px rgba(32, 38, 31, .22); }
   .view-control { align-items: flex-start; flex-direction: column; }

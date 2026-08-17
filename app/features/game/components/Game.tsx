@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import type { AiStrategy } from "../../ai";
 import { downloadGameScreenshot } from "../adapters/game-screenshot";
 import type { Direction } from "../domain/game";
 import { useAiPresentation } from "../hooks/useAiPresentation";
@@ -199,6 +200,7 @@ export function Game() {
   const ai = useAiPlayer({ liveUpdates: presentation.isLive });
   const { board, score, bestScore, status, move, restart, continueGame } = game;
   const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const [aiStrategy, setAiStrategy] = useState<AiStrategy>("model");
   const isQuietRun = ai.status === "running" && !presentation.isLive;
 
   useEffect(() => {
@@ -242,13 +244,46 @@ export function Game() {
 
         <div className="game-toolbar">
           <p>Use the board yourself, or let Milo find a path to <strong>2048.</strong></p>
+          <fieldset className="ai-choice" disabled={ai.status === "running"}>
+            <legend>Milo’s approach</legend>
+            <label>
+              <input
+                type="radio"
+                name="ai-strategy"
+                value="model"
+                checked={aiStrategy === "model"}
+                onChange={() => setAiStrategy("model")}
+              />
+              <span>Model</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="ai-strategy"
+                value="depth"
+                checked={aiStrategy === "depth"}
+                onChange={() => setAiStrategy("depth")}
+              />
+              <span>Depth</span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="ai-strategy"
+                value="random-simulation"
+                checked={aiStrategy === "random-simulation"}
+                onChange={() => setAiStrategy("random-simulation")}
+              />
+              <span>Random simulation</span>
+            </label>
+          </fieldset>
           <div className="toolbar-actions">
             <button
               className="ai-button"
               type="button"
               onClick={ai.status === "running" ? ai.stop : () => {
                 presentation.beginRun();
-                void ai.start();
+                void ai.start(aiStrategy);
               }}
               aria-pressed={ai.status === "running"}
               aria-label={ai.status === "running" ? "Stop AI player" : "Start AI player"}

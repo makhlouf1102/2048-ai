@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { cancelAiWork, nextMove } from "../../ai";
+import { cancelAiWork, nextMove, type AiStrategy } from "../../ai";
 import { moveDelay, QUIET_TELEMETRY_INTERVAL_MS } from "../application/ai-playback-policy";
 import { gameSession } from "../application/game-session";
 import type { Direction } from "../domain/game";
@@ -71,7 +71,7 @@ export function useAiPlayer({ liveUpdates = true }: { liveUpdates?: boolean } = 
     setStatus("idle");
   }, []);
 
-  const start = useCallback(async () => {
+  const start = useCallback(async (strategy: AiStrategy) => {
     const currentRun = ++runId.current;
     runStartedAt.current = performance.now();
     totalDecisionMs.current = 0;
@@ -95,7 +95,7 @@ export function useAiPlayer({ liveUpdates = true }: { liveUpdates?: boolean } = 
 
         // Wasm receives a copy of the 4×4 board as a flat, row-major array.
         const decisionStartedAt = performance.now();
-        const directionCode = await nextMove(beforeMove.board.flat());
+        const directionCode = await nextMove(beforeMove.board.flat(), strategy);
         const decisionDuration = performance.now() - decisionStartedAt;
         totalDecisionMs.current += decisionDuration;
         decisionCount.current += 1;

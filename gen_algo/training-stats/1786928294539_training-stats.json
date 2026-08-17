@@ -1,0 +1,5080 @@
+{
+  "schema_version": 1,
+  "created_at_unix_ms": 1786928294539,
+  "population_size": 90,
+  "completed_generations": 500,
+  "fitness_games_per_player": 10,
+  "validation_game_count": 50,
+  "validation_seeds": [
+    793754547015566328,
+    15783401885879761895,
+    11468137017205416426,
+    2423886011841039729,
+    16673204902790802732,
+    12990032553624454667,
+    4488391244252169790,
+    5922420107646868533,
+    16588208068240589216,
+    2231148502678432367,
+    11336779929732433874,
+    1922812837610639161,
+    16134734102918149460,
+    8624592904557858067,
+    13348727455408044710,
+    2783016249928690301,
+    14085139426611133512,
+    10253930502033117687,
+    16445056510344114874,
+    9645206558836109825,
+    1706979536107162236,
+    7141537262731205915,
+    2817952268072453134,
+    10336099681779329477,
+    4006141145282024432,
+    9853809129611694719,
+    5162053649371120290,
+    15395388225515787721,
+    18430005017088003236,
+    11711346041336075811,
+    6259717160657175158,
+    17043866717714954765,
+    15734641897289132184,
+    13066423636559236103,
+    2301847432823543690,
+    14828590936900803217,
+    2825032726538722252,
+    9058470455461419051,
+    2025307735295137246,
+    17494940768396147541,
+    10024021909171427904,
+    8490575159399161487,
+    6222053715691884914,
+    3075541543752032345,
+    3849637157984999412,
+    4160371936391381811,
+    13166752818297249350,
+    13798564354449116573,
+    11651551243227646184,
+    6279960985073576471
+  ],
+  "mutation_profiles": [
+    {
+      "rate": 0.02,
+      "strength": 0.03
+    },
+    {
+      "rate": 0.05,
+      "strength": 0.1
+    },
+    {
+      "rate": 0.08,
+      "strength": 0.2
+    },
+    {
+      "rate": 0.15,
+      "strength": 0.4
+    }
+  ],
+  "generations": [
+    {
+      "generation": 1,
+      "best_fitness": 66.4,
+      "average_fitness": 17.102217,
+      "median_fitness": 17.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 37.2,
+      "champion_validation_fitness": 37.2,
+      "all_time_best_fitness": 37.2
+    },
+    {
+      "generation": 2,
+      "best_fitness": 84.8,
+      "average_fitness": 21.013334,
+      "median_fitness": 16.0,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 46.48,
+      "champion_validation_fitness": 46.48,
+      "all_time_best_fitness": 46.48
+    },
+    {
+      "generation": 3,
+      "best_fitness": 99.6,
+      "average_fitness": 36.422222,
+      "median_fitness": 32.6,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 60.4,
+      "champion_validation_fitness": 60.4,
+      "all_time_best_fitness": 60.4
+    },
+    {
+      "generation": 4,
+      "best_fitness": 82.0,
+      "average_fitness": 32.928886,
+      "median_fitness": 29.6,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 77.76,
+      "champion_validation_fitness": 77.76,
+      "all_time_best_fitness": 77.76
+    },
+    {
+      "generation": 5,
+      "best_fitness": 124.0,
+      "average_fitness": 45.91556,
+      "median_fitness": 46.4,
+      "worst_fitness": 4.0,
+      "candidate_validation_fitness": 76.8,
+      "champion_validation_fitness": 77.76,
+      "all_time_best_fitness": 77.76
+    },
+    {
+      "generation": 6,
+      "best_fitness": 100.0,
+      "average_fitness": 51.04445,
+      "median_fitness": 50.0,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 82.64,
+      "champion_validation_fitness": 82.64,
+      "all_time_best_fitness": 82.64
+    },
+    {
+      "generation": 7,
+      "best_fitness": 136.0,
+      "average_fitness": 69.58666,
+      "median_fitness": 72.8,
+      "worst_fitness": 2.4,
+      "candidate_validation_fitness": 79.28,
+      "champion_validation_fitness": 82.64,
+      "all_time_best_fitness": 82.64
+    },
+    {
+      "generation": 8,
+      "best_fitness": 127.6,
+      "average_fitness": 63.38222,
+      "median_fitness": 60.8,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 76.08,
+      "champion_validation_fitness": 82.64,
+      "all_time_best_fitness": 82.64
+    },
+    {
+      "generation": 9,
+      "best_fitness": 160.0,
+      "average_fitness": 50.413334,
+      "median_fitness": 48.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 108.96,
+      "champion_validation_fitness": 108.96,
+      "all_time_best_fitness": 108.96
+    },
+    {
+      "generation": 10,
+      "best_fitness": 157.2,
+      "average_fitness": 71.32443,
+      "median_fitness": 61.199997,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 130.08,
+      "champion_validation_fitness": 130.08,
+      "all_time_best_fitness": 130.08
+    },
+    {
+      "generation": 11,
+      "best_fitness": 158.0,
+      "average_fitness": 80.035545,
+      "median_fitness": 82.4,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 130.24,
+      "champion_validation_fitness": 130.24,
+      "all_time_best_fitness": 130.24
+    },
+    {
+      "generation": 12,
+      "best_fitness": 180.0,
+      "average_fitness": 99.1911,
+      "median_fitness": 103.8,
+      "worst_fitness": 22.0,
+      "candidate_validation_fitness": 134.56,
+      "champion_validation_fitness": 134.56,
+      "all_time_best_fitness": 134.56
+    },
+    {
+      "generation": 13,
+      "best_fitness": 198.0,
+      "average_fitness": 92.0311,
+      "median_fitness": 93.0,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 114.96,
+      "champion_validation_fitness": 134.56,
+      "all_time_best_fitness": 134.56
+    },
+    {
+      "generation": 14,
+      "best_fitness": 283.2,
+      "average_fitness": 108.284454,
+      "median_fitness": 111.4,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 135.36,
+      "champion_validation_fitness": 135.36,
+      "all_time_best_fitness": 135.36
+    },
+    {
+      "generation": 15,
+      "best_fitness": 204.8,
+      "average_fitness": 103.191124,
+      "median_fitness": 109.399994,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 123.44,
+      "champion_validation_fitness": 135.36,
+      "all_time_best_fitness": 135.36
+    },
+    {
+      "generation": 16,
+      "best_fitness": 237.2,
+      "average_fitness": 94.391106,
+      "median_fitness": 98.2,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 146.48,
+      "champion_validation_fitness": 146.48,
+      "all_time_best_fitness": 146.48
+    },
+    {
+      "generation": 17,
+      "best_fitness": 214.8,
+      "average_fitness": 97.31111,
+      "median_fitness": 104.0,
+      "worst_fitness": 13.2,
+      "candidate_validation_fitness": 117.92,
+      "champion_validation_fitness": 146.48,
+      "all_time_best_fitness": 146.48
+    },
+    {
+      "generation": 18,
+      "best_fitness": 247.2,
+      "average_fitness": 99.68,
+      "median_fitness": 101.8,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 134.88,
+      "champion_validation_fitness": 146.48,
+      "all_time_best_fitness": 146.48
+    },
+    {
+      "generation": 19,
+      "best_fitness": 281.6,
+      "average_fitness": 106.10666,
+      "median_fitness": 104.600006,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 94.56,
+      "champion_validation_fitness": 146.48,
+      "all_time_best_fitness": 146.48
+    },
+    {
+      "generation": 20,
+      "best_fitness": 216.0,
+      "average_fitness": 112.244446,
+      "median_fitness": 118.8,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 174.96,
+      "champion_validation_fitness": 174.96,
+      "all_time_best_fitness": 174.96
+    },
+    {
+      "generation": 21,
+      "best_fitness": 261.2,
+      "average_fitness": 117.595566,
+      "median_fitness": 118.0,
+      "worst_fitness": 16.0,
+      "candidate_validation_fitness": 165.36,
+      "champion_validation_fitness": 174.96,
+      "all_time_best_fitness": 174.96
+    },
+    {
+      "generation": 22,
+      "best_fitness": 276.0,
+      "average_fitness": 137.3378,
+      "median_fitness": 152.0,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 170.08,
+      "champion_validation_fitness": 174.96,
+      "all_time_best_fitness": 174.96
+    },
+    {
+      "generation": 23,
+      "best_fitness": 260.0,
+      "average_fitness": 157.08891,
+      "median_fitness": 173.4,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 182.64,
+      "champion_validation_fitness": 182.64,
+      "all_time_best_fitness": 182.64
+    },
+    {
+      "generation": 24,
+      "best_fitness": 256.8,
+      "average_fitness": 147.99115,
+      "median_fitness": 161.4,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 182.96,
+      "champion_validation_fitness": 182.96,
+      "all_time_best_fitness": 182.96
+    },
+    {
+      "generation": 25,
+      "best_fitness": 272.8,
+      "average_fitness": 141.95116,
+      "median_fitness": 155.20001,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 219.76,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 26,
+      "best_fitness": 282.4,
+      "average_fitness": 154.00885,
+      "median_fitness": 177.20001,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 193.12,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 27,
+      "best_fitness": 252.4,
+      "average_fitness": 148.10669,
+      "median_fitness": 170.6,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 208.32,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 28,
+      "best_fitness": 261.2,
+      "average_fitness": 175.53337,
+      "median_fitness": 188.2,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 172.4,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 29,
+      "best_fitness": 245.6,
+      "average_fitness": 148.51106,
+      "median_fitness": 161.20001,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 171.2,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 30,
+      "best_fitness": 292.4,
+      "average_fitness": 167.27107,
+      "median_fitness": 181.2,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 203.84,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 31,
+      "best_fitness": 294.4,
+      "average_fitness": 147.77779,
+      "median_fitness": 153.2,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 210.72,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 32,
+      "best_fitness": 298.8,
+      "average_fitness": 173.67555,
+      "median_fitness": 191.6,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 161.6,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 33,
+      "best_fitness": 291.6,
+      "average_fitness": 155.07999,
+      "median_fitness": 170.0,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 172.8,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 34,
+      "best_fitness": 259.2,
+      "average_fitness": 171.09778,
+      "median_fitness": 192.2,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 179.28,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 35,
+      "best_fitness": 341.6,
+      "average_fitness": 153.30667,
+      "median_fitness": 158.6,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 214.48,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 36,
+      "best_fitness": 321.2,
+      "average_fitness": 157.81778,
+      "median_fitness": 170.0,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 176.16,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 37,
+      "best_fitness": 292.0,
+      "average_fitness": 172.13336,
+      "median_fitness": 183.2,
+      "worst_fitness": 1.2,
+      "candidate_validation_fitness": 213.44,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 38,
+      "best_fitness": 333.2,
+      "average_fitness": 172.52892,
+      "median_fitness": 184.2,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 197.52,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 39,
+      "best_fitness": 365.2,
+      "average_fitness": 196.06218,
+      "median_fitness": 205.8,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 181.92,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 40,
+      "best_fitness": 325.2,
+      "average_fitness": 174.9733,
+      "median_fitness": 193.2,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 169.36,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 41,
+      "best_fitness": 256.0,
+      "average_fitness": 151.63998,
+      "median_fitness": 168.0,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 157.76,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 42,
+      "best_fitness": 241.2,
+      "average_fitness": 151.04887,
+      "median_fitness": 168.6,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 165.04,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 43,
+      "best_fitness": 292.4,
+      "average_fitness": 162.16003,
+      "median_fitness": 170.4,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 189.36,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 44,
+      "best_fitness": 315.6,
+      "average_fitness": 157.54663,
+      "median_fitness": 170.8,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 189.44,
+      "champion_validation_fitness": 219.76,
+      "all_time_best_fitness": 219.76
+    },
+    {
+      "generation": 45,
+      "best_fitness": 292.8,
+      "average_fitness": 153.62668,
+      "median_fitness": 168.4,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 268.32,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 46,
+      "best_fitness": 298.8,
+      "average_fitness": 134.6311,
+      "median_fitness": 142.6,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 215.52,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 47,
+      "best_fitness": 271.2,
+      "average_fitness": 139.59554,
+      "median_fitness": 159.6,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 189.84,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 48,
+      "best_fitness": 319.6,
+      "average_fitness": 185.5956,
+      "median_fitness": 211.4,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 194.56,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 49,
+      "best_fitness": 260.8,
+      "average_fitness": 150.26222,
+      "median_fitness": 167.8,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 187.04,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 50,
+      "best_fitness": 260.0,
+      "average_fitness": 137.54665,
+      "median_fitness": 146.8,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 212.88,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 51,
+      "best_fitness": 278.8,
+      "average_fitness": 152.19556,
+      "median_fitness": 171.4,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 218.24,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 52,
+      "best_fitness": 310.8,
+      "average_fitness": 171.80891,
+      "median_fitness": 183.20001,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 250.96,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 53,
+      "best_fitness": 415.6,
+      "average_fitness": 210.12444,
+      "median_fitness": 236.6,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 191.44,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 54,
+      "best_fitness": 353.2,
+      "average_fitness": 178.3689,
+      "median_fitness": 184.0,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 236.32,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 55,
+      "best_fitness": 290.4,
+      "average_fitness": 167.93335,
+      "median_fitness": 179.2,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 219.52,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 56,
+      "best_fitness": 381.2,
+      "average_fitness": 181.28,
+      "median_fitness": 192.4,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 199.36,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 57,
+      "best_fitness": 348.8,
+      "average_fitness": 166.10666,
+      "median_fitness": 178.2,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 241.44,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 58,
+      "best_fitness": 344.8,
+      "average_fitness": 191.55553,
+      "median_fitness": 206.0,
+      "worst_fitness": 4.0,
+      "candidate_validation_fitness": 249.28,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 59,
+      "best_fitness": 365.2,
+      "average_fitness": 201.51558,
+      "median_fitness": 206.2,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 248.64,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 60,
+      "best_fitness": 345.6,
+      "average_fitness": 191.75111,
+      "median_fitness": 205.6,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 221.12,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 61,
+      "best_fitness": 417.6,
+      "average_fitness": 204.07997,
+      "median_fitness": 209.6,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 260.8,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 62,
+      "best_fitness": 375.6,
+      "average_fitness": 202.00885,
+      "median_fitness": 221.0,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 211.92,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 63,
+      "best_fitness": 314.0,
+      "average_fitness": 190.74666,
+      "median_fitness": 205.0,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 217.36,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 64,
+      "best_fitness": 320.8,
+      "average_fitness": 192.06665,
+      "median_fitness": 207.0,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 247.68,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 65,
+      "best_fitness": 336.4,
+      "average_fitness": 169.93336,
+      "median_fitness": 185.4,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 211.52,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 66,
+      "best_fitness": 398.0,
+      "average_fitness": 189.97333,
+      "median_fitness": 196.0,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 247.12,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 67,
+      "best_fitness": 364.4,
+      "average_fitness": 199.33333,
+      "median_fitness": 209.79999,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 232.32,
+      "champion_validation_fitness": 268.32,
+      "all_time_best_fitness": 268.32
+    },
+    {
+      "generation": 68,
+      "best_fitness": 356.0,
+      "average_fitness": 190.11108,
+      "median_fitness": 194.4,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 289.04,
+      "champion_validation_fitness": 289.04,
+      "all_time_best_fitness": 289.04
+    },
+    {
+      "generation": 69,
+      "best_fitness": 412.0,
+      "average_fitness": 224.01775,
+      "median_fitness": 244.0,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 264.32,
+      "champion_validation_fitness": 289.04,
+      "all_time_best_fitness": 289.04
+    },
+    {
+      "generation": 70,
+      "best_fitness": 448.0,
+      "average_fitness": 216.35114,
+      "median_fitness": 220.79999,
+      "worst_fitness": 46.4,
+      "candidate_validation_fitness": 273.04,
+      "champion_validation_fitness": 289.04,
+      "all_time_best_fitness": 289.04
+    },
+    {
+      "generation": 71,
+      "best_fitness": 395.6,
+      "average_fitness": 220.25336,
+      "median_fitness": 239.20001,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 261.84,
+      "champion_validation_fitness": 289.04,
+      "all_time_best_fitness": 289.04
+    },
+    {
+      "generation": 72,
+      "best_fitness": 426.4,
+      "average_fitness": 224.66669,
+      "median_fitness": 234.8,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 302.8,
+      "champion_validation_fitness": 302.8,
+      "all_time_best_fitness": 302.8
+    },
+    {
+      "generation": 73,
+      "best_fitness": 407.6,
+      "average_fitness": 192.17336,
+      "median_fitness": 199.6,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 252.56,
+      "champion_validation_fitness": 302.8,
+      "all_time_best_fitness": 302.8
+    },
+    {
+      "generation": 74,
+      "best_fitness": 389.6,
+      "average_fitness": 209.84442,
+      "median_fitness": 221.2,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 269.76,
+      "champion_validation_fitness": 302.8,
+      "all_time_best_fitness": 302.8
+    },
+    {
+      "generation": 75,
+      "best_fitness": 368.8,
+      "average_fitness": 184.59555,
+      "median_fitness": 190.2,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 257.04,
+      "champion_validation_fitness": 302.8,
+      "all_time_best_fitness": 302.8
+    },
+    {
+      "generation": 76,
+      "best_fitness": 354.0,
+      "average_fitness": 211.69777,
+      "median_fitness": 224.6,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 323.68,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 77,
+      "best_fitness": 529.6,
+      "average_fitness": 224.77776,
+      "median_fitness": 247.79999,
+      "worst_fitness": 2.4,
+      "candidate_validation_fitness": 292.8,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 78,
+      "best_fitness": 461.6,
+      "average_fitness": 221.50664,
+      "median_fitness": 240.4,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 296.08,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 79,
+      "best_fitness": 407.2,
+      "average_fitness": 193.93335,
+      "median_fitness": 209.6,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 266.4,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 80,
+      "best_fitness": 318.8,
+      "average_fitness": 207.34221,
+      "median_fitness": 236.4,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 273.2,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 81,
+      "best_fitness": 433.2,
+      "average_fitness": 256.30225,
+      "median_fitness": 277.2,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 319.28,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 82,
+      "best_fitness": 388.4,
+      "average_fitness": 226.84889,
+      "median_fitness": 260.6,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 290.16,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 83,
+      "best_fitness": 438.4,
+      "average_fitness": 264.40884,
+      "median_fitness": 265.6,
+      "worst_fitness": 24.0,
+      "candidate_validation_fitness": 323.68,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 84,
+      "best_fitness": 471.6,
+      "average_fitness": 268.68,
+      "median_fitness": 291.6,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 270.48,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 85,
+      "best_fitness": 392.4,
+      "average_fitness": 220.56891,
+      "median_fitness": 232.6,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 266.0,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 86,
+      "best_fitness": 356.4,
+      "average_fitness": 217.44003,
+      "median_fitness": 235.6,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 249.44,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 87,
+      "best_fitness": 448.4,
+      "average_fitness": 244.56447,
+      "median_fitness": 285.8,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 258.48,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 88,
+      "best_fitness": 421.2,
+      "average_fitness": 206.24442,
+      "median_fitness": 228.79999,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 303.44,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 89,
+      "best_fitness": 496.0,
+      "average_fitness": 228.22223,
+      "median_fitness": 228.0,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 261.92,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 90,
+      "best_fitness": 340.8,
+      "average_fitness": 218.4889,
+      "median_fitness": 238.0,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 258.0,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 91,
+      "best_fitness": 408.0,
+      "average_fitness": 238.2222,
+      "median_fitness": 260.0,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 241.44,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 92,
+      "best_fitness": 405.6,
+      "average_fitness": 230.47112,
+      "median_fitness": 251.4,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 268.4,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 93,
+      "best_fitness": 449.2,
+      "average_fitness": 241.83554,
+      "median_fitness": 263.2,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 227.6,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 94,
+      "best_fitness": 391.2,
+      "average_fitness": 208.76001,
+      "median_fitness": 238.4,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 248.4,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 95,
+      "best_fitness": 377.6,
+      "average_fitness": 227.43117,
+      "median_fitness": 246.8,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 269.76,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 96,
+      "best_fitness": 411.2,
+      "average_fitness": 244.2667,
+      "median_fitness": 259.8,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 259.76,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 97,
+      "best_fitness": 402.8,
+      "average_fitness": 210.54663,
+      "median_fitness": 220.4,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 260.72,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 98,
+      "best_fitness": 422.0,
+      "average_fitness": 237.32,
+      "median_fitness": 252.8,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 295.44,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 99,
+      "best_fitness": 369.6,
+      "average_fitness": 205.47995,
+      "median_fitness": 207.2,
+      "worst_fitness": 32.4,
+      "candidate_validation_fitness": 265.44,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 100,
+      "best_fitness": 381.2,
+      "average_fitness": 232.37782,
+      "median_fitness": 255.2,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 303.6,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 101,
+      "best_fitness": 483.6,
+      "average_fitness": 232.17769,
+      "median_fitness": 237.0,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 272.16,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 102,
+      "best_fitness": 396.4,
+      "average_fitness": 245.46223,
+      "median_fitness": 271.2,
+      "worst_fitness": 13.2,
+      "candidate_validation_fitness": 301.28,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 103,
+      "best_fitness": 389.6,
+      "average_fitness": 211.60886,
+      "median_fitness": 237.6,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 258.24,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 104,
+      "best_fitness": 381.2,
+      "average_fitness": 202.63995,
+      "median_fitness": 213.6,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 253.68,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 105,
+      "best_fitness": 382.8,
+      "average_fitness": 223.66672,
+      "median_fitness": 246.6,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 315.2,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 106,
+      "best_fitness": 349.2,
+      "average_fitness": 188.86667,
+      "median_fitness": 194.2,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 315.2,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 107,
+      "best_fitness": 499.6,
+      "average_fitness": 254.4489,
+      "median_fitness": 263.8,
+      "worst_fitness": 16.0,
+      "candidate_validation_fitness": 280.72,
+      "champion_validation_fitness": 323.68,
+      "all_time_best_fitness": 323.68
+    },
+    {
+      "generation": 108,
+      "best_fitness": 393.6,
+      "average_fitness": 227.2888,
+      "median_fitness": 243.4,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 347.84,
+      "champion_validation_fitness": 347.84,
+      "all_time_best_fitness": 347.84
+    },
+    {
+      "generation": 109,
+      "best_fitness": 414.8,
+      "average_fitness": 241.39557,
+      "median_fitness": 256.8,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 284.96,
+      "champion_validation_fitness": 347.84,
+      "all_time_best_fitness": 347.84
+    },
+    {
+      "generation": 110,
+      "best_fitness": 384.4,
+      "average_fitness": 224.74664,
+      "median_fitness": 231.2,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 351.68,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 111,
+      "best_fitness": 367.2,
+      "average_fitness": 221.31554,
+      "median_fitness": 237.8,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 274.88,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 112,
+      "best_fitness": 341.6,
+      "average_fitness": 215.18661,
+      "median_fitness": 220.6,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 284.8,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 113,
+      "best_fitness": 394.4,
+      "average_fitness": 220.20003,
+      "median_fitness": 231.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 246.08,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 114,
+      "best_fitness": 474.4,
+      "average_fitness": 220.26671,
+      "median_fitness": 219.6,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 350.56,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 115,
+      "best_fitness": 467.6,
+      "average_fitness": 238.41772,
+      "median_fitness": 266.2,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 308.72,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 116,
+      "best_fitness": 356.4,
+      "average_fitness": 186.37332,
+      "median_fitness": 198.6,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 226.96,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 117,
+      "best_fitness": 338.4,
+      "average_fitness": 182.32004,
+      "median_fitness": 195.0,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 263.84,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 118,
+      "best_fitness": 385.6,
+      "average_fitness": 242.28891,
+      "median_fitness": 254.0,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 319.12,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 119,
+      "best_fitness": 350.4,
+      "average_fitness": 222.4978,
+      "median_fitness": 234.4,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 220.08,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 120,
+      "best_fitness": 387.2,
+      "average_fitness": 215.6355,
+      "median_fitness": 234.4,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 257.2,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 121,
+      "best_fitness": 395.6,
+      "average_fitness": 198.86221,
+      "median_fitness": 208.4,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 257.2,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 122,
+      "best_fitness": 441.2,
+      "average_fitness": 241.87108,
+      "median_fitness": 247.0,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 316.48,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 123,
+      "best_fitness": 379.2,
+      "average_fitness": 232.28442,
+      "median_fitness": 242.4,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 312.08,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 124,
+      "best_fitness": 398.8,
+      "average_fitness": 230.39555,
+      "median_fitness": 245.0,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 334.4,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 125,
+      "best_fitness": 401.2,
+      "average_fitness": 208.49777,
+      "median_fitness": 215.6,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 275.28,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 126,
+      "best_fitness": 444.0,
+      "average_fitness": 253.92001,
+      "median_fitness": 265.2,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 311.36,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 127,
+      "best_fitness": 381.2,
+      "average_fitness": 207.27995,
+      "median_fitness": 203.6,
+      "worst_fitness": 31.2,
+      "candidate_validation_fitness": 250.64,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 128,
+      "best_fitness": 354.0,
+      "average_fitness": 222.26222,
+      "median_fitness": 240.0,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 293.2,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 129,
+      "best_fitness": 484.0,
+      "average_fitness": 244.6089,
+      "median_fitness": 255.0,
+      "worst_fitness": 13.2,
+      "candidate_validation_fitness": 297.92,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 130,
+      "best_fitness": 434.4,
+      "average_fitness": 226.82669,
+      "median_fitness": 249.2,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 330.4,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 131,
+      "best_fitness": 470.4,
+      "average_fitness": 258.16895,
+      "median_fitness": 274.8,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 325.2,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 132,
+      "best_fitness": 445.2,
+      "average_fitness": 242.82225,
+      "median_fitness": 251.79999,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 321.44,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 133,
+      "best_fitness": 375.6,
+      "average_fitness": 218.28006,
+      "median_fitness": 231.4,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 243.04,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 134,
+      "best_fitness": 516.0,
+      "average_fitness": 234.85779,
+      "median_fitness": 233.79999,
+      "worst_fitness": 24.4,
+      "candidate_validation_fitness": 303.76,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 135,
+      "best_fitness": 428.8,
+      "average_fitness": 268.88885,
+      "median_fitness": 279.0,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 319.12,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 136,
+      "best_fitness": 379.6,
+      "average_fitness": 238.27109,
+      "median_fitness": 260.8,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 347.68,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 137,
+      "best_fitness": 530.0,
+      "average_fitness": 303.60886,
+      "median_fitness": 326.4,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 281.12,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 138,
+      "best_fitness": 382.4,
+      "average_fitness": 214.34225,
+      "median_fitness": 237.6,
+      "worst_fitness": 26.8,
+      "candidate_validation_fitness": 341.28,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 139,
+      "best_fitness": 428.4,
+      "average_fitness": 238.0977,
+      "median_fitness": 262.8,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 326.88,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 140,
+      "best_fitness": 394.0,
+      "average_fitness": 250.25336,
+      "median_fitness": 264.4,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 340.72,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 141,
+      "best_fitness": 410.0,
+      "average_fitness": 238.07556,
+      "median_fitness": 254.6,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 311.84,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 142,
+      "best_fitness": 415.2,
+      "average_fitness": 228.94225,
+      "median_fitness": 237.4,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 310.8,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 143,
+      "best_fitness": 366.0,
+      "average_fitness": 227.0133,
+      "median_fitness": 252.4,
+      "worst_fitness": 3.6,
+      "candidate_validation_fitness": 240.16,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 144,
+      "best_fitness": 472.8,
+      "average_fitness": 264.0312,
+      "median_fitness": 270.40002,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 318.0,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 145,
+      "best_fitness": 446.4,
+      "average_fitness": 243.67107,
+      "median_fitness": 255.40001,
+      "worst_fitness": 27.6,
+      "candidate_validation_fitness": 337.84,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 146,
+      "best_fitness": 404.8,
+      "average_fitness": 227.13338,
+      "median_fitness": 252.20001,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 258.72,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 147,
+      "best_fitness": 440.8,
+      "average_fitness": 248.60887,
+      "median_fitness": 263.8,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 284.24,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 148,
+      "best_fitness": 398.0,
+      "average_fitness": 239.15555,
+      "median_fitness": 263.6,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 245.6,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 149,
+      "best_fitness": 342.4,
+      "average_fitness": 209.09334,
+      "median_fitness": 227.0,
+      "worst_fitness": 4.0,
+      "candidate_validation_fitness": 324.32,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 150,
+      "best_fitness": 369.2,
+      "average_fitness": 227.62224,
+      "median_fitness": 249.8,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 301.28,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 151,
+      "best_fitness": 394.8,
+      "average_fitness": 224.3289,
+      "median_fitness": 241.0,
+      "worst_fitness": 3.6,
+      "candidate_validation_fitness": 228.16,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 152,
+      "best_fitness": 400.8,
+      "average_fitness": 227.32442,
+      "median_fitness": 259.0,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 240.24,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 153,
+      "best_fitness": 407.2,
+      "average_fitness": 194.31558,
+      "median_fitness": 196.8,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 274.48,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 154,
+      "best_fitness": 401.6,
+      "average_fitness": 241.43109,
+      "median_fitness": 243.4,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 315.76,
+      "champion_validation_fitness": 351.68,
+      "all_time_best_fitness": 351.68
+    },
+    {
+      "generation": 155,
+      "best_fitness": 398.8,
+      "average_fitness": 241.35999,
+      "median_fitness": 237.79999,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 358.56,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 156,
+      "best_fitness": 400.0,
+      "average_fitness": 208.94218,
+      "median_fitness": 222.8,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 260.24,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 157,
+      "best_fitness": 356.8,
+      "average_fitness": 218.75996,
+      "median_fitness": 231.6,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 324.56,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 158,
+      "best_fitness": 422.0,
+      "average_fitness": 232.63565,
+      "median_fitness": 239.2,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 339.28,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 159,
+      "best_fitness": 507.2,
+      "average_fitness": 272.81775,
+      "median_fitness": 297.59998,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 311.12,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 160,
+      "best_fitness": 448.0,
+      "average_fitness": 232.52884,
+      "median_fitness": 246.2,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 281.92,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 161,
+      "best_fitness": 502.0,
+      "average_fitness": 255.77776,
+      "median_fitness": 270.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 281.92,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 162,
+      "best_fitness": 444.0,
+      "average_fitness": 253.35548,
+      "median_fitness": 273.8,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 358.56,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 163,
+      "best_fitness": 466.4,
+      "average_fitness": 222.57333,
+      "median_fitness": 230.79999,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 321.76,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 164,
+      "best_fitness": 403.2,
+      "average_fitness": 222.30219,
+      "median_fitness": 231.2,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 314.96,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 165,
+      "best_fitness": 393.2,
+      "average_fitness": 243.52,
+      "median_fitness": 253.2,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 313.76,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 166,
+      "best_fitness": 400.0,
+      "average_fitness": 241.56888,
+      "median_fitness": 259.4,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 317.04,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 167,
+      "best_fitness": 511.2,
+      "average_fitness": 259.1822,
+      "median_fitness": 270.2,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 331.36,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 168,
+      "best_fitness": 438.0,
+      "average_fitness": 251.29333,
+      "median_fitness": 269.59998,
+      "worst_fitness": 40.0,
+      "candidate_validation_fitness": 297.6,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 169,
+      "best_fitness": 427.2,
+      "average_fitness": 266.37787,
+      "median_fitness": 290.2,
+      "worst_fitness": 32.0,
+      "candidate_validation_fitness": 297.6,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 170,
+      "best_fitness": 481.6,
+      "average_fitness": 253.98222,
+      "median_fitness": 274.8,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 225.52,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 171,
+      "best_fitness": 432.8,
+      "average_fitness": 255.06213,
+      "median_fitness": 273.0,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 312.32,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 172,
+      "best_fitness": 463.6,
+      "average_fitness": 243.70663,
+      "median_fitness": 254.79999,
+      "worst_fitness": 27.6,
+      "candidate_validation_fitness": 318.4,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 173,
+      "best_fitness": 532.8,
+      "average_fitness": 256.10223,
+      "median_fitness": 261.40002,
+      "worst_fitness": 16.8,
+      "candidate_validation_fitness": 328.32,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 174,
+      "best_fitness": 450.8,
+      "average_fitness": 227.2,
+      "median_fitness": 228.8,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 315.12,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 175,
+      "best_fitness": 415.6,
+      "average_fitness": 241.43561,
+      "median_fitness": 252.4,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 340.08,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 176,
+      "best_fitness": 429.2,
+      "average_fitness": 254.51999,
+      "median_fitness": 273.2,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 334.48,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 177,
+      "best_fitness": 480.4,
+      "average_fitness": 258.1733,
+      "median_fitness": 253.4,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 314.4,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 178,
+      "best_fitness": 465.2,
+      "average_fitness": 247.61342,
+      "median_fitness": 268.2,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 295.92,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 179,
+      "best_fitness": 424.0,
+      "average_fitness": 252.5111,
+      "median_fitness": 258.0,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 306.16,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 180,
+      "best_fitness": 450.0,
+      "average_fitness": 278.17776,
+      "median_fitness": 302.4,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 296.08,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 181,
+      "best_fitness": 561.2,
+      "average_fitness": 249.67116,
+      "median_fitness": 289.2,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 306.16,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 182,
+      "best_fitness": 415.6,
+      "average_fitness": 228.69774,
+      "median_fitness": 251.6,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 318.72,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 183,
+      "best_fitness": 536.0,
+      "average_fitness": 253.78223,
+      "median_fitness": 257.0,
+      "worst_fitness": 29.2,
+      "candidate_validation_fitness": 307.6,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 184,
+      "best_fitness": 356.8,
+      "average_fitness": 231.9911,
+      "median_fitness": 237.6,
+      "worst_fitness": 20.8,
+      "candidate_validation_fitness": 299.44,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 185,
+      "best_fitness": 446.0,
+      "average_fitness": 271.20892,
+      "median_fitness": 285.0,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 301.6,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 186,
+      "best_fitness": 460.8,
+      "average_fitness": 277.04004,
+      "median_fitness": 283.8,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 342.24,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 187,
+      "best_fitness": 468.4,
+      "average_fitness": 291.17786,
+      "median_fitness": 311.40002,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 342.32,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 188,
+      "best_fitness": 441.6,
+      "average_fitness": 270.53775,
+      "median_fitness": 289.59998,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 328.16,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 189,
+      "best_fitness": 410.0,
+      "average_fitness": 281.1067,
+      "median_fitness": 295.40002,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 344.72,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 190,
+      "best_fitness": 440.0,
+      "average_fitness": 260.45334,
+      "median_fitness": 268.8,
+      "worst_fitness": 34.0,
+      "candidate_validation_fitness": 259.12,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 191,
+      "best_fitness": 413.6,
+      "average_fitness": 257.7822,
+      "median_fitness": 263.6,
+      "worst_fitness": 39.6,
+      "candidate_validation_fitness": 309.2,
+      "champion_validation_fitness": 358.56,
+      "all_time_best_fitness": 358.56
+    },
+    {
+      "generation": 192,
+      "best_fitness": 529.2,
+      "average_fitness": 264.53778,
+      "median_fitness": 267.4,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 365.44,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 193,
+      "best_fitness": 494.0,
+      "average_fitness": 291.22226,
+      "median_fitness": 308.8,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 352.24,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 194,
+      "best_fitness": 441.2,
+      "average_fitness": 277.24005,
+      "median_fitness": 302.2,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 301.68,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 195,
+      "best_fitness": 439.2,
+      "average_fitness": 260.59558,
+      "median_fitness": 290.8,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 325.76,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 196,
+      "best_fitness": 561.6,
+      "average_fitness": 287.24442,
+      "median_fitness": 282.0,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 319.36,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 197,
+      "best_fitness": 503.2,
+      "average_fitness": 284.21338,
+      "median_fitness": 285.4,
+      "worst_fitness": 30.4,
+      "candidate_validation_fitness": 214.48,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 198,
+      "best_fitness": 469.2,
+      "average_fitness": 278.95108,
+      "median_fitness": 304.4,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 313.68,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 199,
+      "best_fitness": 475.2,
+      "average_fitness": 249.5422,
+      "median_fitness": 261.0,
+      "worst_fitness": 1.6,
+      "candidate_validation_fitness": 337.36,
+      "champion_validation_fitness": 365.44,
+      "all_time_best_fitness": 365.44
+    },
+    {
+      "generation": 200,
+      "best_fitness": 419.2,
+      "average_fitness": 273.36438,
+      "median_fitness": 297.2,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 375.12,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 201,
+      "best_fitness": 441.6,
+      "average_fitness": 263.6889,
+      "median_fitness": 271.4,
+      "worst_fitness": 22.8,
+      "candidate_validation_fitness": 286.24,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 202,
+      "best_fitness": 444.8,
+      "average_fitness": 281.8799,
+      "median_fitness": 314.0,
+      "worst_fitness": 16.8,
+      "candidate_validation_fitness": 291.2,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 203,
+      "best_fitness": 557.6,
+      "average_fitness": 311.84003,
+      "median_fitness": 332.8,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 363.76,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 204,
+      "best_fitness": 380.8,
+      "average_fitness": 245.7867,
+      "median_fitness": 250.20001,
+      "worst_fitness": 22.4,
+      "candidate_validation_fitness": 340.56,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 205,
+      "best_fitness": 450.8,
+      "average_fitness": 257.86667,
+      "median_fitness": 276.40002,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 309.36,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 206,
+      "best_fitness": 467.6,
+      "average_fitness": 289.14224,
+      "median_fitness": 311.6,
+      "worst_fitness": 19.6,
+      "candidate_validation_fitness": 366.32,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 207,
+      "best_fitness": 407.2,
+      "average_fitness": 228.12001,
+      "median_fitness": 250.2,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 282.72,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 208,
+      "best_fitness": 492.4,
+      "average_fitness": 282.8355,
+      "median_fitness": 293.8,
+      "worst_fitness": 20.8,
+      "candidate_validation_fitness": 319.92,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 209,
+      "best_fitness": 418.4,
+      "average_fitness": 254.46222,
+      "median_fitness": 278.59998,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 326.56,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 210,
+      "best_fitness": 495.6,
+      "average_fitness": 250.65326,
+      "median_fitness": 259.2,
+      "worst_fitness": 28.4,
+      "candidate_validation_fitness": 328.16,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 211,
+      "best_fitness": 506.8,
+      "average_fitness": 267.34665,
+      "median_fitness": 289.0,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 331.04,
+      "champion_validation_fitness": 375.12,
+      "all_time_best_fitness": 375.12
+    },
+    {
+      "generation": 212,
+      "best_fitness": 480.4,
+      "average_fitness": 259.64447,
+      "median_fitness": 273.8,
+      "worst_fitness": 35.2,
+      "candidate_validation_fitness": 408.56,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 213,
+      "best_fitness": 432.0,
+      "average_fitness": 274.9467,
+      "median_fitness": 279.40002,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 346.56,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 214,
+      "best_fitness": 458.0,
+      "average_fitness": 272.16446,
+      "median_fitness": 279.8,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 342.56,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 215,
+      "best_fitness": 466.8,
+      "average_fitness": 276.20886,
+      "median_fitness": 303.4,
+      "worst_fitness": 19.2,
+      "candidate_validation_fitness": 341.68,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 216,
+      "best_fitness": 410.0,
+      "average_fitness": 254.90672,
+      "median_fitness": 269.8,
+      "worst_fitness": 13.2,
+      "candidate_validation_fitness": 339.52,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 217,
+      "best_fitness": 458.4,
+      "average_fitness": 251.19113,
+      "median_fitness": 278.2,
+      "worst_fitness": 22.0,
+      "candidate_validation_fitness": 326.0,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 218,
+      "best_fitness": 529.2,
+      "average_fitness": 265.7111,
+      "median_fitness": 271.8,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 321.6,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 219,
+      "best_fitness": 586.0,
+      "average_fitness": 268.95114,
+      "median_fitness": 265.2,
+      "worst_fitness": 3.2,
+      "candidate_validation_fitness": 353.92,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 220,
+      "best_fitness": 518.4,
+      "average_fitness": 313.3156,
+      "median_fitness": 338.2,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 385.76,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 221,
+      "best_fitness": 398.0,
+      "average_fitness": 255.88437,
+      "median_fitness": 269.6,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 347.52,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 222,
+      "best_fitness": 496.0,
+      "average_fitness": 264.70667,
+      "median_fitness": 261.6,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 359.44,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 223,
+      "best_fitness": 407.2,
+      "average_fitness": 256.98224,
+      "median_fitness": 276.2,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 311.36,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 224,
+      "best_fitness": 494.0,
+      "average_fitness": 291.2,
+      "median_fitness": 304.8,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 308.08,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 225,
+      "best_fitness": 484.0,
+      "average_fitness": 270.90222,
+      "median_fitness": 284.0,
+      "worst_fitness": 30.0,
+      "candidate_validation_fitness": 291.6,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 226,
+      "best_fitness": 475.2,
+      "average_fitness": 253.43103,
+      "median_fitness": 263.2,
+      "worst_fitness": 19.6,
+      "candidate_validation_fitness": 356.48,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 227,
+      "best_fitness": 484.0,
+      "average_fitness": 275.09775,
+      "median_fitness": 294.4,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 361.36,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 228,
+      "best_fitness": 585.2,
+      "average_fitness": 305.20886,
+      "median_fitness": 320.8,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 337.12,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 229,
+      "best_fitness": 498.0,
+      "average_fitness": 291.7645,
+      "median_fitness": 304.8,
+      "worst_fitness": 38.4,
+      "candidate_validation_fitness": 382.48,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 230,
+      "best_fitness": 428.8,
+      "average_fitness": 275.0489,
+      "median_fitness": 307.6,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 394.16,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 231,
+      "best_fitness": 434.4,
+      "average_fitness": 281.52878,
+      "median_fitness": 307.4,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 330.8,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 232,
+      "best_fitness": 460.0,
+      "average_fitness": 264.12445,
+      "median_fitness": 275.6,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 393.04,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 233,
+      "best_fitness": 432.8,
+      "average_fitness": 278.84888,
+      "median_fitness": 301.0,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 393.04,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 234,
+      "best_fitness": 522.4,
+      "average_fitness": 279.32443,
+      "median_fitness": 288.4,
+      "worst_fitness": 27.6,
+      "candidate_validation_fitness": 360.32,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 235,
+      "best_fitness": 478.0,
+      "average_fitness": 285.84003,
+      "median_fitness": 304.4,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 378.88,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 236,
+      "best_fitness": 530.4,
+      "average_fitness": 282.6045,
+      "median_fitness": 283.6,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 299.2,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 237,
+      "best_fitness": 415.2,
+      "average_fitness": 261.88892,
+      "median_fitness": 275.40002,
+      "worst_fitness": 33.2,
+      "candidate_validation_fitness": 331.44,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 238,
+      "best_fitness": 462.0,
+      "average_fitness": 263.01334,
+      "median_fitness": 275.8,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 394.48,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 239,
+      "best_fitness": 468.0,
+      "average_fitness": 267.20444,
+      "median_fitness": 278.8,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 370.0,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 240,
+      "best_fitness": 555.2,
+      "average_fitness": 287.22226,
+      "median_fitness": 286.2,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 301.84,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 241,
+      "best_fitness": 491.2,
+      "average_fitness": 292.96442,
+      "median_fitness": 314.8,
+      "worst_fitness": 31.2,
+      "candidate_validation_fitness": 407.28,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 242,
+      "best_fitness": 476.0,
+      "average_fitness": 274.69775,
+      "median_fitness": 280.6,
+      "worst_fitness": 28.4,
+      "candidate_validation_fitness": 367.52,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 243,
+      "best_fitness": 471.6,
+      "average_fitness": 276.4489,
+      "median_fitness": 294.8,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 298.56,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 244,
+      "best_fitness": 502.8,
+      "average_fitness": 291.6,
+      "median_fitness": 305.0,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 294.88,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 245,
+      "best_fitness": 464.4,
+      "average_fitness": 274.90668,
+      "median_fitness": 297.2,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 277.76,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 246,
+      "best_fitness": 466.8,
+      "average_fitness": 292.82217,
+      "median_fitness": 306.4,
+      "worst_fitness": 26.4,
+      "candidate_validation_fitness": 286.4,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 247,
+      "best_fitness": 535.6,
+      "average_fitness": 286.81775,
+      "median_fitness": 301.4,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 398.4,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 248,
+      "best_fitness": 459.6,
+      "average_fitness": 254.56445,
+      "median_fitness": 271.2,
+      "worst_fitness": 22.8,
+      "candidate_validation_fitness": 291.36,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 249,
+      "best_fitness": 410.8,
+      "average_fitness": 238.63553,
+      "median_fitness": 250.6,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 333.2,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 250,
+      "best_fitness": 538.8,
+      "average_fitness": 314.07547,
+      "median_fitness": 314.8,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 315.36,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 251,
+      "best_fitness": 497.2,
+      "average_fitness": 267.8355,
+      "median_fitness": 265.0,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 333.52,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 252,
+      "best_fitness": 448.4,
+      "average_fitness": 269.28885,
+      "median_fitness": 269.40002,
+      "worst_fitness": 38.8,
+      "candidate_validation_fitness": 353.2,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 253,
+      "best_fitness": 422.8,
+      "average_fitness": 238.04892,
+      "median_fitness": 261.4,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 358.88,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 254,
+      "best_fitness": 474.0,
+      "average_fitness": 288.90668,
+      "median_fitness": 322.40002,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 374.96,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 255,
+      "best_fitness": 519.2,
+      "average_fitness": 308.54218,
+      "median_fitness": 315.8,
+      "worst_fitness": 42.0,
+      "candidate_validation_fitness": 363.2,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 256,
+      "best_fitness": 556.0,
+      "average_fitness": 289.43558,
+      "median_fitness": 298.8,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 327.12,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 257,
+      "best_fitness": 591.2,
+      "average_fitness": 300.93774,
+      "median_fitness": 298.0,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 327.12,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 258,
+      "best_fitness": 504.8,
+      "average_fitness": 302.12888,
+      "median_fitness": 329.6,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 345.28,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 259,
+      "best_fitness": 473.2,
+      "average_fitness": 294.18665,
+      "median_fitness": 319.2,
+      "worst_fitness": 8.8,
+      "candidate_validation_fitness": 337.92,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 260,
+      "best_fitness": 454.4,
+      "average_fitness": 247.37776,
+      "median_fitness": 264.0,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 355.44,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 261,
+      "best_fitness": 425.2,
+      "average_fitness": 264.48,
+      "median_fitness": 282.4,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 328.8,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 262,
+      "best_fitness": 537.6,
+      "average_fitness": 285.47562,
+      "median_fitness": 284.0,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 319.6,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 263,
+      "best_fitness": 471.2,
+      "average_fitness": 288.72443,
+      "median_fitness": 297.2,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 307.44,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 264,
+      "best_fitness": 525.6,
+      "average_fitness": 286.3911,
+      "median_fitness": 295.2,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 345.6,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 265,
+      "best_fitness": 594.4,
+      "average_fitness": 293.3244,
+      "median_fitness": 315.2,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 347.12,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 266,
+      "best_fitness": 538.8,
+      "average_fitness": 283.91556,
+      "median_fitness": 292.0,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 328.8,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 267,
+      "best_fitness": 524.4,
+      "average_fitness": 292.7601,
+      "median_fitness": 308.59998,
+      "worst_fitness": 2.8,
+      "candidate_validation_fitness": 339.36,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 268,
+      "best_fitness": 519.2,
+      "average_fitness": 279.09323,
+      "median_fitness": 304.0,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 308.72,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 269,
+      "best_fitness": 459.6,
+      "average_fitness": 256.86227,
+      "median_fitness": 273.6,
+      "worst_fitness": 48.8,
+      "candidate_validation_fitness": 360.96,
+      "champion_validation_fitness": 408.56,
+      "all_time_best_fitness": 408.56
+    },
+    {
+      "generation": 270,
+      "best_fitness": 620.4,
+      "average_fitness": 298.74225,
+      "median_fitness": 300.2,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 418.56,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 271,
+      "best_fitness": 572.4,
+      "average_fitness": 295.85327,
+      "median_fitness": 297.0,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 362.16,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 272,
+      "best_fitness": 500.8,
+      "average_fitness": 294.4045,
+      "median_fitness": 306.4,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 375.76,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 273,
+      "best_fitness": 578.4,
+      "average_fitness": 307.5289,
+      "median_fitness": 324.2,
+      "worst_fitness": 23.2,
+      "candidate_validation_fitness": 360.8,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 274,
+      "best_fitness": 502.8,
+      "average_fitness": 275.15552,
+      "median_fitness": 288.8,
+      "worst_fitness": 14.0,
+      "candidate_validation_fitness": 369.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 275,
+      "best_fitness": 720.0,
+      "average_fitness": 326.42664,
+      "median_fitness": 336.4,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 333.6,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 276,
+      "best_fitness": 498.0,
+      "average_fitness": 308.23557,
+      "median_fitness": 328.0,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 350.72,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 277,
+      "best_fitness": 534.0,
+      "average_fitness": 307.8622,
+      "median_fitness": 320.2,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 378.88,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 278,
+      "best_fitness": 520.4,
+      "average_fitness": 297.39996,
+      "median_fitness": 317.8,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 356.88,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 279,
+      "best_fitness": 454.0,
+      "average_fitness": 282.63556,
+      "median_fitness": 305.8,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 321.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 280,
+      "best_fitness": 489.6,
+      "average_fitness": 307.3556,
+      "median_fitness": 320.4,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 356.4,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 281,
+      "best_fitness": 514.4,
+      "average_fitness": 258.27115,
+      "median_fitness": 270.2,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 359.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 282,
+      "best_fitness": 547.6,
+      "average_fitness": 290.5689,
+      "median_fitness": 304.2,
+      "worst_fitness": 29.2,
+      "candidate_validation_fitness": 333.6,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 283,
+      "best_fitness": 612.0,
+      "average_fitness": 329.08,
+      "median_fitness": 332.8,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 246.48,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 284,
+      "best_fitness": 440.0,
+      "average_fitness": 230.05782,
+      "median_fitness": 236.20001,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 343.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 285,
+      "best_fitness": 572.8,
+      "average_fitness": 307.19553,
+      "median_fitness": 319.6,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 348.72,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 286,
+      "best_fitness": 563.6,
+      "average_fitness": 302.7245,
+      "median_fitness": 325.0,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 341.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 287,
+      "best_fitness": 516.0,
+      "average_fitness": 322.65778,
+      "median_fitness": 353.40002,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 408.56,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 288,
+      "best_fitness": 544.0,
+      "average_fitness": 310.4133,
+      "median_fitness": 345.0,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 388.48,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 289,
+      "best_fitness": 723.2,
+      "average_fitness": 299.6089,
+      "median_fitness": 305.40002,
+      "worst_fitness": 13.2,
+      "candidate_validation_fitness": 379.6,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 290,
+      "best_fitness": 593.2,
+      "average_fitness": 315.45773,
+      "median_fitness": 335.2,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 289.6,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 291,
+      "best_fitness": 569.2,
+      "average_fitness": 310.28894,
+      "median_fitness": 338.4,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 300.4,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 292,
+      "best_fitness": 534.4,
+      "average_fitness": 304.56445,
+      "median_fitness": 328.6,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 387.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 293,
+      "best_fitness": 589.6,
+      "average_fitness": 296.47556,
+      "median_fitness": 303.6,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 350.16,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 294,
+      "best_fitness": 492.0,
+      "average_fitness": 288.44888,
+      "median_fitness": 306.0,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 392.0,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 295,
+      "best_fitness": 597.6,
+      "average_fitness": 311.4978,
+      "median_fitness": 330.2,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 371.2,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 296,
+      "best_fitness": 540.4,
+      "average_fitness": 302.9378,
+      "median_fitness": 333.0,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 340.4,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 297,
+      "best_fitness": 490.8,
+      "average_fitness": 291.25784,
+      "median_fitness": 319.8,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 357.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 298,
+      "best_fitness": 540.8,
+      "average_fitness": 316.0,
+      "median_fitness": 332.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 380.24,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 299,
+      "best_fitness": 511.6,
+      "average_fitness": 316.12,
+      "median_fitness": 336.0,
+      "worst_fitness": 72.4,
+      "candidate_validation_fitness": 375.92,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 300,
+      "best_fitness": 562.4,
+      "average_fitness": 316.20004,
+      "median_fitness": 346.2,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 364.96,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 301,
+      "best_fitness": 558.0,
+      "average_fitness": 290.66656,
+      "median_fitness": 309.6,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 383.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 302,
+      "best_fitness": 571.6,
+      "average_fitness": 318.01773,
+      "median_fitness": 333.8,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 383.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 303,
+      "best_fitness": 582.8,
+      "average_fitness": 319.83118,
+      "median_fitness": 337.59998,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 369.2,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 304,
+      "best_fitness": 419.2,
+      "average_fitness": 278.2666,
+      "median_fitness": 296.4,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 390.72,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 305,
+      "best_fitness": 499.2,
+      "average_fitness": 277.05334,
+      "median_fitness": 283.0,
+      "worst_fitness": 36.0,
+      "candidate_validation_fitness": 368.64,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 306,
+      "best_fitness": 506.0,
+      "average_fitness": 299.24454,
+      "median_fitness": 297.6,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 393.52,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 307,
+      "best_fitness": 470.4,
+      "average_fitness": 293.32443,
+      "median_fitness": 308.59998,
+      "worst_fitness": 19.6,
+      "candidate_validation_fitness": 367.36,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 308,
+      "best_fitness": 537.2,
+      "average_fitness": 303.7644,
+      "median_fitness": 324.8,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 350.56,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 309,
+      "best_fitness": 517.6,
+      "average_fitness": 293.87555,
+      "median_fitness": 307.0,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 345.84,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 310,
+      "best_fitness": 498.8,
+      "average_fitness": 291.69333,
+      "median_fitness": 311.2,
+      "worst_fitness": 33.6,
+      "candidate_validation_fitness": 393.2,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 311,
+      "best_fitness": 678.4,
+      "average_fitness": 328.8755,
+      "median_fitness": 324.8,
+      "worst_fitness": 33.6,
+      "candidate_validation_fitness": 377.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 312,
+      "best_fitness": 483.6,
+      "average_fitness": 326.36887,
+      "median_fitness": 347.40002,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 376.24,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 313,
+      "best_fitness": 576.4,
+      "average_fitness": 319.75558,
+      "median_fitness": 348.40002,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 359.68,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 314,
+      "best_fitness": 490.8,
+      "average_fitness": 305.41336,
+      "median_fitness": 313.4,
+      "worst_fitness": 2.4,
+      "candidate_validation_fitness": 359.68,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 315,
+      "best_fitness": 496.8,
+      "average_fitness": 323.28436,
+      "median_fitness": 326.6,
+      "worst_fitness": 83.2,
+      "candidate_validation_fitness": 346.24,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 316,
+      "best_fitness": 587.6,
+      "average_fitness": 279.65335,
+      "median_fitness": 285.2,
+      "worst_fitness": 28.4,
+      "candidate_validation_fitness": 390.24,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 317,
+      "best_fitness": 578.4,
+      "average_fitness": 316.61783,
+      "median_fitness": 345.8,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 349.92,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 318,
+      "best_fitness": 511.2,
+      "average_fitness": 276.45782,
+      "median_fitness": 282.0,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 364.48,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 319,
+      "best_fitness": 636.0,
+      "average_fitness": 328.71112,
+      "median_fitness": 331.2,
+      "worst_fitness": 37.6,
+      "candidate_validation_fitness": 343.92,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 320,
+      "best_fitness": 550.8,
+      "average_fitness": 341.28445,
+      "median_fitness": 368.8,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 411.2,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 321,
+      "best_fitness": 620.8,
+      "average_fitness": 308.83557,
+      "median_fitness": 322.6,
+      "worst_fitness": 25.2,
+      "candidate_validation_fitness": 320.56,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 322,
+      "best_fitness": 520.4,
+      "average_fitness": 292.30228,
+      "median_fitness": 309.4,
+      "worst_fitness": 20.8,
+      "candidate_validation_fitness": 336.16,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 323,
+      "best_fitness": 555.2,
+      "average_fitness": 300.24005,
+      "median_fitness": 309.8,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 344.72,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 324,
+      "best_fitness": 551.2,
+      "average_fitness": 289.48886,
+      "median_fitness": 290.0,
+      "worst_fitness": 33.6,
+      "candidate_validation_fitness": 395.28,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 325,
+      "best_fitness": 484.4,
+      "average_fitness": 278.05328,
+      "median_fitness": 294.8,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 405.68,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 326,
+      "best_fitness": 543.2,
+      "average_fitness": 293.63107,
+      "median_fitness": 324.2,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 395.84,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 327,
+      "best_fitness": 555.6,
+      "average_fitness": 289.56006,
+      "median_fitness": 307.59998,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 403.6,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 328,
+      "best_fitness": 514.0,
+      "average_fitness": 288.39563,
+      "median_fitness": 319.2,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 363.12,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 329,
+      "best_fitness": 580.8,
+      "average_fitness": 313.7912,
+      "median_fitness": 326.0,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 395.36,
+      "champion_validation_fitness": 418.56,
+      "all_time_best_fitness": 418.56
+    },
+    {
+      "generation": 330,
+      "best_fitness": 571.6,
+      "average_fitness": 331.20444,
+      "median_fitness": 336.40002,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 434.4,
+      "champion_validation_fitness": 434.4,
+      "all_time_best_fitness": 434.4
+    },
+    {
+      "generation": 331,
+      "best_fitness": 655.6,
+      "average_fitness": 343.35562,
+      "median_fitness": 345.0,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 364.56,
+      "champion_validation_fitness": 434.4,
+      "all_time_best_fitness": 434.4
+    },
+    {
+      "generation": 332,
+      "best_fitness": 504.8,
+      "average_fitness": 297.14224,
+      "median_fitness": 317.0,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 397.2,
+      "champion_validation_fitness": 434.4,
+      "all_time_best_fitness": 434.4
+    },
+    {
+      "generation": 333,
+      "best_fitness": 527.2,
+      "average_fitness": 318.29773,
+      "median_fitness": 328.40002,
+      "worst_fitness": 64.0,
+      "candidate_validation_fitness": 436.24,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 334,
+      "best_fitness": 544.0,
+      "average_fitness": 293.98672,
+      "median_fitness": 308.2,
+      "worst_fitness": 34.4,
+      "candidate_validation_fitness": 395.84,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 335,
+      "best_fitness": 598.8,
+      "average_fitness": 333.01785,
+      "median_fitness": 367.59998,
+      "worst_fitness": 16.0,
+      "candidate_validation_fitness": 300.8,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 336,
+      "best_fitness": 555.2,
+      "average_fitness": 308.37775,
+      "median_fitness": 335.0,
+      "worst_fitness": 14.4,
+      "candidate_validation_fitness": 425.76,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 337,
+      "best_fitness": 631.2,
+      "average_fitness": 323.24002,
+      "median_fitness": 342.4,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 369.44,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 338,
+      "best_fitness": 528.4,
+      "average_fitness": 292.5155,
+      "median_fitness": 315.8,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 382.4,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 339,
+      "best_fitness": 531.2,
+      "average_fitness": 307.0044,
+      "median_fitness": 346.8,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 420.24,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 340,
+      "best_fitness": 630.0,
+      "average_fitness": 325.7467,
+      "median_fitness": 334.8,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 373.6,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 341,
+      "best_fitness": 532.8,
+      "average_fitness": 308.17334,
+      "median_fitness": 317.6,
+      "worst_fitness": 26.0,
+      "candidate_validation_fitness": 403.2,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 342,
+      "best_fitness": 472.0,
+      "average_fitness": 259.71112,
+      "median_fitness": 270.2,
+      "worst_fitness": 30.4,
+      "candidate_validation_fitness": 355.92,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 343,
+      "best_fitness": 531.2,
+      "average_fitness": 291.45773,
+      "median_fitness": 305.2,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 436.24,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 344,
+      "best_fitness": 566.0,
+      "average_fitness": 302.80887,
+      "median_fitness": 305.40002,
+      "worst_fitness": 29.6,
+      "candidate_validation_fitness": 351.68,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 345,
+      "best_fitness": 563.6,
+      "average_fitness": 315.6578,
+      "median_fitness": 334.4,
+      "worst_fitness": 4.0,
+      "candidate_validation_fitness": 431.12,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 346,
+      "best_fitness": 676.4,
+      "average_fitness": 351.34674,
+      "median_fitness": 351.2,
+      "worst_fitness": 27.6,
+      "candidate_validation_fitness": 355.2,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 347,
+      "best_fitness": 546.0,
+      "average_fitness": 320.98218,
+      "median_fitness": 347.6,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 382.96,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 348,
+      "best_fitness": 658.0,
+      "average_fitness": 323.18668,
+      "median_fitness": 329.0,
+      "worst_fitness": 4.0,
+      "candidate_validation_fitness": 377.6,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 349,
+      "best_fitness": 546.8,
+      "average_fitness": 278.68893,
+      "median_fitness": 293.6,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 407.28,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 350,
+      "best_fitness": 650.4,
+      "average_fitness": 334.44888,
+      "median_fitness": 343.2,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 328.0,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 351,
+      "best_fitness": 476.4,
+      "average_fitness": 283.09335,
+      "median_fitness": 313.2,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 398.8,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 352,
+      "best_fitness": 550.4,
+      "average_fitness": 286.17783,
+      "median_fitness": 314.8,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 337.28,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 353,
+      "best_fitness": 536.4,
+      "average_fitness": 313.0578,
+      "median_fitness": 342.0,
+      "worst_fitness": 19.2,
+      "candidate_validation_fitness": 408.32,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 354,
+      "best_fitness": 541.6,
+      "average_fitness": 339.87994,
+      "median_fitness": 352.0,
+      "worst_fitness": 21.2,
+      "candidate_validation_fitness": 293.92,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 355,
+      "best_fitness": 544.8,
+      "average_fitness": 291.63553,
+      "median_fitness": 302.0,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 321.36,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 356,
+      "best_fitness": 546.0,
+      "average_fitness": 274.66223,
+      "median_fitness": 271.2,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 421.76,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 357,
+      "best_fitness": 575.2,
+      "average_fitness": 362.12445,
+      "median_fitness": 363.8,
+      "worst_fitness": 56.0,
+      "candidate_validation_fitness": 352.0,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 358,
+      "best_fitness": 449.2,
+      "average_fitness": 295.69333,
+      "median_fitness": 302.4,
+      "worst_fitness": 29.6,
+      "candidate_validation_fitness": 367.76,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 359,
+      "best_fitness": 596.0,
+      "average_fitness": 299.20438,
+      "median_fitness": 318.4,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 393.2,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 360,
+      "best_fitness": 582.4,
+      "average_fitness": 318.7644,
+      "median_fitness": 346.40002,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 371.2,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 361,
+      "best_fitness": 702.0,
+      "average_fitness": 316.1956,
+      "median_fitness": 335.8,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 369.76,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 362,
+      "best_fitness": 486.4,
+      "average_fitness": 279.26663,
+      "median_fitness": 295.0,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 400.32,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 363,
+      "best_fitness": 602.8,
+      "average_fitness": 328.3244,
+      "median_fitness": 341.2,
+      "worst_fitness": 19.2,
+      "candidate_validation_fitness": 388.56,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 364,
+      "best_fitness": 610.0,
+      "average_fitness": 346.40884,
+      "median_fitness": 361.6,
+      "worst_fitness": 15.6,
+      "candidate_validation_fitness": 344.16,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 365,
+      "best_fitness": 614.0,
+      "average_fitness": 317.71106,
+      "median_fitness": 327.40002,
+      "worst_fitness": 30.8,
+      "candidate_validation_fitness": 435.92,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 366,
+      "best_fitness": 552.4,
+      "average_fitness": 323.74664,
+      "median_fitness": 356.0,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 386.4,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 367,
+      "best_fitness": 585.6,
+      "average_fitness": 323.49777,
+      "median_fitness": 351.2,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 422.48,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 368,
+      "best_fitness": 626.0,
+      "average_fitness": 339.93777,
+      "median_fitness": 358.8,
+      "worst_fitness": 22.0,
+      "candidate_validation_fitness": 414.88,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 369,
+      "best_fitness": 514.8,
+      "average_fitness": 306.9867,
+      "median_fitness": 327.6,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 424.16,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 370,
+      "best_fitness": 628.4,
+      "average_fitness": 359.61328,
+      "median_fitness": 366.59998,
+      "worst_fitness": 17.6,
+      "candidate_validation_fitness": 397.28,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 371,
+      "best_fitness": 608.8,
+      "average_fitness": 352.25775,
+      "median_fitness": 388.40002,
+      "worst_fitness": 6.4,
+      "candidate_validation_fitness": 413.44,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 372,
+      "best_fitness": 639.6,
+      "average_fitness": 357.36002,
+      "median_fitness": 371.0,
+      "worst_fitness": 42.8,
+      "candidate_validation_fitness": 408.32,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 373,
+      "best_fitness": 527.6,
+      "average_fitness": 313.56448,
+      "median_fitness": 326.4,
+      "worst_fitness": 30.4,
+      "candidate_validation_fitness": 330.88,
+      "champion_validation_fitness": 436.24,
+      "all_time_best_fitness": 436.24
+    },
+    {
+      "generation": 374,
+      "best_fitness": 571.6,
+      "average_fitness": 303.34225,
+      "median_fitness": 330.59998,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 450.8,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 375,
+      "best_fitness": 507.2,
+      "average_fitness": 274.08887,
+      "median_fitness": 279.0,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 384.64,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 376,
+      "best_fitness": 546.0,
+      "average_fitness": 304.4667,
+      "median_fitness": 321.2,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 426.24,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 377,
+      "best_fitness": 664.4,
+      "average_fitness": 308.48447,
+      "median_fitness": 324.8,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 370.24,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 378,
+      "best_fitness": 624.4,
+      "average_fitness": 347.45773,
+      "median_fitness": 350.6,
+      "worst_fitness": 43.2,
+      "candidate_validation_fitness": 373.44,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 379,
+      "best_fitness": 527.6,
+      "average_fitness": 343.75116,
+      "median_fitness": 360.2,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 287.52,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 380,
+      "best_fitness": 464.8,
+      "average_fitness": 294.07996,
+      "median_fitness": 318.0,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 325.04,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 381,
+      "best_fitness": 567.6,
+      "average_fitness": 334.89774,
+      "median_fitness": 341.6,
+      "worst_fitness": 32.0,
+      "candidate_validation_fitness": 346.48,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 382,
+      "best_fitness": 584.8,
+      "average_fitness": 322.82672,
+      "median_fitness": 342.8,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 378.08,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 383,
+      "best_fitness": 525.2,
+      "average_fitness": 292.73337,
+      "median_fitness": 307.0,
+      "worst_fitness": 56.8,
+      "candidate_validation_fitness": 400.32,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 384,
+      "best_fitness": 528.0,
+      "average_fitness": 297.05777,
+      "median_fitness": 317.40002,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 340.08,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 385,
+      "best_fitness": 603.6,
+      "average_fitness": 323.5466,
+      "median_fitness": 330.40002,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 392.96,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 386,
+      "best_fitness": 558.4,
+      "average_fitness": 322.26227,
+      "median_fitness": 344.6,
+      "worst_fitness": 36.8,
+      "candidate_validation_fitness": 386.4,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 387,
+      "best_fitness": 580.0,
+      "average_fitness": 302.37775,
+      "median_fitness": 314.8,
+      "worst_fitness": 60.0,
+      "candidate_validation_fitness": 439.44,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 388,
+      "best_fitness": 566.4,
+      "average_fitness": 304.08884,
+      "median_fitness": 300.59998,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 338.56,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 389,
+      "best_fitness": 534.0,
+      "average_fitness": 297.85776,
+      "median_fitness": 319.0,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 394.24,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 390,
+      "best_fitness": 653.6,
+      "average_fitness": 320.17334,
+      "median_fitness": 316.8,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 340.96,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 391,
+      "best_fitness": 554.8,
+      "average_fitness": 313.02222,
+      "median_fitness": 330.2,
+      "worst_fitness": 32.0,
+      "candidate_validation_fitness": 340.96,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 392,
+      "best_fitness": 552.8,
+      "average_fitness": 279.60004,
+      "median_fitness": 304.40002,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 363.84,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 393,
+      "best_fitness": 627.2,
+      "average_fitness": 313.3022,
+      "median_fitness": 338.40002,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 372.8,
+      "champion_validation_fitness": 450.8,
+      "all_time_best_fitness": 450.8
+    },
+    {
+      "generation": 394,
+      "best_fitness": 512.8,
+      "average_fitness": 339.62665,
+      "median_fitness": 360.2,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 451.28,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 395,
+      "best_fitness": 546.0,
+      "average_fitness": 354.76,
+      "median_fitness": 377.2,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 394.32,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 396,
+      "best_fitness": 623.2,
+      "average_fitness": 317.40002,
+      "median_fitness": 348.0,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 394.64,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 397,
+      "best_fitness": 559.6,
+      "average_fitness": 328.33328,
+      "median_fitness": 344.0,
+      "worst_fitness": 12.4,
+      "candidate_validation_fitness": 397.28,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 398,
+      "best_fitness": 542.0,
+      "average_fitness": 293.1689,
+      "median_fitness": 306.8,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 304.24,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 399,
+      "best_fitness": 591.6,
+      "average_fitness": 332.84885,
+      "median_fitness": 352.6,
+      "worst_fitness": 39.2,
+      "candidate_validation_fitness": 423.28,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 400,
+      "best_fitness": 549.2,
+      "average_fitness": 363.4533,
+      "median_fitness": 383.40002,
+      "worst_fitness": 26.8,
+      "candidate_validation_fitness": 423.52,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 401,
+      "best_fitness": 553.2,
+      "average_fitness": 328.5466,
+      "median_fitness": 336.4,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 400.96,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 402,
+      "best_fitness": 698.4,
+      "average_fitness": 334.9023,
+      "median_fitness": 337.0,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 429.52,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 403,
+      "best_fitness": 573.2,
+      "average_fitness": 323.69333,
+      "median_fitness": 341.8,
+      "worst_fitness": 14.8,
+      "candidate_validation_fitness": 389.68,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 404,
+      "best_fitness": 699.6,
+      "average_fitness": 373.31998,
+      "median_fitness": 401.2,
+      "worst_fitness": 16.0,
+      "candidate_validation_fitness": 407.2,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 405,
+      "best_fitness": 614.8,
+      "average_fitness": 352.21338,
+      "median_fitness": 365.8,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 424.64,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 406,
+      "best_fitness": 739.2,
+      "average_fitness": 377.90222,
+      "median_fitness": 386.8,
+      "worst_fitness": 20.4,
+      "candidate_validation_fitness": 444.56,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 407,
+      "best_fitness": 623.6,
+      "average_fitness": 369.73325,
+      "median_fitness": 377.8,
+      "worst_fitness": 74.8,
+      "candidate_validation_fitness": 355.2,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 408,
+      "best_fitness": 646.4,
+      "average_fitness": 364.55118,
+      "median_fitness": 375.6,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 445.44,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 409,
+      "best_fitness": 527.2,
+      "average_fitness": 334.84445,
+      "median_fitness": 338.0,
+      "worst_fitness": 94.4,
+      "candidate_validation_fitness": 338.96,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 410,
+      "best_fitness": 694.8,
+      "average_fitness": 348.62662,
+      "median_fitness": 366.0,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 451.28,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 411,
+      "best_fitness": 606.4,
+      "average_fitness": 376.36008,
+      "median_fitness": 371.8,
+      "worst_fitness": 48.4,
+      "candidate_validation_fitness": 421.92,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 412,
+      "best_fitness": 607.6,
+      "average_fitness": 359.69775,
+      "median_fitness": 382.6,
+      "worst_fitness": 23.6,
+      "candidate_validation_fitness": 406.64,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 413,
+      "best_fitness": 594.0,
+      "average_fitness": 345.3689,
+      "median_fitness": 361.2,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 423.52,
+      "champion_validation_fitness": 451.28,
+      "all_time_best_fitness": 451.28
+    },
+    {
+      "generation": 414,
+      "best_fitness": 562.4,
+      "average_fitness": 356.73337,
+      "median_fitness": 378.2,
+      "worst_fitness": 26.0,
+      "candidate_validation_fitness": 460.88,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 415,
+      "best_fitness": 514.8,
+      "average_fitness": 311.6667,
+      "median_fitness": 319.4,
+      "worst_fitness": 64.4,
+      "candidate_validation_fitness": 413.6,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 416,
+      "best_fitness": 570.8,
+      "average_fitness": 326.38217,
+      "median_fitness": 337.6,
+      "worst_fitness": 18.0,
+      "candidate_validation_fitness": 374.32,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 417,
+      "best_fitness": 554.4,
+      "average_fitness": 314.4844,
+      "median_fitness": 329.6,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 404.08,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 418,
+      "best_fitness": 602.0,
+      "average_fitness": 368.8088,
+      "median_fitness": 377.8,
+      "worst_fitness": 8.4,
+      "candidate_validation_fitness": 373.52,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 419,
+      "best_fitness": 571.6,
+      "average_fitness": 324.37778,
+      "median_fitness": 339.6,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 440.4,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 420,
+      "best_fitness": 529.6,
+      "average_fitness": 310.80447,
+      "median_fitness": 319.0,
+      "worst_fitness": 3.6,
+      "candidate_validation_fitness": 414.08,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 421,
+      "best_fitness": 517.6,
+      "average_fitness": 319.08444,
+      "median_fitness": 332.8,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 389.04,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 422,
+      "best_fitness": 550.4,
+      "average_fitness": 299.32892,
+      "median_fitness": 312.2,
+      "worst_fitness": 4.4,
+      "candidate_validation_fitness": 342.8,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 423,
+      "best_fitness": 574.8,
+      "average_fitness": 331.37335,
+      "median_fitness": 341.6,
+      "worst_fitness": 5.6,
+      "candidate_validation_fitness": 372.88,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 424,
+      "best_fitness": 579.2,
+      "average_fitness": 308.4666,
+      "median_fitness": 319.2,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 391.04,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 425,
+      "best_fitness": 538.0,
+      "average_fitness": 329.97784,
+      "median_fitness": 341.40002,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 352.32,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 426,
+      "best_fitness": 603.6,
+      "average_fitness": 349.78226,
+      "median_fitness": 375.6,
+      "worst_fitness": 9.6,
+      "candidate_validation_fitness": 404.48,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 427,
+      "best_fitness": 482.8,
+      "average_fitness": 322.6534,
+      "median_fitness": 346.0,
+      "worst_fitness": 29.2,
+      "candidate_validation_fitness": 387.2,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 428,
+      "best_fitness": 603.2,
+      "average_fitness": 309.62225,
+      "median_fitness": 333.0,
+      "worst_fitness": 9.2,
+      "candidate_validation_fitness": 350.32,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 429,
+      "best_fitness": 595.2,
+      "average_fitness": 335.26227,
+      "median_fitness": 342.8,
+      "worst_fitness": 12.0,
+      "candidate_validation_fitness": 445.6,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 430,
+      "best_fitness": 579.2,
+      "average_fitness": 328.6578,
+      "median_fitness": 332.8,
+      "worst_fitness": 25.6,
+      "candidate_validation_fitness": 335.84,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 431,
+      "best_fitness": 546.8,
+      "average_fitness": 318.3467,
+      "median_fitness": 320.2,
+      "worst_fitness": 13.6,
+      "candidate_validation_fitness": 426.48,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 432,
+      "best_fitness": 611.2,
+      "average_fitness": 356.8178,
+      "median_fitness": 361.0,
+      "worst_fitness": 32.0,
+      "candidate_validation_fitness": 362.72,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 433,
+      "best_fitness": 614.0,
+      "average_fitness": 323.16888,
+      "median_fitness": 336.0,
+      "worst_fitness": 6.8,
+      "candidate_validation_fitness": 452.64,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 434,
+      "best_fitness": 518.0,
+      "average_fitness": 282.91553,
+      "median_fitness": 281.0,
+      "worst_fitness": 17.2,
+      "candidate_validation_fitness": 380.16,
+      "champion_validation_fitness": 460.88,
+      "all_time_best_fitness": 460.88
+    },
+    {
+      "generation": 435,
+      "best_fitness": 636.0,
+      "average_fitness": 324.16446,
+      "median_fitness": 325.2,
+      "worst_fitness": 30.0,
+      "candidate_validation_fitness": 468.72,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 436,
+      "best_fitness": 605.6,
+      "average_fitness": 337.38223,
+      "median_fitness": 362.0,
+      "worst_fitness": 34.8,
+      "candidate_validation_fitness": 310.4,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 437,
+      "best_fitness": 643.2,
+      "average_fitness": 297.37338,
+      "median_fitness": 304.4,
+      "worst_fitness": 20.0,
+      "candidate_validation_fitness": 406.0,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 438,
+      "best_fitness": 639.2,
+      "average_fitness": 357.50674,
+      "median_fitness": 380.59998,
+      "worst_fitness": 10.8,
+      "candidate_validation_fitness": 427.04,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 439,
+      "best_fitness": 593.2,
+      "average_fitness": 331.5334,
+      "median_fitness": 350.2,
+      "worst_fitness": 29.6,
+      "candidate_validation_fitness": 389.2,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 440,
+      "best_fitness": 521.2,
+      "average_fitness": 302.27563,
+      "median_fitness": 319.8,
+      "worst_fitness": 52.0,
+      "candidate_validation_fitness": 416.32,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 441,
+      "best_fitness": 752.4,
+      "average_fitness": 373.25772,
+      "median_fitness": 396.8,
+      "worst_fitness": 29.6,
+      "candidate_validation_fitness": 382.48,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 442,
+      "best_fitness": 596.4,
+      "average_fitness": 347.48004,
+      "median_fitness": 355.0,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 416.32,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 443,
+      "best_fitness": 586.0,
+      "average_fitness": 317.34665,
+      "median_fitness": 345.6,
+      "worst_fitness": 20.4,
+      "candidate_validation_fitness": 361.6,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 444,
+      "best_fitness": 606.8,
+      "average_fitness": 335.59552,
+      "median_fitness": 340.4,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 383.04,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 445,
+      "best_fitness": 503.2,
+      "average_fitness": 290.0355,
+      "median_fitness": 297.0,
+      "worst_fitness": 42.0,
+      "candidate_validation_fitness": 346.32,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 446,
+      "best_fitness": 634.0,
+      "average_fitness": 319.74664,
+      "median_fitness": 340.2,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 397.44,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 447,
+      "best_fitness": 601.6,
+      "average_fitness": 349.99554,
+      "median_fitness": 375.8,
+      "worst_fitness": 31.6,
+      "candidate_validation_fitness": 468.72,
+      "champion_validation_fitness": 468.72,
+      "all_time_best_fitness": 468.72
+    },
+    {
+      "generation": 448,
+      "best_fitness": 489.6,
+      "average_fitness": 285.43112,
+      "median_fitness": 283.6,
+      "worst_fitness": 34.4,
+      "candidate_validation_fitness": 472.24,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 449,
+      "best_fitness": 720.4,
+      "average_fitness": 347.2755,
+      "median_fitness": 342.40002,
+      "worst_fitness": 27.6,
+      "candidate_validation_fitness": 403.04,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 450,
+      "best_fitness": 693.2,
+      "average_fitness": 339.6089,
+      "median_fitness": 369.4,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 377.04,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 451,
+      "best_fitness": 522.0,
+      "average_fitness": 340.27994,
+      "median_fitness": 364.2,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 401.6,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 452,
+      "best_fitness": 537.6,
+      "average_fitness": 338.6889,
+      "median_fitness": 350.8,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 414.08,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 453,
+      "best_fitness": 653.2,
+      "average_fitness": 372.0089,
+      "median_fitness": 395.2,
+      "worst_fitness": 59.2,
+      "candidate_validation_fitness": 398.0,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 454,
+      "best_fitness": 634.8,
+      "average_fitness": 357.99554,
+      "median_fitness": 377.40002,
+      "worst_fitness": 11.2,
+      "candidate_validation_fitness": 421.76,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 455,
+      "best_fitness": 640.8,
+      "average_fitness": 321.1378,
+      "median_fitness": 328.8,
+      "worst_fitness": 36.4,
+      "candidate_validation_fitness": 366.64,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 456,
+      "best_fitness": 536.0,
+      "average_fitness": 356.67114,
+      "median_fitness": 377.8,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 433.12,
+      "champion_validation_fitness": 472.24,
+      "all_time_best_fitness": 472.24
+    },
+    {
+      "generation": 457,
+      "best_fitness": 628.4,
+      "average_fitness": 337.66666,
+      "median_fitness": 359.8,
+      "worst_fitness": 20.4,
+      "candidate_validation_fitness": 479.28,
+      "champion_validation_fitness": 479.28,
+      "all_time_best_fitness": 479.28
+    },
+    {
+      "generation": 458,
+      "best_fitness": 712.4,
+      "average_fitness": 357.8355,
+      "median_fitness": 365.2,
+      "worst_fitness": 29.2,
+      "candidate_validation_fitness": 331.2,
+      "champion_validation_fitness": 479.28,
+      "all_time_best_fitness": 479.28
+    },
+    {
+      "generation": 459,
+      "best_fitness": 767.2,
+      "average_fitness": 352.431,
+      "median_fitness": 370.8,
+      "worst_fitness": 16.8,
+      "candidate_validation_fitness": 479.68,
+      "champion_validation_fitness": 479.68,
+      "all_time_best_fitness": 479.68
+    },
+    {
+      "generation": 460,
+      "best_fitness": 702.0,
+      "average_fitness": 365.72433,
+      "median_fitness": 401.40002,
+      "worst_fitness": 10.4,
+      "candidate_validation_fitness": 405.2,
+      "champion_validation_fitness": 479.68,
+      "all_time_best_fitness": 479.68
+    },
+    {
+      "generation": 461,
+      "best_fitness": 580.8,
+      "average_fitness": 393.19113,
+      "median_fitness": 412.40002,
+      "worst_fitness": 41.2,
+      "candidate_validation_fitness": 482.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 462,
+      "best_fitness": 554.4,
+      "average_fitness": 333.2667,
+      "median_fitness": 349.0,
+      "worst_fitness": 10.0,
+      "candidate_validation_fitness": 441.68,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 463,
+      "best_fitness": 628.0,
+      "average_fitness": 370.70227,
+      "median_fitness": 389.8,
+      "worst_fitness": 26.8,
+      "candidate_validation_fitness": 482.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 464,
+      "best_fitness": 562.0,
+      "average_fitness": 346.77777,
+      "median_fitness": 362.2,
+      "worst_fitness": 5.2,
+      "candidate_validation_fitness": 382.64,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 465,
+      "best_fitness": 628.4,
+      "average_fitness": 344.45334,
+      "median_fitness": 361.6,
+      "worst_fitness": 41.2,
+      "candidate_validation_fitness": 482.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 466,
+      "best_fitness": 640.4,
+      "average_fitness": 369.1245,
+      "median_fitness": 385.2,
+      "worst_fitness": 24.0,
+      "candidate_validation_fitness": 389.6,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 467,
+      "best_fitness": 560.4,
+      "average_fitness": 327.4933,
+      "median_fitness": 344.6,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 385.84,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 468,
+      "best_fitness": 537.2,
+      "average_fitness": 319.47998,
+      "median_fitness": 332.4,
+      "worst_fitness": 2.8,
+      "candidate_validation_fitness": 377.04,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 469,
+      "best_fitness": 547.6,
+      "average_fitness": 323.14215,
+      "median_fitness": 341.2,
+      "worst_fitness": 16.0,
+      "candidate_validation_fitness": 411.04,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 470,
+      "best_fitness": 555.2,
+      "average_fitness": 361.8711,
+      "median_fitness": 382.0,
+      "worst_fitness": 56.4,
+      "candidate_validation_fitness": 443.44,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 471,
+      "best_fitness": 571.6,
+      "average_fitness": 362.0978,
+      "median_fitness": 374.4,
+      "worst_fitness": 16.4,
+      "candidate_validation_fitness": 433.52,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 472,
+      "best_fitness": 540.8,
+      "average_fitness": 335.58667,
+      "median_fitness": 353.2,
+      "worst_fitness": 6.0,
+      "candidate_validation_fitness": 400.0,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 473,
+      "best_fitness": 627.6,
+      "average_fitness": 367.96442,
+      "median_fitness": 392.59998,
+      "worst_fitness": 8.0,
+      "candidate_validation_fitness": 371.76,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 474,
+      "best_fitness": 545.6,
+      "average_fitness": 323.31998,
+      "median_fitness": 324.2,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 377.92,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 475,
+      "best_fitness": 461.6,
+      "average_fitness": 305.18225,
+      "median_fitness": 312.0,
+      "worst_fitness": 7.2,
+      "candidate_validation_fitness": 390.8,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 476,
+      "best_fitness": 616.4,
+      "average_fitness": 325.26215,
+      "median_fitness": 335.8,
+      "worst_fitness": 18.8,
+      "candidate_validation_fitness": 411.52,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 477,
+      "best_fitness": 520.4,
+      "average_fitness": 333.8711,
+      "median_fitness": 340.59998,
+      "worst_fitness": 26.0,
+      "candidate_validation_fitness": 482.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 478,
+      "best_fitness": 668.0,
+      "average_fitness": 368.29773,
+      "median_fitness": 361.8,
+      "worst_fitness": 20.8,
+      "candidate_validation_fitness": 441.28,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 479,
+      "best_fitness": 562.0,
+      "average_fitness": 362.83566,
+      "median_fitness": 379.59998,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 396.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 480,
+      "best_fitness": 705.2,
+      "average_fitness": 409.6755,
+      "median_fitness": 432.0,
+      "worst_fitness": 28.8,
+      "candidate_validation_fitness": 412.56,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 481,
+      "best_fitness": 648.0,
+      "average_fitness": 424.32886,
+      "median_fitness": 428.8,
+      "worst_fitness": 20.4,
+      "candidate_validation_fitness": 419.04,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 482,
+      "best_fitness": 703.6,
+      "average_fitness": 377.01334,
+      "median_fitness": 392.6,
+      "worst_fitness": 7.6,
+      "candidate_validation_fitness": 425.04,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 483,
+      "best_fitness": 572.4,
+      "average_fitness": 309.96442,
+      "median_fitness": 308.40002,
+      "worst_fitness": 18.4,
+      "candidate_validation_fitness": 482.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 484,
+      "best_fitness": 697.6,
+      "average_fitness": 370.5067,
+      "median_fitness": 375.0,
+      "worst_fitness": 96.4,
+      "candidate_validation_fitness": 362.4,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 485,
+      "best_fitness": 560.4,
+      "average_fitness": 332.52444,
+      "median_fitness": 360.59998,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 343.84,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 486,
+      "best_fitness": 554.0,
+      "average_fitness": 364.00006,
+      "median_fitness": 385.8,
+      "worst_fitness": 32.8,
+      "candidate_validation_fitness": 341.44,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 487,
+      "best_fitness": 624.4,
+      "average_fitness": 357.32886,
+      "median_fitness": 369.0,
+      "worst_fitness": 44.8,
+      "candidate_validation_fitness": 376.8,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 488,
+      "best_fitness": 604.8,
+      "average_fitness": 363.63113,
+      "median_fitness": 398.8,
+      "worst_fitness": 20.4,
+      "candidate_validation_fitness": 325.68,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 489,
+      "best_fitness": 547.2,
+      "average_fitness": 346.62674,
+      "median_fitness": 360.2,
+      "worst_fitness": 11.6,
+      "candidate_validation_fitness": 262.48,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 490,
+      "best_fitness": 567.2,
+      "average_fitness": 326.52887,
+      "median_fitness": 338.8,
+      "worst_fitness": 19.6,
+      "candidate_validation_fitness": 461.12,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 491,
+      "best_fitness": 574.4,
+      "average_fitness": 355.26663,
+      "median_fitness": 382.0,
+      "worst_fitness": 21.6,
+      "candidate_validation_fitness": 378.16,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 492,
+      "best_fitness": 618.8,
+      "average_fitness": 303.96445,
+      "median_fitness": 317.6,
+      "worst_fitness": 4.8,
+      "candidate_validation_fitness": 430.48,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 493,
+      "best_fitness": 637.2,
+      "average_fitness": 368.0355,
+      "median_fitness": 383.40002,
+      "worst_fitness": 40.4,
+      "candidate_validation_fitness": 406.8,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 494,
+      "best_fitness": 539.6,
+      "average_fitness": 334.08005,
+      "median_fitness": 349.4,
+      "worst_fitness": 22.4,
+      "candidate_validation_fitness": 379.44,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 495,
+      "best_fitness": 666.4,
+      "average_fitness": 390.76004,
+      "median_fitness": 396.4,
+      "worst_fitness": 24.8,
+      "candidate_validation_fitness": 310.08,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 496,
+      "best_fitness": 694.8,
+      "average_fitness": 334.60004,
+      "median_fitness": 347.59998,
+      "worst_fitness": 12.8,
+      "candidate_validation_fitness": 420.0,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 497,
+      "best_fitness": 633.2,
+      "average_fitness": 354.9066,
+      "median_fitness": 350.8,
+      "worst_fitness": 24.0,
+      "candidate_validation_fitness": 417.04,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 498,
+      "best_fitness": 658.0,
+      "average_fitness": 320.32895,
+      "median_fitness": 331.2,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 430.56,
+      "champion_validation_fitness": 482.4,
+      "all_time_best_fitness": 482.4
+    },
+    {
+      "generation": 499,
+      "best_fitness": 553.6,
+      "average_fitness": 329.4089,
+      "median_fitness": 333.4,
+      "worst_fitness": 34.0,
+      "candidate_validation_fitness": 487.36,
+      "champion_validation_fitness": 487.36,
+      "all_time_best_fitness": 487.36
+    },
+    {
+      "generation": 500,
+      "best_fitness": 674.4,
+      "average_fitness": 335.2133,
+      "median_fitness": 342.40002,
+      "worst_fitness": 15.2,
+      "candidate_validation_fitness": 367.84,
+      "champion_validation_fitness": 487.36,
+      "all_time_best_fitness": 487.36
+    }
+  ]
+}

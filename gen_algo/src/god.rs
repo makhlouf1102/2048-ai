@@ -10,6 +10,22 @@ use serde::Serialize;
 
 pub const DEFAULT_MUTATION_RATE: f32 = 0.05;
 pub const DEFAULT_MUTATION_STRENGTH: f32 = 0.1;
+pub const VALIDATION_GAME_COUNT: usize = 50;
+pub const VALIDATION_SEEDS: [u64; VALIDATION_GAME_COUNT] = validation_seeds();
+
+const fn validation_seeds() -> [u64; VALIDATION_GAME_COUNT] {
+    let mut seeds = [0; VALIDATION_GAME_COUNT];
+    let mut state = 0x0002_048A_11CE_5EED_u64;
+    let mut index = 0;
+    while index < VALIDATION_GAME_COUNT {
+        state = state
+            .wrapping_mul(6_364_136_223_846_793_005)
+            .wrapping_add(1_442_695_040_888_963_407);
+        seeds[index] = state;
+        index += 1;
+    }
+    seeds
+}
 
 #[derive(Debug, Clone, Copy, PartialEq, Serialize)]
 pub struct MutationProfile {
@@ -43,6 +59,8 @@ pub struct GenerationResult {
     pub average_fitness: f32,
     pub median_fitness: f32,
     pub worst_fitness: f32,
+    pub candidate_validation_fitness: f32,
+    pub champion_validation_fitness: f32,
     pub all_time_best_fitness: f32,
 }
 
@@ -53,6 +71,8 @@ struct TrainingStats<'a> {
     population_size: usize,
     completed_generations: u64,
     fitness_games_per_player: usize,
+    validation_game_count: usize,
+    validation_seeds: &'static [u64],
     mutation_profiles: [MutationProfile; 4],
     generations: &'a [GenerationResult],
 }
@@ -63,7 +83,7 @@ pub struct God {
     players: Vec<Player>,
     generation: u64,
     mutation_profiles: [MutationProfile; 4],
-    best_fitness: Option<f32>,
+    champion_validation_fitness: Option<f32>,
     champion: Option<Player>,
 }
 
@@ -100,7 +120,7 @@ impl God {
             players: (0..population_size).map(|_| Player::new()).collect(),
             generation: 0,
             mutation_profiles,
-            best_fitness: None,
+            champion_validation_fitness: None,
             champion: None,
         }
     }
@@ -151,7 +171,7 @@ impl God {
             players,
             generation: 0,
             mutation_profiles,
-            best_fitness: None,
+            champion_validation_fitness: None,
             champion: None,
         }
     }
@@ -204,20 +224,24 @@ impl God {
         let median_fitness =
             (ranked[population_size / 2 - 1].2 + ranked[population_size / 2].2) / 2.0;
 
+        let mut candidate = ranked[0].1.clone();
+        let candidate_validation_fitness = candidate.fitness_with_seeds(&VALIDATION_SEEDS);
         let champion_source_index = if self
-            .best_fitness
-            .is_none_or(|previous_best| best_fitness > previous_best)
+            .champion_validation_fitness
+            .is_none_or(|champion_fitness| candidate_validation_fitness > champion_fitness)
         {
-            self.best_fitness = Some(best_fitness);
-            self.champion = Some(ranked[0].1.clone());
+            self.champion_validation_fitness = Some(candidate_validation_fitness);
+            self.champion = Some(candidate);
             ranked[0].0
         } else {
             // The champion is always placed at index zero in each new population.
             0
         };
-        let all_time_best_fitness = self.best_fitness.expect("champion fitness was initialized");
+        let champion_validation_fitness = self
+            .champion_validation_fitness
+            .expect("champion fitness was initialized");
         info!(
-            "generation {next_generation}: selection complete; best={best_fitness:.2}, all_time_best={all_time_best_fitness:.2}, average={average_fitness:.2}, median={median_fitness:.2}, worst={worst_fitness:.2}"
+            "generation {next_generation}: selection complete; training_best={best_fitness:.2}, candidate_validation={candidate_validation_fitness:.2}, champion_validation={champion_validation_fitness:.2}, average={average_fitness:.2}, median={median_fitness:.2}, worst={worst_fitness:.2}"
         );
 
         let mut survivors = Vec::with_capacity(survivor_count);
@@ -259,7 +283,9 @@ impl God {
             average_fitness,
             median_fitness,
             worst_fitness,
-            all_time_best_fitness,
+            candidate_validation_fitness,
+            champion_validation_fitness,
+            all_time_best_fitness: champion_validation_fitness,
         }
     }
 
@@ -270,7 +296,7 @@ impl God {
     /// Saves the strongest survivor from the latest evaluated generation.
     /// The returned filename contains Unix time in milliseconds and its fitness.
     pub fn save_best_brain(&self, directory: impl AsRef<Path>) -> io::Result<PathBuf> {
-        let fitness = self.best_fitness.ok_or_else(|| {
+        let fitness = self.champion_validation_fitness.ok_or_else(|| {
             io::Error::other("run at least one generation before saving the best brain")
         })?;
         let directory = directory.as_ref();
@@ -308,6 +334,8 @@ impl God {
             population_size: self.players.len(),
             completed_generations: self.generation,
             fitness_games_per_player: crate::player::FITNESS_GAMES,
+            validation_game_count: VALIDATION_GAME_COUNT,
+            validation_seeds: &VALIDATION_SEEDS,
             mutation_profiles: self.mutation_profiles,
             generations: results,
         };
@@ -358,11 +386,13 @@ mod tests {
     fn runs_a_generation_without_changing_population_size() {
         let mut god = God::new(5);
 
-        let result = god.run_generation();
+        let first = god.run_generation();
+        let second = god.run_generation();
 
-        assert_eq!(result.generation, 1);
-        assert_eq!(god.generation(), 1);
+        assert_eq!(second.generation, 2);
+        assert_eq!(god.generation(), 2);
         assert_eq!(god.players().len(), 5);
+        assert!(second.champion_validation_fitness >= first.champion_validation_fitness);
     }
 
     #[test]

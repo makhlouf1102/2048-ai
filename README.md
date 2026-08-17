@@ -60,6 +60,12 @@ nextMove(matrix: number[]): Promise<number>
 
 `matrix` contains all 16 cells in row-major order. The Rust AI mapping is `0=down`, `1=left`, `2=right`, and `3=up`; `-1` means no move is available. Autoplay stops cleanly on `-1` or game over, when the user presses **Stop AI**, or when the AI returns an invalid or blocked move.
 
+The **Random simulation** strategy plays 100 complete random games for every
+legal next move and chooses the move with the highest average final score. Rust
+callers can increase the strength (and computation time) with
+`next_move_random_simulation_with_runs(matrix, runCount)`; the default
+`next_move_random_simulation(matrix)` uses 100 runs per move.
+
 ## Build
 
 ```bash

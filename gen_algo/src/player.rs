@@ -4,8 +4,7 @@ use crate::{
 };
 use log::debug;
 
-pub const FITNESS_GAMES: usize = 5;
-pub const INVALID_MOVE_PENALTY: f32 = 100.0;
+pub const FITNESS_GAMES: usize = 10;
 const NETWORK_LAYOUT: [usize; 4] = [CELL_COUNT, 32, 16, 4];
 const DIRECTIONS: [Direction; 4] = [
     Direction::Up,
@@ -65,16 +64,13 @@ impl Player {
         self.invalid_moves = 0;
 
         while !self.game.is_game_over() {
-            let preferred_move = self.choose_move(false).expect("brain has four outputs");
+            let preferred_move = self.choose_move();
 
             if !self.game.make_move(preferred_move) {
                 self.invalid_moves += 1;
 
-                // Keep the simulation moving after penalizing the bad decision.
-                let legal_fallback = self
-                    .choose_move(true)
-                    .expect("a non-finished game must have a legal move");
-                self.game.make_move(legal_fallback);
+                debug!("game stopped after the brain selected an invalid move");
+                break;
             }
         }
 
@@ -86,32 +82,33 @@ impl Player {
         score
     }
 
-    /// Plays five independent games and averages their scores after subtracting
-    /// a penalty for every illegal move selected by the brain.
+    /// Plays ten independent games and averages their raw 2048 scores.
+    /// An invalid choice ends its game at the score earned so far.
     pub fn fitness(&mut self) -> f32 {
         let seeds: [u64; FITNESS_GAMES] = std::array::from_fn(|_| rand::random());
         self.fitness_with_seeds(&seeds)
     }
 
-    pub fn fitness_with_seeds(&mut self, seeds: &[u64; FITNESS_GAMES]) -> f32 {
+    pub fn fitness_with_seeds(&mut self, seeds: &[u64]) -> f32 {
+        assert!(!seeds.is_empty(), "fitness requires at least one game seed");
         let mut total = 0.0;
         for (index, seed) in seeds.iter().enumerate() {
             let game_number = index + 1;
             let score = self.play_game_with_seed(*seed) as f32;
-            let penalty = self.invalid_moves as f32 * INVALID_MOVE_PENALTY;
-            let adjusted_score = score - penalty;
             debug!(
-                "fitness game {game_number}/{FITNESS_GAMES}: raw={score:.2}, penalty={penalty:.2}, adjusted={adjusted_score:.2}"
+                "fitness game {game_number}/{}: score={score:.2}, invalid_moves={}",
+                seeds.len(),
+                self.invalid_moves
             );
-            total += adjusted_score;
+            total += score;
         }
 
-        let fitness = total / FITNESS_GAMES as f32;
+        let fitness = total / seeds.len() as f32;
         debug!("player fitness={fitness:.2}");
         fitness
     }
 
-    fn choose_move(&self, legal_only: bool) -> Option<Direction> {
+    fn choose_move(&self) -> Direction {
         let input = encode_board(&self.game);
         let output = self.brain.forward(&input);
 
@@ -121,17 +118,17 @@ impl Player {
             "Player brain must have four output neurons"
         );
 
-        best_move(output.as_slice(), &self.game, legal_only)
+        best_move(output.as_slice())
     }
 }
 
-fn best_move(output: &[f32], game: &Game, legal_only: bool) -> Option<Direction> {
+fn best_move(output: &[f32]) -> Direction {
     DIRECTIONS
         .into_iter()
         .enumerate()
-        .filter(|(_, direction)| !legal_only || game.can_move(*direction))
         .max_by(|(left, _), (right, _)| output[*left].total_cmp(&output[*right]))
         .map(|(_, direction)| direction)
+        .expect("the brain has four direction outputs")
 }
 
 impl Default for Player {
@@ -169,12 +166,10 @@ mod tests {
     }
 
     #[test]
-    fn illegal_preference_is_visible_and_has_a_legal_fallback() {
-        let game = Game::from_board([[2, 4, 8, 16], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
+    fn highest_output_is_selected_even_when_the_move_is_illegal() {
         let output = [0.0, 0.0, 0.5, 1.0];
 
-        assert_eq!(best_move(&output, &game, false), Some(Direction::Left));
-        assert_eq!(best_move(&output, &game, true), Some(Direction::Down));
+        assert_eq!(best_move(&output), Direction::Left);
     }
 
     #[test]

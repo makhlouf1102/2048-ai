@@ -1,9 +1,19 @@
-import initWasm, { next_move } from "../wasm";
+import initWasm, {
+  next_move_depth,
+  next_move_model,
+  next_move_random_simulation,
+} from "../wasm";
+
+import type { AiStrategy } from ".";
+
+const SEARCH_DEPTH = 3;
 
 let initialization: Promise<unknown> | undefined;
 
-self.onmessage = async (event: MessageEvent<{ id: number; board: number[] }>) => {
-  const { id, board } = event.data;
+self.onmessage = async (
+  event: MessageEvent<{ id: number; board: number[]; strategy: AiStrategy }>,
+) => {
+  const { id, board, strategy } = event.data;
 
   try {
     if (!initialization) {
@@ -11,7 +21,12 @@ self.onmessage = async (event: MessageEvent<{ id: number; board: number[] }>) =>
       initialization = initWasm();
     }
     await initialization;
-    const direction = next_move(Uint32Array.from(board));
+    const wasmBoard = Uint32Array.from(board);
+    const direction = strategy === "depth"
+      ? next_move_depth(wasmBoard, SEARCH_DEPTH)
+      : strategy === "random-simulation"
+        ? next_move_random_simulation(wasmBoard)
+        : next_move_model(wasmBoard);
     self.postMessage({ id, direction });
   } catch (cause) {
     const error = cause instanceof Error ? cause : new Error(String(cause));

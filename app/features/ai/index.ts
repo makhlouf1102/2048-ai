@@ -9,6 +9,8 @@ interface PendingDecision {
   resolve: (direction: number) => void;
 }
 
+export type AiStrategy = "depth" | "model" | "random-simulation";
+
 let worker: Worker | undefined;
 let nextRequestId = 0;
 const pendingDecisions = new Map<number, PendingDecision>();
@@ -48,11 +50,11 @@ function getWorker(): Worker {
 }
 
 /** Runs the Wasm search away from the UI thread. */
-export function nextMove(board: number[]): Promise<number> {
+export function nextMove(board: number[], strategy: AiStrategy): Promise<number> {
   const id = ++nextRequestId;
   return new Promise((resolve, reject) => {
     pendingDecisions.set(id, { resolve, reject });
-    getWorker().postMessage({ id, board });
+    getWorker().postMessage({ id, board, strategy });
   });
 }
 

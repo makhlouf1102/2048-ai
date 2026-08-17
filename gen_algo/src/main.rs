@@ -38,10 +38,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     let results = god.run_generations(generation_count);
     for result in &results {
         log::info!(
-            "generation {:>4}: best fitness = {:>10.2}, all-time best = {:>10.2}, average fitness = {:>10.2}",
+            "generation {:>4}: training best = {:>10.2}, candidate validation = {:>10.2}, champion validation = {:>10.2}, average fitness = {:>10.2}",
             result.generation,
             result.best_fitness,
-            result.all_time_best_fitness,
+            result.candidate_validation_fitness,
+            result.champion_validation_fitness,
             result.average_fitness
         );
     }
