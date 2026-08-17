@@ -1,26 +1,13 @@
 pub mod board;
 pub mod controller;
 pub mod tile;
+mod trained_model;
 pub mod types;
 
 use crate::board::*;
-use crate::controller::*;
 use crate::tile::CELL_COUNT;
 use crate::types::*;
 use wasm_bindgen::prelude::*;
-
-const BASE_SEARCH_DEPTH: usize = 3;
-const DEEP_SEARCH_EMPTY_TILE_THRESHOLD: usize = 6;
-const EMPTY_TILES_PER_DEPTH_INCREASE: usize = 2;
-const MAX_SEARCH_DEPTH: usize = 6;
-
-fn search_depth(board: &Board) -> usize {
-    let empty_tiles = board.empty_tiles().len();
-    let pressure = DEEP_SEARCH_EMPTY_TILE_THRESHOLD.saturating_sub(empty_tiles);
-    let depth_increase = pressure.div_ceil(EMPTY_TILES_PER_DEPTH_INCREASE);
-
-    (BASE_SEARCH_DEPTH + depth_increase).min(MAX_SEARCH_DEPTH)
-}
 
 #[wasm_bindgen]
 pub fn next_move(flatten_board: &[u32]) -> i8 {
@@ -35,9 +22,7 @@ pub fn next_move(flatten_board: &[u32]) -> i8 {
         return -1;
     }
 
-    let depth = search_depth(&board);
-    let controller = Controller::new(board, depth);
-    let best_move = controller.best_move();
+    let best_move = trained_model::best_move(&board);
 
     match best_move {
         Direction::Down => 0,

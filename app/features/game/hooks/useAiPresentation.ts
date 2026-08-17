@@ -4,7 +4,7 @@ export type AiViewMode = "quiet" | "live";
 
 /** Owns how an AI run is presented; it never reads or mutates game state. */
 export function useAiPresentation() {
-  const [mode, setMode] = useState<AiViewMode>("quiet");
+  const [mode, setMode] = useState<AiViewMode>("live");
   const [snapshotVisible, setSnapshotVisible] = useState(false);
 
   const beginRun = useCallback(() => setSnapshotVisible(false), []);
