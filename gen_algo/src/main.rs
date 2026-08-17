@@ -32,6 +32,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     } else {
         God::new(population_size)
     };
+    god.enable_checkpoints(
+        PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+            .join("saved-brains")
+            .join("checkpoints"),
+    );
 
     log::info!("evolving {population_size} players for {generation_count} generations");
 
@@ -48,6 +53,11 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
 
     if generation_count > 0 {
+        let final_test_fitness = god.final_test_fitness()?;
+        log::info!(
+            "deployment champion final fitness on 500 previously unseen games = {final_test_fitness:.2}"
+        );
+
         let save_directory = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("saved-brains");
         let saved_path = god.save_best_brain(save_directory)?;
         log::info!("saved best brain to {}", saved_path.display());

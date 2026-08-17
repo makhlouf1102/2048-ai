@@ -155,9 +155,9 @@ var server_manifest_default = {
 			"hasClientMiddleware": false,
 			"hasDefaultExport": true,
 			"hasErrorBoundary": true,
-			"module": "/2048-ai/assets/root-c4pQhRTk.js",
+			"module": "/2048-ai/assets/root-PqTtcYAX.js",
 			"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js", "/2048-ai/assets/errorBoundaries-CFtPpRqT.js"],
-			"css": ["/2048-ai/assets/root-YD-p6_bn.css"],
+			"css": ["/2048-ai/assets/root-BNnKzxGk.css"],
 			"clientActionModule": void 0,
 			"clientLoaderModule": void 0,
 			"clientMiddlewareModule": void 0,
@@ -176,7 +176,7 @@ var server_manifest_default = {
 			"hasClientMiddleware": false,
 			"hasDefaultExport": true,
 			"hasErrorBoundary": false,
-			"module": "/2048-ai/assets/home-Bwx6XKOa.js",
+			"module": "/2048-ai/assets/home-BzNCyyck.js",
 			"imports": ["/2048-ai/assets/jsx-runtime-CMum7Zzj.js"],
 			"css": [],
 			"clientActionModule": void 0,
@@ -185,8 +185,8 @@ var server_manifest_default = {
 			"hydrateFallbackModule": void 0
 		}
 	},
-	"url": "/2048-ai/assets/manifest-a38ab827.js",
-	"version": "a38ab827",
+	"url": "/2048-ai/assets/manifest-bade7a7e.js",
+	"version": "bade7a7e",
 	"sri": void 0
 };
 //#endregion
