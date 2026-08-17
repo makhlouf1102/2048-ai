@@ -32,42 +32,22 @@ fn main() -> Result<(), Box<dyn Error>> {
     } else {
         God::new(population_size)
     };
-    god.enable_checkpoints(
-        PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-            .join("saved-brains")
-            .join("checkpoints"),
-    );
-
     log::info!("evolving {population_size} players for {generation_count} generations");
 
     let results = god.run_generations(generation_count);
     for result in &results {
         log::info!(
-            "generation {:>4}: training best = {:>10.2}, candidate validation = {:>10.2}, champion validation = {:>10.2}, average fitness = {:>10.2}",
+            "generation {:>4}: best = {:>10.2}, average = {:>10.2}",
             result.generation,
             result.best_fitness,
-            result.candidate_validation_fitness,
-            result.champion_validation_fitness,
             result.average_fitness
         );
     }
 
     if generation_count > 0 {
-        let final_test_fitness = god.final_test_fitness()?;
-        log::info!(
-            "deployment champion final fitness on 500 previously unseen games = {final_test_fitness:.2}"
-        );
-
         let save_directory = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("saved-brains");
         let saved_path = god.save_best_brain(save_directory)?;
         log::info!("saved best brain to {}", saved_path.display());
-
-        let stats_directory = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("training-stats");
-        let stats_path = god.save_training_stats(&results, stats_directory)?;
-        log::info!(
-            "saved graph-ready training stats to {}",
-            stats_path.display()
-        );
     }
 
     Ok(())

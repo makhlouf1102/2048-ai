@@ -58,19 +58,6 @@ impl Layer {
             }
         }
     }
-
-    pub fn mutate_gaussian(&mut self, mutation_rate: f32, mutation_strength: f32) {
-        let mut rng = rand::rng();
-        for value in self.weights.iter_mut().chain(self.biases.iter_mut()) {
-            if rng.random::<f32>() < mutation_rate {
-                // Box-Muller transform avoids another distribution dependency.
-                let u1 = rng.random::<f32>().max(f32::MIN_POSITIVE);
-                let u2 = rng.random::<f32>();
-                let normal = (-2.0 * u1.ln()).sqrt() * (std::f32::consts::TAU * u2).cos();
-                *value += normal * mutation_strength;
-            }
-        }
-    }
 }
 
 impl NeuralNetwork {
@@ -110,12 +97,6 @@ impl NeuralNetwork {
     pub fn mutate(&mut self, mutation_rate: f32, mutation_strength: f32) {
         for layer in &mut self.layers {
             layer.mutate(mutation_rate, mutation_strength);
-        }
-    }
-
-    pub fn mutate_gaussian(&mut self, mutation_rate: f32, mutation_strength: f32) {
-        for layer in &mut self.layers {
-            layer.mutate_gaussian(mutation_rate, mutation_strength);
         }
     }
 
@@ -172,44 +153,6 @@ impl NeuralNetwork {
         child
     }
 
-    /// Inherits each complete neuron (incoming weights plus bias) from one parent.
-    pub fn neuron_crossover(&self, other: &Self) -> Self {
-        self.assert_same_layout(other);
-        let mut rng = rand::rng();
-        let mut child = self.clone();
-        for ((child_layer, left), right) in
-            child.layers.iter_mut().zip(&self.layers).zip(&other.layers)
-        {
-            for row in 0..child_layer.weights.nrows() {
-                let source = if rng.random::<bool>() { left } else { right };
-                child_layer
-                    .weights
-                    .row_mut(row)
-                    .copy_from(&source.weights.row(row));
-                child_layer.biases[row] = source.biases[row];
-            }
-        }
-        child
-    }
-
-    /// Blends corresponding real-valued parameters using one random mix per child.
-    pub fn arithmetic_crossover(&self, other: &Self) -> Self {
-        self.assert_same_layout(other);
-        let alpha = rand::rng().random::<f32>();
-        let mut child = self.clone();
-        for ((child_layer, left), right) in
-            child.layers.iter_mut().zip(&self.layers).zip(&other.layers)
-        {
-            child_layer.weights = &left.weights * alpha + &right.weights * (1.0 - alpha);
-            child_layer.biases = &left.biases * alpha + &right.biases * (1.0 - alpha);
-        }
-        child
-    }
-
-    fn assert_same_layout(&self, other: &Self) {
-        assert_eq!(self.layout(), other.layout(), "network layouts must match");
-    }
-
     pub fn save(&self, path: impl AsRef<Path>) -> io::Result<()> {
         let writer = BufWriter::new(File::create(path)?);
         serde_json::to_writer_pretty(writer, self).map_err(io::Error::other)
@@ -218,29 +161,5 @@ impl NeuralNetwork {
     pub fn load(path: impl AsRef<Path>) -> io::Result<Self> {
         let reader = BufReader::new(File::open(path)?);
         serde_json::from_reader(reader).map_err(io::Error::other)
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn crossover_operators_preserve_network_layout() {
-        let left = NeuralNetwork::new(&[16, 16, 4]);
-        let right = NeuralNetwork::new(&[16, 16, 4]);
-
-        assert_eq!(left.neuron_crossover(&right).layout(), vec![16, 16, 4]);
-        assert_eq!(left.arithmetic_crossover(&right).layout(), vec![16, 16, 4]);
-    }
-
-    #[test]
-    fn gaussian_mutation_changes_parameters() {
-        let mut network = NeuralNetwork::new(&[2, 2]);
-        let before = network.layers[0].weights.clone();
-
-        network.mutate_gaussian(1.0, 0.1);
-
-        assert_ne!(network.layers[0].weights, before);
     }
 }
