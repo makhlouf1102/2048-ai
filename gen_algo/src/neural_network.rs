@@ -85,10 +85,72 @@ impl NeuralNetwork {
         output
     }
 
+    pub fn layout(&self) -> Vec<usize> {
+        let mut layout = Vec::with_capacity(self.layers.len() + 1);
+        if let Some(first) = self.layers.first() {
+            layout.push(first.weights.ncols());
+            layout.extend(self.layers.iter().map(|layer| layer.weights.nrows()));
+        }
+        layout
+    }
+
     pub fn mutate(&mut self, mutation_rate: f32, mutation_strength: f32) {
         for layer in &mut self.layers {
             layer.mutate(mutation_rate, mutation_strength);
         }
+    }
+
+    /// Creates a child by independently inheriting each parameter from either parent.
+    pub fn crossover(&self, other: &Self) -> Self {
+        assert_eq!(
+            self.layers.len(),
+            other.layers.len(),
+            "network layouts must match"
+        );
+        let mut rng = rand::rng();
+        let mut child = self.clone();
+
+        for ((child_layer, left), right) in
+            child.layers.iter_mut().zip(&self.layers).zip(&other.layers)
+        {
+            assert_eq!(
+                left.weights.shape(),
+                right.weights.shape(),
+                "network layouts must match"
+            );
+            assert_eq!(
+                left.biases.len(),
+                right.biases.len(),
+                "network layouts must match"
+            );
+
+            for ((value, left_value), right_value) in child_layer
+                .weights
+                .iter_mut()
+                .zip(left.weights.iter())
+                .zip(right.weights.iter())
+            {
+                *value = if rng.random::<bool>() {
+                    *left_value
+                } else {
+                    *right_value
+                };
+            }
+            for ((value, left_value), right_value) in child_layer
+                .biases
+                .iter_mut()
+                .zip(left.biases.iter())
+                .zip(right.biases.iter())
+            {
+                *value = if rng.random::<bool>() {
+                    *left_value
+                } else {
+                    *right_value
+                };
+            }
+        }
+
+        child
     }
 
     pub fn save(&self, path: impl AsRef<Path>) -> io::Result<()> {

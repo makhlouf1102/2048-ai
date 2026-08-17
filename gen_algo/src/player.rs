@@ -5,7 +5,7 @@ use crate::{
 use log::debug;
 
 pub const FITNESS_GAMES: usize = 10;
-const NETWORK_LAYOUT: [usize; 4] = [CELL_COUNT, 32, 16, 4];
+const NETWORK_LAYOUT: [usize; 3] = [CELL_COUNT, 16, 4];
 const DIRECTIONS: [Direction; 4] = [
     Direction::Up,
     Direction::Right,
@@ -31,6 +31,11 @@ impl Player {
     }
 
     pub fn from_brain(brain: NeuralNetwork) -> Self {
+        assert_eq!(
+            brain.layout(),
+            NETWORK_LAYOUT,
+            "saved brain layout is incompatible with the current player"
+        );
         Self {
             brain,
             game: Game::new(),
@@ -52,6 +57,10 @@ impl Player {
 
     pub fn mutate(&mut self, mutation_rate: f32, mutation_strength: f32) {
         self.brain.mutate(mutation_rate, mutation_strength);
+    }
+
+    pub fn crossover(&self, other: &Self) -> Self {
+        Self::from_brain(self.brain.crossover(&other.brain))
     }
 
     /// Resets the board, plays until no legal moves remain, and returns the score.
@@ -90,8 +99,12 @@ impl Player {
     }
 
     pub fn fitness_with_seeds(&mut self, seeds: &[u64]) -> f32 {
+        robust_fitness(&self.scores_with_seeds(seeds))
+    }
+
+    pub fn scores_with_seeds(&mut self, seeds: &[u64]) -> Vec<f32> {
         assert!(!seeds.is_empty(), "fitness requires at least one game seed");
-        let mut total = 0.0;
+        let mut scores = Vec::with_capacity(seeds.len());
         for (index, seed) in seeds.iter().enumerate() {
             let game_number = index + 1;
             let score = self.play_game_with_seed(*seed) as f32;
@@ -100,12 +113,9 @@ impl Player {
                 seeds.len(),
                 self.invalid_moves
             );
-            total += score;
+            scores.push(score);
         }
-
-        let fitness = total / seeds.len() as f32;
-        debug!("player fitness={fitness:.2}");
-        fitness
+        scores
     }
 
     fn choose_move(&self) -> Direction {
@@ -120,6 +130,21 @@ impl Player {
 
         best_move(output.as_slice())
     }
+}
+
+/// Rewards high average play while making one lucky game less influential.
+pub(crate) fn robust_fitness(scores: &[f32]) -> f32 {
+    assert!(
+        !scores.is_empty(),
+        "fitness requires at least one game score"
+    );
+    let mean = scores.iter().sum::<f32>() / scores.len() as f32;
+    let mut ordered = scores.to_vec();
+    ordered.sort_by(f32::total_cmp);
+    let lower_quartile = ordered[(ordered.len() - 1) / 4];
+    let fitness = 0.75 * mean + 0.25 * lower_quartile;
+    debug!("player robust fitness={fitness:.2}, mean={mean:.2}, q25={lower_quartile:.2}");
+    fitness
 }
 
 fn best_move(output: &[f32]) -> Direction {
@@ -166,6 +191,13 @@ mod tests {
     }
 
     #[test]
+    fn player_uses_one_small_hidden_layer() {
+        let player = Player::new();
+
+        assert_eq!(player.brain().layout(), NETWORK_LAYOUT);
+    }
+
+    #[test]
     fn highest_output_is_selected_even_when_the_move_is_illegal() {
         let output = [0.0, 0.0, 0.5, 1.0];
 
@@ -182,5 +214,10 @@ mod tests {
             first.fitness_with_seeds(&seeds),
             second.fitness_with_seeds(&seeds)
         );
+    }
+
+    #[test]
+    fn robust_fitness_blends_mean_and_lower_quartile() {
+        assert_eq!(robust_fitness(&[0.0, 4.0, 8.0, 100.0]), 21.0);
     }
 }
